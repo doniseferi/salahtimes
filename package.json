@@ -5,6 +5,7 @@
   "main": "prayertimes.js",
   "typings": "prayertimes.d.ts",
   "scripts": {
+    "build": "rollup -c",
     "test": "jest",
     "coverage": "jest --coverage",
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
