@@ -16,16 +16,22 @@
   },
   "author": "Edonis Seferi",
   "license": "ISC",
-  "files": ["prayertimes.d.ts"],
+  "files": [
+    "prayertimes.d.ts"
+  ],
   "bugs": {
     "url": "https://github.com/doniseferi/prayertimes/issues"
   },
   "homepage": "https://github.com/doniseferi/prayertimes#readme",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^2.1.0",
+    "@types/jest": "^24.9.0",
     "coveralls": "^3.0.9",
     "jest": "^24.9.0",
     "rollup": "^1.29.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-terser": "^5.2.0"
+    "rollup-plugin-terser": "^5.2.0",
+    "ts-jest": "^24.3.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
   }
 }

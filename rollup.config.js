@@ -1,9 +1,9 @@
-import babel from "rollup-plugin-babel";
 import pkg from "./package.json";
 import { terser } from "rollup-plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 
 const config = {
-  input: "src/index.js",
+  input: "src/index.ts",
   output: [
     {
       file: "prayertimes.js",
@@ -13,12 +13,7 @@ const config = {
       compact: true
     }
   ],
-  plugins: [
-    babel({
-      exclude: "node_modules/**"
-    }),
-    terser()
-  ]
+  plugins: [typescript(), terser()]
 };
 
 export default config;
