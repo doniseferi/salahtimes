@@ -5,9 +5,9 @@ module.exports = {
     lib: "./src/index"
   },
   output: {
-    library: "lib",
+    library: "suntimes",
     libraryTarget: "umd",
-    filename: "[name].js"
+    filename: "prayertimes.js"
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
