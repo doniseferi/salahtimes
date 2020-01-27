@@ -1,20 +1,17 @@
 import { angle, Angle } from "../maths"
 
 type GeoCoordinate = {
-    latitude: Readonly<Coordinate>,
-    longitude: Readonly<Coordinate>
+    latitude: Readonly<Angle>,
+    longitude: Readonly<Angle>
 }
 
-const GeoCoordinates =
+const GeoCoordinate =
     (latitude: number,
         longitude: number): GeoCoordinate => ({
             latitude: Latitude(latitude),
             longitude: Longitude(longitude)
         });
 
-type Coordinate = {
-    value: Readonly<Angle>
-}
 
 const Coordinate = (
     name: 'Latitude' | 'Longitude',
