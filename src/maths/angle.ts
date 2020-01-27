@@ -3,7 +3,7 @@ interface Angle {
 }
 
 const angle = (value: number): Angle => {
-    if (value < 0)
+    if (value < -360)
         throw new RangeError(errorMessage(value))
 
         if (value > 360)
