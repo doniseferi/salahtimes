@@ -17,7 +17,7 @@ const Coordinate = (
     name: 'Latitude' | 'Longitude',
     value: number,
     min: Angle,
-    max: Angle): Angle | (() => RangeError) =>
+    max: Angle): Readonly<Angle> | (() => RangeError) =>
     value < min.degrees || value > max.degrees
         ? () => new RangeError(`${name} is set outside the valid range. 
         Please provide a value between ${min.degrees} and ${max.degrees}`)
