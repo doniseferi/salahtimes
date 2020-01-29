@@ -1,17 +1,14 @@
-import { result, error } from "./either"
+import { left, right, match } from "./either";
 
 describe('Either', () => {
-    test('Result contains result', () => {
-        const result = testMethod(false, 10);
-        expect(result.error).toEqual(10);
-    })
-    test('Error contains result', () => {
-        const result = testMethod(false);
-        expect(result.error).toThrow();
-    })
-})
+    test('left contains error', () => {
+        expect(match(testMethod(true), e => { throw e }, v => v)).toThrow();
+    });
+    test('right contains result', () => {
+        expect(match(testMethod(false), e => { throw e }, v => v)).toEqual("Tung");
+    });
+});
 
-const testMethod = (shouldThrow: boolean, value: number = 10) =>
-    shouldThrow ?? false
-    ? error(() => { throw RangeError() }) 
-    : result(value);
+const testMethod = (val: boolean) => val
+    ? left(new Error())
+    : right("Tung");
