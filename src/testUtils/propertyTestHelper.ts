@@ -1,7 +1,7 @@
 import generateRandomNumber from "./generateRandomNumber";
 
 interface IterativeTestConfiguration {
-    length: number,
+    numberOfExecutions: number,
     minInputValue: number,
     maxInputValue: number,
     assertion: (value: number) => void
@@ -13,7 +13,7 @@ const iterativeTest = (testSpec: IterativeTestConfiguration) => {
     }
 
     return Array
-        .from({ length: testSpec.length },
+        .from({ length: testSpec.numberOfExecutions },
             () => generateRandomNumber(testSpec.minInputValue, testSpec.maxInputValue))
         .forEach(value => testSpec.assertion(value));
 };

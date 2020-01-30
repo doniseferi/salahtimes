@@ -1,45 +1,53 @@
 import { geoCoordinate } from './index';
 import { iterativeTest } from '../testUtils/propertyTestHelper';
 
-describe('geoCoordinate', () => {
-
-})
-
 describe('geoCoordinates', () => {
-    test('return the passed in latitude value', () => {
+    test('rejects a latitude value less than -90', () => {
         iterativeTest({
-            length: 500,
+            numberOfExecutions: 500,
+            minInputValue: -90.01,
+            maxInputValue: Number.MIN_SAFE_INTEGER,
+            assertion: value => expect(() => geoCoordinate(value, 10)).toThrow(RangeError)
+        });
+    }),
+    test('rejects a latitude value greater than 90', () => {
+        iterativeTest({
+            numberOfExecutions: 500,
+            minInputValue: 90.01,
+            maxInputValue: Number.MAX_SAFE_INTEGER,
+            assertion: value => expect(() => geoCoordinate(value, 10)).toThrow(RangeError)
+        });
+    }),
+    test('rejects a longitude value less than -180', () => {
+        iterativeTest({
+            numberOfExecutions: 500,
+            minInputValue: -180.01,
+            maxInputValue: Number.MIN_SAFE_INTEGER,
+            assertion: value => expect(() => geoCoordinate(10, value)).toThrow(RangeError)
+        });
+    }),
+    test('rejects a longitude value greater than 180', () => {
+        iterativeTest({
+            numberOfExecutions: 500,
+            minInputValue: 180.01,
+            maxInputValue: Number.MAX_SAFE_INTEGER,
+            assertion: value => expect(() => geoCoordinate(10, value)).toThrow(RangeError)
+        });
+    }),
+    test('accept any latitude within the range of -90 to 90', () => {
+        iterativeTest({
+            numberOfExecutions: 500,
+            minInputValue: -90,
+            maxInputValue: 90,
+            assertion: value => expect(() => geoCoordinate(value, 10)).not.toThrow()
+        });
+    }),
+    test('accept any longitude within the range of -180 to 180', () => {
+        iterativeTest({
+            numberOfExecutions: 500,
             minInputValue: -180,
             maxInputValue: 180,
-            assertion: value => expect(() => geoCoordinate(value, 0)).toThrow(RangeError)
+            assertion: value => expect(() => geoCoordinate(10, value)).not.toThrow()
         });
     })
-    test('never accept a value less than 0', () => {
-        iterativeTest({
-            length: 500,
-            minInputValue: -0.1,
-            maxInputValue: Number.MIN_SAFE_INTEGER,
-            assertion: value => expect(() => geoCoordinate(value)).toThrow(RangeError)
-        });
-    })
-    test('contains a geoCoordinate measurement value within a range of -360 and 360', () => {
-        iterativeTest({
-            length: 500,
-            minInputValue: -360,
-            maxInputValue: 360,
-            assertion: value => {
-                const geoCoordinate= geoCoordinate(value).value;
-                expect(geoCoordinates).toBeLessThanOrEqual(360)
-                expect(geoCoordinates).toBeGreaterThanOrEqual(-360)
-            }
-        });
-    })
-    test('returns the same geoCoordinate measurement value passed in', () => {
-        iterativeTest({
-            length: 500,
-            minInputValue: -360,
-            maxInputValue: 360,
-            assertion: value => expect(geoCoordinate(value).value).toEqual(value)
-        });
-    })
-})
+});

@@ -15,7 +15,7 @@ const geoCoordinate =
 
 const createLatitude = (value: number) => createCoordinate('Latitude', value, degree(-90), degree(90));
 
-const createLongitude = (value: number) => createCoordinate('Latitude', value, degree(-180), degree(180));
+const createLongitude = (value: number) => createCoordinate('Longitude', value, degree(-180), degree(180));
 
 const createCoordinate = (
     name: 'Latitude' | 'Longitude',
