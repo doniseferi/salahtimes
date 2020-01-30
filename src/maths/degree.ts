@@ -1,15 +1,15 @@
-interface Angle {
-    degrees: Number
+interface Degree {
+    value: Number
 }
 
-const angle = (value: number): Angle => {
+const degree = (value: number): Degree => {
     if (value < -360)
         throw new RangeError(errorMessage(value))
 
         if (value > 360)
         throw new RangeError(errorMessage(value))
 
-    return { degrees: value }
+    return { value }
 }
 
 const errorMessage = (value: number) => (
@@ -17,8 +17,7 @@ const errorMessage = (value: number) => (
     Attempted value: ${value}. 
     Please provide a value within the range of -360 to 360.`);
 
-
 export {
-    angle,
-    Angle
+    degree,
+    Degree
 }

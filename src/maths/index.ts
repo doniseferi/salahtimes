@@ -1,6 +1,6 @@
-import { angle, Angle } from './angle'
+import { degree, Degree } from './degree'
 
 export {
-    angle,
-    Angle
+    degree,
+    Degree
 }

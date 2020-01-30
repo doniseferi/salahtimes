@@ -1,28 +1,33 @@
-import { angle, Angle } from "../maths"
+import { Degree, degree } from "../maths"
+import { left, right, match, Either } from "../either/either";
 
-type GeoCoordinate = {
-    latitude: Readonly<Angle>,
-    longitude: Readonly<Angle>
+interface GeoCoordinate {
+    latitude: Readonly<Degree>
+    longitude: Either<RangeError, Readonly<Degree>>
 }
 
 const GeoCoordinate =
     (latitude: number,
         longitude: number): GeoCoordinate => ({
-            latitude: Latitude(latitude),
+            latitude: match(Latitude(latitude), e => {throw e}, lat => lat),
             longitude: Longitude(longitude)
         });
 
+const Latitude = (value: number) => Coordinate('Latitude', value, degree(-90), degree(90));
+
+const Longitude = (value: number) => Coordinate('Latitude', value, degree(-180), degree(180));
 
 const Coordinate = (
     name: 'Latitude' | 'Longitude',
     value: number,
-    min: Angle,
-    max: Angle): Readonly<Angle> | (() => RangeError) =>
-    value < min.degrees || value > max.degrees
-        ? () => new RangeError(`${name} is set outside the valid range. 
-        Please provide a value between ${min.degrees} and ${max.degrees}`)
-        : angle(value)
+    min: Degree,
+    max: Degree) =>
+    value < min.value || value > max.value
+        ? left(new RangeError(`${name} is set outside the valid range. 
+        Please provide a value between ${min.value} and ${max.value}`))
+        : right(degree(value))
 
-const Latitude = (value: number) => Coordinate('Latitude', value, angle(-90), angle(90));
-
-const Longitude = (value: number) => Coordinate('Latitude', value, angle(-180), angle(180));
+export {
+    GeoCoordinate,
+    Coordinate
+}

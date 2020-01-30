@@ -15,7 +15,7 @@ module.exports = {
   moduleFileExtensions: ["js", "json", "jsx", "ts"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ["/lib/", "/node_modules/"],
+  testPathIgnorePatterns: ["/lib/", "/node_modules/", "/src/testUtils"],
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
