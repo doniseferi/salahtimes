@@ -1,16 +1,16 @@
 import { Degree, degree } from "../maths"
-import { left, right, match, Either } from "../either/either";
+import { left, right, match } from "../either/index";
 
 interface GeoCoordinate {
     latitude: Readonly<Degree>
-    longitude: Either<RangeError, Readonly<Degree>>
+    longitude: Readonly<Degree>
 }
 
 const GeoCoordinate =
     (latitude: number,
         longitude: number): GeoCoordinate => ({
-            latitude: match(Latitude(latitude), e => {throw e}, lat => lat),
-            longitude: Longitude(longitude)
+            latitude: match(Latitude(latitude), e => { throw e }, lat => lat),
+            longitude: match(Longitude(longitude), e => { throw e }, lon => lon)
         });
 
 const Latitude = (value: number) => Coordinate('Latitude', value, degree(-90), degree(90));
