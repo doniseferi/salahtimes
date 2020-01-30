@@ -6,18 +6,18 @@ interface GeoCoordinate {
     longitude: Readonly<Degree>
 }
 
-const GeoCoordinate =
+const geoCoordinate =
     (latitude: number,
         longitude: number): GeoCoordinate => ({
-            latitude: match(Latitude(latitude), e => { throw e }, lat => lat),
-            longitude: match(Longitude(longitude), e => { throw e }, lon => lon)
+            latitude: match(createLatitude(latitude), e => { throw e }, lat => lat),
+            longitude: match(createLongitude(longitude), e => { throw e }, lon => lon)
         });
 
-const Latitude = (value: number) => Coordinate('Latitude', value, degree(-90), degree(90));
+const createLatitude = (value: number) => createCoordinate('Latitude', value, degree(-90), degree(90));
 
-const Longitude = (value: number) => Coordinate('Latitude', value, degree(-180), degree(180));
+const createLongitude = (value: number) => createCoordinate('Latitude', value, degree(-180), degree(180));
 
-const Coordinate = (
+const createCoordinate = (
     name: 'Latitude' | 'Longitude',
     value: number,
     min: Degree,
@@ -29,5 +29,5 @@ const Coordinate = (
 
 export {
     GeoCoordinate,
-    Coordinate
+    geoCoordinate
 }
