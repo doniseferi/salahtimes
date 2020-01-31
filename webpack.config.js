@@ -1,6 +1,6 @@
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
+  mode: "production",
+  devtool: 'source-map',
   entry: {
     lib: "./src/index"
   },
