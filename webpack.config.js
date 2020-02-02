@@ -1,12 +1,13 @@
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
+  mode: "production",
+  devtool: "source-map",
   entry: {
     lib: "./src/index"
   },
   output: {
-    library: "suntimes",
+    library: "prayertimes",
     libraryTarget: "umd",
+    path: __dirname,
     filename: "prayertimes.js"
   },
   resolve: {

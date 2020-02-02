@@ -1,1 +1,15 @@
-export default (a: number, b: number) => a + b;
+import {
+    geoCoordinate,
+    GeoCoordinate
+} from './location/index'
+import {
+    degree,
+    Degree
+} from './maths/index';
+
+export {
+    geoCoordinate,
+    GeoCoordinate,
+    degree,
+    Degree
+}

@@ -1,5 +1,5 @@
-import { Degree, degree } from "../maths"
-import { left, right, match } from "../either/index";
+import { Degree, degree } from "../maths/index"
+import { left, right } from "../either/index";
 
 interface GeoCoordinate {
     latitude: Readonly<Degree>
@@ -7,10 +7,10 @@ interface GeoCoordinate {
 }
 
 const geoCoordinate =
-    (latitude: number,
-        longitude: number): GeoCoordinate => ({
-            latitude: match(createLatitude(latitude), e => { throw e }, lat => lat),
-            longitude: match(createLongitude(longitude), e => { throw e }, lon => lon)
+    (latitude: Readonly<Degree>,
+        longitude: Readonly<Degree>): GeoCoordinate => ({
+            latitude: latitude,
+            longitude: longitude
         });
 
 const createLatitude = (value: number) => createCoordinate('Latitude', value, degree(-90), degree(90));
@@ -29,5 +29,7 @@ const createCoordinate = (
 
 export {
     GeoCoordinate,
-    geoCoordinate
+    geoCoordinate,
+    createLatitude,
+    createLongitude
 }

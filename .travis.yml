@@ -4,3 +4,12 @@ node_js:
   - "lts/*"
 
 after_success: npm run coverage
+
+deploy:
+  provider: npm
+  api_token: $NPM_TOKEN
+  edge: true
+  access: public
+  cleanup: true
+  on:
+    branch: master
