@@ -1,4 +1,4 @@
-import { Degree, degree } from "../maths"
+import { Degree, degree } from "../maths/index"
 import { left, right } from "../either/index";
 
 interface GeoCoordinate {
