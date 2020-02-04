@@ -11,6 +11,6 @@ deploy:
   api_token: $NPM_TOKEN
   edge: true
   access: public
-  cleanup: true
   on:
     branch: master
+    tags: true
