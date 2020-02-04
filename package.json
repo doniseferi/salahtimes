@@ -2,8 +2,11 @@
   "name": "prayertimes",
   "version": "1.0.0",
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
-  "main": "prayertimes.js",
+  "main": "dist/prayertimes.js",
   "scripts": {
+    "preversion": "npm test",
+    "version": "npm run build && git add -A",
+    "postversion": "git push && git push --tags",
     "build": "webpack",
     "test": "jest",
     "coverage": "jest --coverage",
@@ -15,9 +18,6 @@
   },
   "author": "Edonis Seferi",
   "license": "ISC",
-  "files": [
-    "prayertimes.js"
-  ],
   "bugs": {
     "url": "https://github.com/doniseferi/prayertimes/issues"
   },
