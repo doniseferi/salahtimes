@@ -5,7 +5,7 @@
   "main": "prayertimes.js",
   "scripts": {
     "preversion": "npm test",
-    "version": "npm run build && git add -A",
+    "version": "npm run build",
     "postversion": "git push && git push --tags",
     "build": "webpack",
     "test": "jest",
@@ -16,6 +16,10 @@
     "type": "git",
     "url": "git+https://github.com/doniseferi/prayertimes.git"
   },
+  "files": [
+    "prayertimes.js",
+    "prayertimes.map.js"
+  ],
   "author": "Edonis Seferi",
   "license": "ISC",
   "bugs": {
