@@ -2,7 +2,7 @@
   "name": "prayertimes",
   "version": "1.0.0",
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
-  "main": "dist/prayertimes.js",
+  "main": "prayertimes.js",
   "scripts": {
     "preversion": "npm test",
     "version": "npm run build && git add -A",
