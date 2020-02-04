@@ -1,6 +1,6 @@
 {
   "name": "prayertimes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
   "main": "prayertimes.js",
   "scripts": {
