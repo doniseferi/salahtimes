@@ -1,0 +1,40 @@
+{
+  "name": "salahtimes",
+  "version": "1.0.0",
+  "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
+  "main": "salahtimes.js",
+  "scripts": {
+    "preversion": "npm test",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags",
+    "build": "webpack",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doniseferi/salahtimes.git"
+  },
+  "files": [
+    "salahtimes.js",
+    "salahtimes.map.js"
+  ],
+  "author": "Edonis Seferi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doniseferi/salahtimes/issues"
+  },
+  "homepage": "https://github.com/doniseferi/salahtimes#readme",
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "coveralls": "^3.0.9",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {}
+}
