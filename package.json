@@ -1,6 +1,6 @@
 {
   "name": "salahtimes",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
   "main": "salahtimes.js",
   "scripts": {
