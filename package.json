@@ -1,8 +1,8 @@
 {
-  "name": "prayertimes",
+  "name": "salahtimes",
   "version": "1.0.1",
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
-  "main": "prayertimes.js",
+  "main": "salahtimes.js",
   "scripts": {
     "preversion": "npm test",
     "version": "npm run build",
@@ -14,18 +14,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doniseferi/prayertimes.git"
+    "url": "git+https://github.com/doniseferi/salahtimes.git"
   },
   "files": [
-    "prayertimes.js",
-    "prayertimes.map.js"
+    "salahtimes.js",
+    "salahtimes.map.js"
   ],
   "author": "Edonis Seferi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/doniseferi/prayertimes/issues"
+    "url": "https://github.com/doniseferi/salahtimes/issues"
   },
-  "homepage": "https://github.com/doniseferi/prayertimes#readme",
+  "homepage": "https://github.com/doniseferi/salahtimes#readme",
   "devDependencies": {
     "@types/jest": "^24.9.0",
     "coveralls": "^3.0.9",
