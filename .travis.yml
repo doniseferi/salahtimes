@@ -3,7 +3,11 @@ os: linux
 node_js:
   - "lts/*"
 
-after_success: npm run coverage
+after_success: 
+  - npm run coverage
+
+before_deploy: 
+  - npm run build
 
 deploy:
   provider: npm
