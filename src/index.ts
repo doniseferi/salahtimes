@@ -1,15 +1,16 @@
 import {
-    geoCoordinate,
-    GeoCoordinate
+    GeoCoordinate,
+    geoCoordinate
 } from './location/index'
 import {
-    degree,
-    Degree
+    degree, Degree
 } from './maths/index';
 
+const salahtimes = Object.freeze({
+    geoCoordinate: (latitude: Degree, longitude: Degree): GeoCoordinate => geoCoordinate(latitude, longitude),
+    degree: (value: number): Degree => degree(value)
+});
+
 export {
-    geoCoordinate,
-    GeoCoordinate,
-    degree,
-    Degree
+    salahtimes
 }
