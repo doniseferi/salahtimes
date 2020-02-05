@@ -4,7 +4,9 @@ node_js:
   - "lts/*"
 
 after_success: 
-  npm publish --dry-run
+  - npm run build
+  - npm publish --dry-run
+  - ls -la
 
 before_deploy: 
   - npm run build
