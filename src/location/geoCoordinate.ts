@@ -6,6 +6,19 @@ interface GeoCoordinate {
     longitude: Readonly<Degree>
 }
 
+/**
+ * Returns the GeoCoordinate point represented by a latitude and longitude angle.
+ *
+ * Code sample:
+ * ```ts
+ *   const myHouse = geoCoordinate(degree(51.5034), degree(0.1276));
+ * ```
+ *
+ * @param latitude - The latitude coordinate in degrees.
+ * @param longitude - The longitude coordinate in degrees.
+ * @returns THe GeoCoordinate value of coordinate latitude and longitude.
+ *
+ */
 const geoCoordinate =
     (latitude: Readonly<Degree>,
         longitude: Readonly<Degree>): GeoCoordinate => ({
