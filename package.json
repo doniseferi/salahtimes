@@ -7,7 +7,7 @@
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "build": "webpack",
+    "build": "webpack && npm run build-docs",
     "test": "jest",
     "build-docs": "npm run generate-docs && npm run merge-docs",
     "merge-docs": "concat-md --ignore LICENSE.md --toc --decrease-title-levels --file-name-as-title --dir-name-as-title temp-docs > README.md",
