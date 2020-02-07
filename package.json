@@ -4,14 +4,14 @@
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
   "main": "salahtimes.js",
   "scripts": {
-    "cleandocs": "rimraf README.md && rimraf docs && rimraf temp-docs rim-raf",
+    "cleandocs": "rimraf docs && rimraf temp-docs rim-raf",
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
     "build": "webpack && npm run builddocs",
-    "test": "jest",
-    "builddocs": "npm run cleandocs && npm run generatedocs && npm run mergedocs",
-    "mergedocs": "concat-md --ignore LICENSE.md --toc --decrease-title-levels --file-name-as-title --dir-name-as-title temp-docs > README.md",
+  "test": "jest",
+    "builddocs": "npm run cleandocs && npm run generatedocs && npm run concatdocs",
+    "concatdocs": "concat-md --ignore LICENSE.md --toc --decrease-title-levels temp-docs > README.md",
     "generatedocs": "typedoc --plugin typedoc-plugin-markdown --theme markdown --mode file --out temp-docs --excludeExternals --excludeNotExported --excludePrivate --excludeProtected",
     "coverage": "jest --coverage",
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
