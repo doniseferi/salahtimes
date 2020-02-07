@@ -1,3 +1,5 @@
+const TypedocWebpackPlugin = require("typedoc-webpack-plugin");
+
 module.exports = {
   mode: "production",
   devtool: "source-map",
@@ -17,5 +19,12 @@ module.exports = {
   },
   module: {
     rules: [{ test: /\.tsx?$/, loader: "ts-loader" }]
-  }
+  },
+  plugins: [
+    new TypedocWebpackPlugin({
+        name: 'Contoso',
+        mode: 'file',
+        json: './docs.json'
+    })
+]
 };
