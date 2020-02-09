@@ -4,15 +4,14 @@
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
   "main": "salahtimes.js",
   "scripts": {
-    "cleandocs": "rimraf docs && rimraf temp-docs rim-raf",
+    "clean-docs": "rimraf docs",
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "build": "webpack && npm run builddocs",
-  "test": "jest",
-    "builddocs": "npm run cleandocs && npm run generatedocs && npm run concatdocs",
-    "concatdocs": "concat-md --ignore LICENSE.md --toc --decrease-title-levels temp-docs > README.md",
-    "generatedocs": "typedoc --plugin typedoc-plugin-markdown --theme markdown --mode file --out temp-docs --excludeExternals --excludeNotExported --excludePrivate --excludeProtected",
+    "build": "webpack && npm run build-docs",
+    "test": "jest",
+    "build-docs": "npm run clean-docs && npm run generate-docs",
+    "generate-docs": "typedoc --listInvalidSymbolLinks --includeDeclarations --mode file --out docs --readme none --excludeExternals --excludeNotExported --excludePrivate --excludeProtected --ignoreCompilerErrors --plugin typedoc-plugin-markdown --theme markdown",
     "coverage": "jest --coverage",
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
@@ -32,7 +31,6 @@
   "homepage": "https://github.com/doniseferi/salahtimes#readme",
   "devDependencies": {
     "@types/jest": "^24.9.0",
-    "concat-md": "^0.3.2",
     "coveralls": "^3.0.9",
     "jest": "^24.9.0",
     "rimraf": "^3.0.1",
@@ -40,7 +38,6 @@
     "ts-loader": "^6.2.1",
     "typedoc": "^0.16.9",
     "typedoc-plugin-markdown": "^2.2.16",
-    "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "^3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
