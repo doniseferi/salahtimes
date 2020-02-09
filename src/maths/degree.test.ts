@@ -1,5 +1,5 @@
 import { degree } from './index';
-import { iterativeTest } from '../testUtils/propertyTestHelper';
+import { iterativeTest } from '../testUtils/index';
 
 /* 
     Property-based testing:

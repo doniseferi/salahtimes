@@ -1,6 +1,6 @@
 import { geoCoordinate } from './index';
-import { iterativeTest } from '../testUtils/propertyTestHelper';
-import { degree } from '../maths';
+import { iterativeTest } from '../testUtils/index';
+import { degree } from '../maths/index';
 
 describe('geoCoordinates', () => {
     test('rejects a latitude value less than -90', () => {

@@ -1,6 +1,6 @@
-import generateRandomNumber from "./generateRandomNumber";
+import { generateRandomNumber } from "./index";
 
-interface IterativeTestConfiguration {
+interface  IterativeTestConfiguration {
     numberOfExecutions: number,
     minInputValue: number,
     maxInputValue: number,
