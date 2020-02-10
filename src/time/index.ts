@@ -1,5 +1,6 @@
 import {
-    TimeSpan
+    TimeSpan,
+    timeSpan
 } from './timeSpan';
 import {
     Duration
@@ -7,5 +8,6 @@ import {
 
 export {
     TimeSpan,
+    timeSpan,
     Duration
 }
