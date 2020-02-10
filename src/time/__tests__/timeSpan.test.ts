@@ -12,6 +12,28 @@ describe('TimeSpan', () => {
         const expectedSpanInMilliSeconds = 86333580000;
         expect(span.value).toEqual(expectedSpanInMilliSeconds);
     })
+    test('returns a positive value when an earlier date is subtracted for a later date', () => {
+        const A = new Date(1987, 0, 27, 12, 0, 0, 0);
+        const B = new Date(1987, 0, 27, 12, 0, 0, 1);
+        const span = timeSpan(B, A);
+        const expectedSpanInMilliSeconds = 1;
+        expect(span.value).toEqual(expectedSpanInMilliSeconds);
+    }),
+        test('returns a negative value when a later date is subtracted for am earlier date', () => {
+            const A = new Date(1987, 0, 27, 12, 0, 0, 1);
+            const B = new Date(1987, 0, 27, 12, 0, 0, 0);
+            const span = timeSpan(B, A);
+            const expectedSpanInMilliSeconds = -1;
+            expect(span.value).toEqual(expectedSpanInMilliSeconds);
+        }),
+        test('returns a 0 value when a two dates are equal', () => {
+            const A = new Date(1987, 0, 27, 12, 0, 0, 0);
+            const B = new Date(1987, 0, 27, 12, 0, 0, 0);
+            const span = timeSpan(B, A);
+            const expectedSpanInMilliSeconds = 0;
+            expect(span.value).toEqual(expectedSpanInMilliSeconds);
+        })
+
 })
 
 
