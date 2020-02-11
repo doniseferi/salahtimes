@@ -7,5 +7,6 @@ import {
 export {
     IterativeTestConfiguration,
     iterativeTest,
-    generateRandomNumber
+    generateRandomNumber,
+    generateRandomDate
 }
