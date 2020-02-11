@@ -1,28 +1,34 @@
 import { timeSpan, TimeSpan } from '../index';
 import { iterativeTest, generateRandomDate } from '../../testUtils/';
 
-interface TimeSpanTestInput {
+interface TimeSpanTestSubject {
     A: Date,
     B: Date,
+    expect: number,
+    actual: TimeSpan
 }
+
+const generateTestSubject = (): TimeSpanTestSubject => {
+    const a = generateRandomDate();
+    const b = generateRandomDate();
+    const expect = a.getTime() - b.getTime();
+    const actual = timeSpan(a, b)
+
+    return {
+        A: a,
+        B: b,
+        expect,
+        actual
+    }
+};
 
 describe('TimeSpan', () => {
     test('returns the time span in milliseconds between two dates', () => {
-        const A = new Date(2017, 0, 17, 13, 15, 23, 333);
-        const B = new Date(2019, 9, 13, 19, 48, 23, 333);
-        const span = timeSpan(B, A);
-        const expectedSpanInMilliSeconds = 86333580000;
-        expect(span.value).toEqual(expectedSpanInMilliSeconds);
-
-        iterativeTest<TimeSpanTestInput, void>({
+        iterativeTest<TimeSpanTestSubject, void>({
             numberOfExecutions: 500,
-            generateInput: () => { A: generateRandomDate(), B: generateRandomDate()},
-            assert: input => expect(
-                () => {
-                    expect(timeSpan(input.A, input.B)).toEqual(input.A - input.B);
-                }
+            generateInput: () => generateTestSubject(),
+            assert: input => expect(input.actual.value).toEqual(input.expect);
         });
-
     })
     test('returns a positive value when an earlier date is subtracted for a later date', () => {
         const A = new Date(1987, 0, 27, 12, 0, 0, 0);
@@ -31,7 +37,7 @@ describe('TimeSpan', () => {
         const expectedSpanInMilliSeconds = 1;
         expect(span.value).toEqual(expectedSpanInMilliSeconds);
     }),
-    test('returns a negative value when a later date is subtracted for am earlier date', () => {
+        test('returns a negative value when a later date is subtracted for am earlier date', () => {
             const A = new Date(1987, 0, 27, 12, 0, 0, 1);
             const B = new Date(1987, 0, 27, 12, 0, 0, 0);
             const span = timeSpan(B, A);
@@ -47,8 +53,6 @@ describe('TimeSpan', () => {
         })
 
 })
-
-
     // divide(divisor: TimeSpan): TimeSpan
     // divide(divisor: number): TimeSpan,
     // duration(): Duration,

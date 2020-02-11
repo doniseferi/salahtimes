@@ -1,4 +1,4 @@
-import generateRandomNumber from './generateRandomNumber'
+import { generateRandomNumber, generateRandomDate } from './generateRandomNumber'
 import {
     IterativeTestConfiguration,
     iterativeTest
