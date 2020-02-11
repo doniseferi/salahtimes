@@ -1,11 +1,7 @@
 import { timeSpan } from '../index';
 
-/* 
-    Property-based testing:
-    Test contract: Preconditions, post conditions and invariance.
-*/
 describe('TimeSpan', () => {
-    test('returns the time span between two dates', () => {
+    test('returns the time span in milliseconds between two dates', () => {
         const A = new Date(2017, 0, 17, 13, 15, 23, 333);
         const B = new Date(2019, 9, 13, 19, 48, 23, 333);
         const span = timeSpan(B, A);
@@ -19,7 +15,7 @@ describe('TimeSpan', () => {
         const expectedSpanInMilliSeconds = 1;
         expect(span.value).toEqual(expectedSpanInMilliSeconds);
     }),
-        test('returns a negative value when a later date is subtracted for am earlier date', () => {
+    test('returns a negative value when a later date is subtracted for am earlier date', () => {
             const A = new Date(1987, 0, 27, 12, 0, 0, 1);
             const B = new Date(1987, 0, 27, 12, 0, 0, 0);
             const span = timeSpan(B, A);

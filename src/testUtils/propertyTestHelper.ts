@@ -1,21 +1,24 @@
-import { generateRandomNumber } from "./index";
-
-interface  IterativeTestConfiguration {
-    numberOfExecutions: number,
-    minInputValue: number,
-    maxInputValue: number,
-    assertion: (value: number) => void
+interface TestInput<T> {
+    generateInput(): T
 }
 
-const iterativeTest = (testSpec: IterativeTestConfiguration) => {
+interface MultipleTestExecution<T, U> extends TestInput<T> {
+    assert: (value: T) => U
+    numberOfExecutions: number
+}
+
+interface  IterativeTestConfiguration<T,U> extends MultipleTestExecution<T, U> {
+}
+
+const iterativeTest = <T, U>(testSpec: IterativeTestConfiguration<T, U>) => {
     if (testSpec == null) {
         throw new TypeError()
     }
 
     return Array
         .from({ length: testSpec.numberOfExecutions },
-            () => generateRandomNumber(testSpec.minInputValue, testSpec.maxInputValue))
-        .forEach(value => testSpec.assertion(value));
+            testSpec.generateInput)
+            .forEach(val => testSpec.assert(val))
 };
 
 export {

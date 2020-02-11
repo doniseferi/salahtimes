@@ -1,5 +1,5 @@
 import { degree } from './index';
-import { iterativeTest } from '../testUtils/index';
+import { iterativeTest, generateRandomNumber } from '../testUtils/index';
 
 /* 
     Property-based testing:
@@ -7,27 +7,24 @@ import { iterativeTest } from '../testUtils/index';
 */
 describe('Degrees', () => {
     test('never accept a value greater than 360', () => {
-        iterativeTest({
+        iterativeTest<number, void>({
             numberOfExecutions: 500,
-            minInputValue: 360.1,
-            maxInputValue: Number.MAX_SAFE_INTEGER,
-            assertion: value => expect(() => degree(value)).toThrow(RangeError)
+            generateInput: () => generateRandomNumber(360.1, Number.MAX_SAFE_INTEGER),
+            assert: value => expect(() => degree(value)).toThrow(RangeError)
         });
     })
     test('never accept a value less than 0', () => {
         iterativeTest({
             numberOfExecutions: 500,
-            minInputValue: -0.1,
-            maxInputValue: Number.MIN_SAFE_INTEGER,
-            assertion: value => expect(() => degree(value)).toThrow(RangeError)
+            generateInput: () => generateRandomNumber(-0.1, Number.MIN_SAFE_INTEGER),
+            assert: value => expect(() => degree(value)).toThrow(RangeError)
         });
     })
     test('contains a degree measurement value within a range of -360 and 360', () => {
         iterativeTest({
             numberOfExecutions: 500,
-            minInputValue: -360,
-            maxInputValue: 360,
-            assertion: value => {
+            generateInput: () => generateRandomNumber(-360, 360),
+            assert: value => {
                 const degrees = degree(value).value;
                 expect(degrees).toBeLessThanOrEqual(360)
                 expect(degrees).toBeGreaterThanOrEqual(-360)
@@ -37,9 +34,8 @@ describe('Degrees', () => {
     test('returns the same degree measurement value passed in', () => {
         iterativeTest({
             numberOfExecutions: 500,
-            minInputValue: -360,
-            maxInputValue: 360,
-            assertion: value => expect(degree(value).value).toEqual(value)
+            generateInput: () => generateRandomNumber(-360, 360),
+            assert: value => expect(degree(value).value).toEqual(value)
         });
     })
 })
