@@ -1,16 +1,14 @@
 import { timeSpan, TimeSpan } from '../index';
-import { iterativeTest, generateRandomDate } from '../../testUtils/';
+import { iterativeTest, generateRandomDate as generateRandomDateBetween } from '../../testUtils/';
 
 interface TimeSpanTestSubject {
-    A: Date,
-    B: Date,
     expect: number,
     actual: TimeSpan
 }
 
 const generateTestSubject = (): TimeSpanTestSubject => {
-    const a = generateRandomDate();
-    const b = generateRandomDate();
+    const a = generateRandomDateBetween(2000,2050);
+    const b = generateRandomDateBetween(2000, 2050);
     const expect = a.getTime() - b.getTime();
     const actual = timeSpan(a, b)
 
@@ -27,7 +25,7 @@ describe('TimeSpan', () => {
         iterativeTest<TimeSpanTestSubject, void>({
             numberOfExecutions: 500,
             generateInput: () => generateTestSubject(),
-            assert: input => expect(input.actual.value).toEqual(input.expect);
+            assert: input => expect(input.actual.value).toEqual(input.expect)
         });
     })
     test('returns a positive value when an earlier date is subtracted for a later date', () => {
