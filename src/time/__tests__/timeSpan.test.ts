@@ -1,30 +1,31 @@
 import { timeSpan, TimeSpan } from '../index';
-import { iterativeTest, generateRandomDate as generateRandomDateBetween } from '../../testUtils/';
+import { iterativeTest, generateRandomDate } from '../../testUtils/';
 
 interface TimeSpanTestSubject {
     expect: number,
     actual: TimeSpan
 }
 
-const generateTestSubject = (): TimeSpanTestSubject => {
-    const a = generateRandomDateBetween(2000,2050);
-    const b = generateRandomDateBetween(2000, 2050);
-    const expect = a.getTime() - b.getTime();
-    const actual = timeSpan(a, b)
-
-    return {
-        A: a,
-        B: b,
-        expect,
-        actual
-    }
-};
+function curry<T,U>(fn: Function): (a:T, b: T) => U {
+    return function (a, b) {
+        switch (arguments.length) {
+            case 0:
+                new TypeError('Function called with no arguments');
+            case 1:
+                return function (b: number) {
+                    return fn(a, b);
+                };
+            default:
+                return fn(a, b);
+        }
+    };
+}
 
 describe('TimeSpan', () => {
     test('returns the time span in milliseconds between two dates', () => {
         iterativeTest<TimeSpanTestSubject, void>({
             numberOfExecutions: 500,
-            generateInput: () => generateTestSubject(),
+            generateInput: () => generateTestSubject(2000, 2050, 2000, 2050),
             assert: input => expect(input.actual.value).toEqual(input.expect)
         });
     })
