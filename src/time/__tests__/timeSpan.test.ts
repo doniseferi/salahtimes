@@ -27,37 +27,47 @@ declare function curry<A extends any[], R>(f: (...args: A) => R): Curried<A, R>;
 
 const curriedRandomDate = curry(generateRandomDate);
 
-const generateTestItem = (minYear: number, maxYear: number): TimeSpanTestSubject => {
+const generateRandomItem = (minYear: number, maxYear: number): TimeSpanTestSubject => {
     const setMinForDateA = curriedRandomDate(minYear);
     const getDateA = setMinForDateA(maxYear);
     const setMinForDateB = curriedRandomDate(minYear);
     const getDateB = setMinForDateB(maxYear);
-    const span = timeSpan(getDateA, getDateB);
-    const expect = getDateA.getTime() - getDateB.getTime();
-    return {
-        expect,
-        actual: span.value
-    };
+    return createTimeSPanTestSubject(getDateA, getDateB);
 }
 
+const generatePositiveItem = (earlierYear: number, greaterYear: number): TimeSpanTestSubject => {
+    const setMinForDateA = curriedRandomDate(earlierYear);
+    const getDateA = setMinForDateA(greaterYear-1);
+    const setMinForDateB = curriedRandomDate(greaterYear);
+    const getDateB = setMinForDateB(2050);
+    return createTimeSPanTestSubject(getDateA, getDateB);
+}
+
+const generateNegativeItem = (greaterYear: number, earlierYear: number): TimeSpanTestSubject => {
+    const setMinForDateA = curriedRandomDate(greaterYear);
+    const getDateA = setMinForDateA(2050);
+    const setMinForDateB = curriedRandomDate(earlierYear);
+    const getDateB = setMinForDateB(greaterYear-1);
+    return createTimeSPanTestSubject(getDateA, getDateB);
+}
 
 describe('TimeSpan', () => {
     test('returns the time span in milliseconds between two dates', () => {
         iterativeTest<TimeSpanTestSubject, void>({
             numberOfExecutions: 500,
-            generateInput: () => generateTestItem(2000, 2050),
+            generateInput: () => generateRandomItem(2000, 2050),
             assert: input => expect(input.actual).toEqual(input.expect)
         });
     }), test('returns a positive value', () => {
         iterativeTest<TimeSpanTestSubject, void>({
             numberOfExecutions: 500,
-            generateInput: () => generateTestItem(2000, 2050),
+            generateInput: () => generatePositiveItem(2000, 2050),
             assert: input => expect(input.actual).toBeGreaterThan(0)
         });
     }), test('returns a negative value', () => {
         iterativeTest<TimeSpanTestSubject, void>({
             numberOfExecutions: 500,
-            generateInput: () => generateTestItem(2050, 2000),
+            generateInput: () => generateNegativeItem(2050, 2000),
             assert: input => expect(input.actual).toBeLessThan(0)
         });
     }),
@@ -83,3 +93,8 @@ describe('TimeSpan', () => {
             expect(span.value).toEqual(expectedSpanInMilliSeconds);
         })
 })
+
+const createTimeSPanTestSubject = (getDateA: Date, getDateB: Date) => ({
+        expect: getDateA.getTime() - getDateB.getTime(),
+        actual: timeSpan(getDateA, getDateB).value
+});
