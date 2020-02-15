@@ -1,4 +1,6 @@
-const generateRandomNumber = (min: number, max: number): number =>
+const generateRandomNumber = (
+    min: number = Number.MIN_SAFE_INTEGER, 
+    max: number = Number.MAX_SAFE_INTEGER): number => 
     Math.random() * (max - min) + min;
 
 const generateRandomDate = (minYear: number, maxYear: number): Date => {

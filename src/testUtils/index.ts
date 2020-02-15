@@ -1,11 +1,11 @@
 import { generateRandomNumber, generateRandomDate } from './generateRandomNumber'
 import {
-    IterativeTestConfiguration,
+    IterativeTestSpecification,
     iterativeTest
 } from './propertyTestHelper';
 
 export {
-    IterativeTestConfiguration,
+    IterativeTestSpecification,
     iterativeTest,
     generateRandomNumber,
     generateRandomDate
