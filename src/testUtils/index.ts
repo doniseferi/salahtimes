@@ -1,4 +1,4 @@
-import { generateRandomNumber, generateRandomDate } from './generateRandomNumber'
+import { generateRandomNumber, generateRandomWholeNumber,generateRandomDate } from './generateRandomNumber'
 import {
     IterativeTestSpecification,
     iterativeTest
@@ -8,5 +8,6 @@ export {
     IterativeTestSpecification,
     iterativeTest,
     generateRandomNumber,
+    generateRandomWholeNumber,
     generateRandomDate
 }
