@@ -1,7 +1,6 @@
 export interface TimeSpan {
   // divide(divisor: TimeSpan): TimeSpan
   // divide(divisor: : number): TimeSpan,
-  // duration(): Duration,
   value: number
 }
 
