@@ -1,6 +1,6 @@
 import { Degree } from "../../maths";
-import { timeSpan } from "../../time";
+import { timeSpan, TimeSpan } from "../../time";
 
-export default (angle: Degree) => {
+export default (angle: Degree, timeSpanBetweenSunsetAndSunrise: TimeSpan) => {
     return timeSpan(0,0,0,0,1);
 };

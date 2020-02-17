@@ -4,20 +4,25 @@ import { TimeSpan, timeSpan } from '../../../time';
 
 describe('High latitude calclulation method', () => {
     test('Angle based method returns', () => {
-        iterativeTest<TimeSpan, void>({
+        iterativeTest<AngleBasedMethodTestSpec, void>({
             numberOfExecutions: 500,
-            generateInput: () => {},
-            assert: (val) => expect(val).toEqual(val.value * 2);
+            generateInput: () => angleBasedMethodTestSpec(),
+            assert: (val) => expect();
 
         })
     });
 });
 
-const angleBasedMethodTestSpec = () => {
-    angle: () => generateRandomWholeNumber(1, 20),
-    sunset: () => generateRandonTimeAfter(15, 23),
-    sunrise: () => generateRandonTimeAfter(3, 9)
-}
+interface AngleBasedMethodTestSpec {
+    angle: number,
+    timeSpanBetweenSunsetAndSunrise: TimeSpan
+};
+
+const angleBasedMethodTestSpec = (): AngleBasedMethodTestSpec => ({
+    angle: generateRandomWholeNumber(1, 20),
+    timeSpanBetweenSunsetAndSunrise: timeSpan(0, generateRandomWholeNumber(1, 20), 0, 0, 0),
+    actual: angleBasedMethod(angle, timeSpanBetweenSunsetAndSunrise)
+});
 
 /*
 Let α be the twilight angle for Isha.
