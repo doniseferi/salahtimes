@@ -10,4 +10,4 @@ export {
     TimeSpan,
     timeSpan,
     Duration
-}
+};

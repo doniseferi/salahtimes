@@ -4,12 +4,10 @@ import {
   generateRandomDate
 } from "./randomHelper";
 import {
-  IterativeTestSpecification,
   iterativeTest
 } from "./propertyTestHelper";
 
 export {
-  IterativeTestSpecification,
   iterativeTest,
   generateRandomNumber,
   generateRandomWholeNumber,

@@ -8,4 +8,4 @@ import {
 export {
     geoCoordinate,
     degree,
-}
+};

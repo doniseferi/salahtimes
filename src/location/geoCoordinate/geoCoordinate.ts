@@ -45,4 +45,4 @@ export {
     geoCoordinate,
     createLatitude,
     createLongitude
-}
+};

@@ -16,4 +16,4 @@ export {
     generateRandomNumber,
     generateRandomWholeNumber,
     generateRandomDate
-}
+};

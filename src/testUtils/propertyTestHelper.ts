@@ -22,7 +22,7 @@ interface MultipleTestExecution<T, U> extends TestInput<T> {
     numberOfExecutions: number
 }
 
-interface  IterativeTestSpecification<T,U> extends MultipleTestExecution<T, U> {
+interface IterativeTestSpecification<T, U> extends MultipleTestExecution<T, U> {
 }
 
 
@@ -34,10 +34,9 @@ const iterativeTest = <T, U>(testSpec: IterativeTestSpecification<T, U>) => {
     return Array
         .from({ length: testSpec.numberOfExecutions },
             testSpec.generateInput)
-            .forEach(val => testSpec.assert(val))
+        .forEach((val) => testSpec.assert(val));
 };
 
 export {
-    IterativeTestSpecification,
-    iterativeTest,
-}
+    iterativeTest
+};
