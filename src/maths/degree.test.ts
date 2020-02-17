@@ -1,5 +1,5 @@
 import { degree } from './index';
-import { iterativeTest, generateRandomNumber } from '../testUtils/index';
+import { iterativeTest, generateRandomNumber } from "../testUtils/index";
 
 /* 
     Property-based testing:

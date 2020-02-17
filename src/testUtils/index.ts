@@ -1,13 +1,17 @@
-import { generateRandomNumber, generateRandomWholeNumber,generateRandomDate } from './generateRandomNumber'
 import {
-    IterativeTestSpecification,
-    iterativeTest
-} from './propertyTestHelper';
+  generateRandomNumber,
+  generateRandomWholeNumber,
+  generateRandomDate
+} from "./randomHelper";
+import {
+  IterativeTestSpecification,
+  iterativeTest
+} from "./propertyTestHelper";
 
 export {
-    IterativeTestSpecification,
-    iterativeTest,
-    generateRandomNumber,
-    generateRandomWholeNumber,
-    generateRandomDate
-}
+  IterativeTestSpecification,
+  iterativeTest,
+  generateRandomNumber,
+  generateRandomWholeNumber,
+  generateRandomDate
+};
