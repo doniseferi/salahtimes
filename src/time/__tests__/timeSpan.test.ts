@@ -14,12 +14,12 @@ describe("TimeSpan", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        timespanValueResult(
+        timeSpanValueTestSpec(
           generateRandomWholeNumber(-1000000000000, 1000000000000)
         ),
-      assert: testSpec => {
-        Object.values(testSpec).forEach(timeSpan =>
-          expect(timeSpan.actual.value).toEqual(timeSpan.expected)
+      assert: (testSpec) => {
+        const values = Object.values(testSpec) as testSpec[];
+        values.forEach((testSpec) => expect(testSpec.actual.value).toEqual(testSpec.expected)
         );
       }
     });
@@ -28,11 +28,11 @@ describe("TimeSpan", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        timespanDivisionResult(
+        timeSpanDivisionTestSpec(
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)
         ),
-      assert: testSpec => {
+      assert: (testSpec) => {
         Object.values(testSpec).forEach(timeSpan =>
           expect(timeSpan.actual.value).toEqual(timeSpan.expected)
         );
@@ -43,7 +43,7 @@ describe("TimeSpan", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        timespanDivisionByTimeSpanResult(
+        divideByTimeStampTestSample(
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
           timeSpan(
             0,
@@ -53,7 +53,7 @@ describe("TimeSpan", () => {
             generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)
           )
         ),
-      assert: testSpec => {
+      assert: (testSpec) => {
         Object.values(testSpec).forEach(timeSpan =>
           expect(timeSpan.actual.value).toEqual(timeSpan.expected)
         );
@@ -70,7 +70,7 @@ const timeSpanUnits = {
   millisecond: 1
 };
 
-const timespanValueResult = (value: number): testSpec[] => [
+const timeSpanValueTestSpec = (value: number): testSpec[] => [
   {
     expected: timeSpanUnits.day * value,
     actual: timeSpan(value, 0, 0, 0, 0)
@@ -93,54 +93,54 @@ const timespanValueResult = (value: number): testSpec[] => [
   }
 ];
 
-const timespanDivisionResult = (
-  initalValue: number,
+const timeSpanDivisionTestSpec = (
+  initialValue: number,
   divisor: number
 ): testSpec[] => [
-  {
-    expected: ((timeSpanUnits.day * initalValue) / divisor) >> 0,
-    actual: timeSpan(initalValue, 0, 0, 0, 0).divide(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.hour * initalValue) / divisor) >> 0,
-    actual: timeSpan(0, initalValue, 0, 0, 0).divide(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.minute * initalValue) / divisor) >> 0,
-    actual: timeSpan(0, 0, initalValue, 0, 0).divide(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.second * initalValue) / divisor) >> 0,
-    actual: timeSpan(0, 0, 0, initalValue, 0).divide(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.millisecond * initalValue) / divisor) >> 0,
-    actual: timeSpan(0, 0, 0, 0, initalValue).divide(divisor)
-  }
-];
+    {
+      expected: ((timeSpanUnits.day * initialValue) / divisor) >> 0,
+      actual: timeSpan(initialValue, 0, 0, 0, 0).divide(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.hour * initialValue) / divisor) >> 0,
+      actual: timeSpan(0, initialValue, 0, 0, 0).divide(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.minute * initialValue) / divisor) >> 0,
+      actual: timeSpan(0, 0, initialValue, 0, 0).divide(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.second * initialValue) / divisor) >> 0,
+      actual: timeSpan(0, 0, 0, initialValue, 0).divide(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.millisecond * initialValue) / divisor) >> 0,
+      actual: timeSpan(0, 0, 0, 0, initialValue).divide(divisor)
+    }
+  ];
 
-const timespanDivisionByTimeSpanResult = (
-  initalValue: number,
+const divideByTimeStampTestSample = (
+  initialValue: number,
   divisor: TimeSpan
 ): testSpec[] => [
-  {
-    expected: ((timeSpanUnits.day * initalValue) / divisor.value) >> 0,
-    actual: timeSpan(initalValue, 0, 0, 0, 0).divideByTimeSpan(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.hour * initalValue) / divisor.value) >> 0,
-    actual: timeSpan(0, initalValue, 0, 0, 0).divideByTimeSpan(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.minute * initalValue) / divisor.value) >> 0,
-    actual: timeSpan(0, 0, initalValue, 0, 0).divideByTimeSpan(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.second * initalValue) / divisor.value) >> 0,
-    actual: timeSpan(0, 0, 0, initalValue, 0).divideByTimeSpan(divisor)
-  },
-  {
-    expected: ((timeSpanUnits.millisecond * initalValue) / divisor.value) >> 0,
-    actual: timeSpan(0, 0, 0, 0, initalValue).divideByTimeSpan(divisor)
-  }
-];
+    {
+      expected: ((timeSpanUnits.day * initialValue) / divisor.value) >> 0,
+      actual: timeSpan(initialValue, 0, 0, 0, 0).divideByTimeSpan(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.hour * initialValue) / divisor.value) >> 0,
+      actual: timeSpan(0, initialValue, 0, 0, 0).divideByTimeSpan(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.minute * initialValue) / divisor.value) >> 0,
+      actual: timeSpan(0, 0, initialValue, 0, 0).divideByTimeSpan(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.second * initialValue) / divisor.value) >> 0,
+      actual: timeSpan(0, 0, 0, initialValue, 0).divideByTimeSpan(divisor)
+    },
+    {
+      expected: ((timeSpanUnits.millisecond * initialValue) / divisor.value) >> 0,
+      actual: timeSpan(0, 0, 0, 0, initialValue).divideByTimeSpan(divisor)
+    }
+  ];
