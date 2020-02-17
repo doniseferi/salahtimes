@@ -1,6 +1,6 @@
-import { geoCoordinate } from './index';
-import { iterativeTest, generateRandomWholeNumber } from '../testUtils/index';
-import { degree } from '../maths/index';
+import { geoCoordinate } from '../index';
+import { iterativeTest, generateRandomWholeNumber } from '../../testUtils/index';
+import { degree } from '../../maths/index';
 
 describe('geoCoordinates', () => {
     test('rejects a latitude value less than -90', () => {
