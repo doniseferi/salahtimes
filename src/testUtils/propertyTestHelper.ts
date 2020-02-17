@@ -26,6 +26,10 @@ interface IterativeTestSpecification<T, U> extends MultipleTestExecution<T, U> {
 }
 
 
+/**
+ * 
+ * @param testSpec generateInput, assert, numberOfExec
+ */
 const iterativeTest = <T, U>(testSpec: IterativeTestSpecification<T, U>) => {
     if (testSpec == null) {
         throw new TypeError()
