@@ -17,33 +17,25 @@ describe("TimeSpan", () => {
         timeSpanValueTestSpec(
           generateRandomWholeNumber(-1000000000000, 1000000000000)
         ),
-      assert: (testSpec) => {
-        const values = Object.values(testSpec) as testSpec[];
-        values.forEach((testSpec) => expect(testSpec.actual.value).toEqual(testSpec.expected)
-        );
-      }
+      assert: (testSpec) => testSpec.forEach((spec) => expect(spec.actual.value).toEqual(spec.expected))
     });
   });
   test("is divisible by a number", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        timeSpanDivisionTestSpec(
+        timeSpanDivideTestSpec(
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)
         ),
-      assert: (testSpec) => {
-        Object.values(testSpec).forEach(timeSpan =>
-          expect(timeSpan.actual.value).toEqual(timeSpan.expected)
-        );
-      }
+      assert: (testSpec) => testSpec.forEach((spec) => expect(spec.actual.value).toEqual(spec.expected))
     });
   });
   test("is divisible by a timeSpan", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        timeSpamDivisonByTimeSpanTestSpec(
+        timeSpamDivideByTimeSpanTestSpec(
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
           timeSpan(
             0,
@@ -53,11 +45,7 @@ describe("TimeSpan", () => {
             generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)
           )
         ),
-      assert: (testSpec) => {
-        Object.values(testSpec).forEach(timeSpan =>
-          expect(timeSpan.actual.value).toEqual(timeSpan.expected)
-        );
-      }
+      assert: (testSpec) => testSpec.forEach((spec) => expect(spec.actual.value).toEqual(spec.expected))
     });
   });
 });
@@ -93,7 +81,7 @@ const timeSpanValueTestSpec = (value: number): testSpec[] => [
   }
 ];
 
-const timeSpanDivisionTestSpec = (
+const timeSpanDivideTestSpec = (
   initialValue: number,
   divisor: number
 ): testSpec[] => [
@@ -119,7 +107,7 @@ const timeSpanDivisionTestSpec = (
     }
   ];
 
-const timeSpamDivisonByTimeSpanTestSpec = (
+const timeSpamDivideByTimeSpanTestSpec = (
   initialValue: number,
   divisor: TimeSpan
 ): testSpec[] => [
