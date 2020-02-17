@@ -17,7 +17,7 @@ const degree = (value: number): Degree => {
     }
 
     return ({ value });
-}
+};
 
 export {
     degree

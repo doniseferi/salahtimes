@@ -1,5 +1,5 @@
-import { Degree, degree } from "../maths/index"
-import { left, right } from "../either/index";
+import { Degree, degree } from "../../maths/index"
+import { left, right } from "../../either/index";
 
 interface GeoCoordinate {
     latitude: Readonly<Degree>
@@ -45,4 +45,4 @@ export {
     geoCoordinate,
     createLatitude,
     createLongitude
-}
+};
