@@ -40,7 +40,7 @@ const timespanValueResult = (value: number): testSpec[] => [
   }
 ];
 
-const timespanDivisioNResult = (
+const timespanDivisionResult = (
   initalValue: number,
   divisor: number
 ): testSpec[] => [
@@ -66,6 +66,32 @@ const timespanDivisioNResult = (
   }
 ];
 
+const timespanDivisionByTimeSpanResult = (
+  initalValue: number,
+  divisor: TimeSpan
+): testSpec[] => [
+  {
+    expected: ((timeSpanUnits.day * initalValue) / divisor.value) >> 0,
+    actual: timeSpan(initalValue, 0, 0, 0, 0).divideByTimeSpan(divisor)
+  },
+  {
+    expected: ((timeSpanUnits.hour * initalValue) / divisor.value) >> 0,
+    actual: timeSpan(0, initalValue, 0, 0, 0).divideByTimeSpan(divisor)
+  },
+  {
+    expected: ((timeSpanUnits.minute * initalValue) / divisor.value) >> 0,
+    actual: timeSpan(0, 0, initalValue, 0, 0).divideByTimeSpan(divisor)
+  },
+  {
+    expected: ((timeSpanUnits.second * initalValue) / divisor.value) >> 0,
+    actual: timeSpan(0, 0, 0, initalValue, 0).divideByTimeSpan(divisor)
+  },
+  {
+    expected: ((timeSpanUnits.millisecond * initalValue) / divisor.value) >> 0,
+    actual: timeSpan(0, 0, 0, 0, initalValue).divideByTimeSpan(divisor)
+  }
+];
+
 describe("TimeSpan", () => {
   test("returns a value in millisecond", () => {
     iterativeTest<testSpec[], void>({
@@ -81,14 +107,13 @@ describe("TimeSpan", () => {
       }
     });
   });
-  test("is divisible", () => {
+  test("is divisible by a number", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        timespanDivisioNResult(
+        timespanDivisionResult(
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
-          generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)
-        ),
+            generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)),
       assert: testSpec => {
         Object.values(testSpec).forEach(timeSpan =>
           expect(timeSpan.actual.value).toEqual(timeSpan.expected)
@@ -96,4 +121,25 @@ describe("TimeSpan", () => {
       }
     });
   });
+    test("is divisible by a timeSpan", () => {
+      iterativeTest<testSpec[], void>({
+        numberOfExecutions: 500,
+        generateInput: () =>
+          timespanDivisionByTimeSpanResult(
+            generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
+            timeSpan(
+              0,
+              0,
+              0,
+              0,
+              generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000)
+            )
+          ),
+        assert: testSpec => {
+          Object.values(testSpec).forEach(timeSpan =>
+            expect(timeSpan.actual.value).toEqual(timeSpan.expected)
+          );
+        }
+      });
+    });
 });

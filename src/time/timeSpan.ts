@@ -1,8 +1,10 @@
 export interface TimeSpan {
-  // divide(divisor: TimeSpan): TimeSpan
-  divide(divisor: number): TimeSpan,
+  divide(divisor: number): TimeSpan;
+  divideByTimeSpan(divisor: TimeSpan): TimeSpan;
   value: number;
 }
+
+const millisecond = (value: number) => timeSpan(0, 0, 0, 0, value);
 
 const calculateMilliseconds = (
   days: number,
@@ -21,13 +23,20 @@ const timeSpan = (
   milliseconds: number
 ): TimeSpan => ({
   value: calculateMilliseconds(days, hours, minutes, seconds, milliseconds),
-  divide: (divisor: number) => timeSpan(0,0,0,0, ~~(calculateMilliseconds(
-      days,
-      hours,
-      minutes,
-      seconds,
-      milliseconds
-    ) / divisor))
+  divide: (divisor: number) =>
+    millisecond(
+      ~~(
+        calculateMilliseconds(days, hours, minutes, seconds, milliseconds) /
+        divisor
+      )
+    ),
+  divideByTimeSpan: (divisor: TimeSpan) =>
+    millisecond(
+      ~~(
+        calculateMilliseconds(days, hours, minutes, seconds, milliseconds) /
+        divisor.value
+      )
+    )
 });
 
 export { timeSpan };
