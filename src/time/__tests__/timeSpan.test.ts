@@ -43,7 +43,7 @@ describe("TimeSpan", () => {
     iterativeTest<testSpec[], void>({
       numberOfExecutions: 500,
       generateInput: () =>
-        divideByTimeStampTestSample(
+        timeSpamDivisonByTimeSpanTestSpec(
           generateRandomWholeNumber(-1_000_000_000_000, 1_000_000_000_000),
           timeSpan(
             0,
@@ -119,7 +119,7 @@ const timeSpanDivisionTestSpec = (
     }
   ];
 
-const divideByTimeStampTestSample = (
+const timeSpamDivisonByTimeSpanTestSpec = (
   initialValue: number,
   divisor: TimeSpan
 ): testSpec[] => [
