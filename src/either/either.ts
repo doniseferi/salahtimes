@@ -1,8 +1,8 @@
-export type Left<T> = { path: "left", error: T }
+export type Left<T> = { path: "left", error: Readonly<T> }
 
-export type Right<T> = { path: "right", result: T }
+export type Right<T> = { path: "right", result: Readonly<T> }
 
-export type Either<L, R> = Left<L> | Right<R>
+export type Either<L, R> = Readonly<Left<L>> | Readonly<Right<R>>
 
 const match = <T, L, R>(
     input: Either<L, R>,

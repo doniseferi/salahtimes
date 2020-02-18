@@ -1,4 +1,5 @@
 import calculateMilliseconds from './calculateMilliseconds';
+import { Either, right, left } from '../either';
 
 export interface TimeSpan {
   divide(divisor: number): TimeSpan;
@@ -30,6 +31,8 @@ const timeSpan = (
     )
 });
 
-const fromMilliseconds = (value: number) => timeSpan(0, 0, 0, 0, value)
+const fromMilliseconds = (value: number): Either<TimeSpan, RangeError> => (value) !== 0
+  ? right(timeSpan(0, 0, 0, 0, value))
+  : left(new RangeError('Divide by zero error.'));
 
 export { timeSpan };

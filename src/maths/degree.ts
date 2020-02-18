@@ -1,5 +1,7 @@
+import { right, left, Either } from "../either";
+
 export interface Degree {
-    value: number
+    readonly value: number
 }
 
 const errorMessage = (value: number) => (
@@ -7,17 +9,10 @@ const errorMessage = (value: number) => (
     Attempted value: ${value}. 
     Please provide a value within the range of -360 to 360.`);
 
-const degree = (value: number): Degree => {
-    if (value < -360) {
-        throw new RangeError(errorMessage(value));
-    }
-
-    if (value > 360) {
-        throw new RangeError(errorMessage(value));
-    }
-
-    return ({ value });
-};
+const degree = (value: number):
+    Either<RangeError, Readonly<Degree>> => (value < -360 || value > 360)
+        ? left(new RangeError(errorMessage(value)))
+        : right(Object.freeze({ value }));
 
 export {
     degree

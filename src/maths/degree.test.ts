@@ -20,7 +20,7 @@ describe('Degrees', () => {
             assert: value => expect(() => degree(value)).toThrow(RangeError)
         });
     })
-    test('contains a degree measurement value within a range of -360 and 360', () => {
+    test('contains a degree measurement value within a range of 0 and 360', () => {
         iterativeTest({
             numberOfExecutions: 500,
             generateInput: () => generateRandomNumber(-360, 360),
@@ -35,7 +35,8 @@ describe('Degrees', () => {
         iterativeTest({
             numberOfExecutions: 500,
             generateInput: () => generateRandomNumber(-360, 360),
-            assert: value => expect(degree(value).value).toEqual(value)
+            assert: 
+            value => expect(degree(value).value).toEqual(value)
         });
     })
 })

@@ -1,5 +1,5 @@
 import { TimeSpan } from "../../time";
 
 export interface HighLatitudeMethod {
-    value: (timeSpanBetweenSunsetAndSunrise: TimeSpan) => TimeSpan 
+    readonly value: (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>) => Readonly<TimeSpan>
 }
