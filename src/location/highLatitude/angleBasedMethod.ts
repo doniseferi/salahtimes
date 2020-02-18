@@ -1,6 +1,19 @@
 import { Degree } from "../../maths";
-import { timeSpan, TimeSpan } from "../../time";
+import { TimeSpan } from "../../time";
 
 export default (angle: Degree, timeSpanBetweenSunsetAndSunrise: TimeSpan) => {
-    return timeSpan(0,0,0,0,1);
+  if (angle === null || angle.value === null) {
+    throw new ReferenceError("Angle is not null or undefined.");
+  }
+
+  if (
+    timeSpanBetweenSunsetAndSunrise === null ||
+    timeSpanBetweenSunsetAndSunrise.value === null
+  ) {
+    throw new ReferenceError(
+      "timeSpanBetweenSunsetAndSunrise is null or undefined."
+    );
+  }
+
+  return timeSpanBetweenSunsetAndSunrise.divide(angle.value);
 };
