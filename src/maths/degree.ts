@@ -1,5 +1,5 @@
 export interface Degree {
-    value: Number
+    value: number
 }
 
 const errorMessage = (value: number) => (
