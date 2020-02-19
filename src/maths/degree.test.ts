@@ -1,5 +1,6 @@
 import { degree } from './index';
 import { iterativeTest, generateRandomNumber } from "../testUtils/index";
+import { match } from '../either';
 
 /* 
     Property-based testing:
@@ -25,7 +26,7 @@ describe('Degrees', () => {
             numberOfExecutions: 500,
             generateInput: () => generateRandomNumber(-360, 360),
             assert: value => {
-                const degrees = degree(value).value;
+                const degrees = degree(value);
                 expect(degrees).toBeLessThanOrEqual(360)
                 expect(degrees).toBeGreaterThanOrEqual(-360)
             }
@@ -36,7 +37,7 @@ describe('Degrees', () => {
             numberOfExecutions: 500,
             generateInput: () => generateRandomNumber(-360, 360),
             assert: 
-            value => expect(degree(value).value).toEqual(value)
+            value => expect(match(degree(value), (v) => {throw v}, (v) => v)).toEqual(value)
         });
     })
 })
