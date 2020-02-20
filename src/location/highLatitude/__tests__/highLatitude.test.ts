@@ -2,6 +2,8 @@ import { angleBasedMethod } from '../../index';
 import { iterativeTest, generateRandomWholeNumber, randomTimeSpan, randomDegree } from '../../../testUtils/index';
 import { TimeSpan, timeSpan } from '../../../time/index';
 import { degree, Degree } from '../../../maths/index';
+import { match } from '../../../either';
+import { matchOrThrow } from '../../../either/either';
 
 describe('High latitude calculation pre conditions', () => {
     test('Angle based method throws an error when the degree angle is null', () => {
@@ -18,14 +20,14 @@ describe('High latitude calculation pre conditions', () => {
             numberOfExecutions: 500,
             generateInput: () => null as unknown as TimeSpan,
             assert: (val) => {
-                expect(() => angleBasedMethod(randomDegree(), val)).toThrowError();
+                expect(() => angleBasedMethod(matchOrThrow<Degree>(randomDegree()), val)).toThrowError();
             }
         });
     });
     test('Angle based throws an error when the degree angle is 0.', () => {
         iterativeTest<Degree, void>({
             numberOfExecutions: 500,
-            generateInput: () => degree(0),
+            generateInput: () => matchOrThrow<Degree>(degree(0)),
             assert: (val) => {
                 expect(() => angleBasedMethod(val, randomTimeSpan())).toThrowError();
             }
@@ -36,7 +38,7 @@ describe('High latitude calculation invariance', () => {
     test('doesn\'t modify the degree object', () => {
         iterativeTest<Degree, void>({
             numberOfExecutions: 500,
-            generateInput: () => randomDegree(1),
+            generateInput: () => matchOrThrow(randomDegree(1)),
             assert: (val) => {
                 const deepClone = degree(val.value);
                 angleBasedMethod(val, timeSpan(0, 0, 0, 0, 0));
