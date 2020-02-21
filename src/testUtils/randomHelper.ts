@@ -1,5 +1,6 @@
 import { timeSpan } from "../time";
 import { degree } from "../maths";
+import { matchOrThrow } from "../either/either";
 
 const generateRandomNumber = (
     min: number = Number.MIN_SAFE_INTEGER,
@@ -17,7 +18,7 @@ const generateRandomDate = (minYear: number, maxYear: number): Date => {
 
 const randomTimeSpan = (milliseconds = Number.MAX_SAFE_INTEGER) => timeSpan(0, 0, 0, 0, milliseconds);
 
-const randomDegree = (minValue: number = 0, maxValue: number = 360) => degree(generateRandomNumber(minValue, maxValue));
+const randomDegree = (minValue: number = 0, maxValue: number = 360) => matchOrThrow(degree(generateRandomNumber(minValue, maxValue)));
 
 export {
     generateRandomNumber,

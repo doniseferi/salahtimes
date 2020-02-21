@@ -12,7 +12,7 @@ const errorMessage = (value: number) => (
 const degree = (value: number):
     Either<RangeError, Readonly<Degree>> => (value < -360 || value > 360)
         ? left(new RangeError(errorMessage(value)))
-        : right(Object.freeze({ value }));
+        : right({ value });
 
 export {
     degree
