@@ -1,7 +1,9 @@
 import {
   generateRandomNumber,
   generateRandomWholeNumber,
-  generateRandomDate
+  generateRandomDate,
+  randomDegree,
+  randomTimeSpan
 } from "./randomHelper";
 import {
   iterativeTest
@@ -11,5 +13,7 @@ export {
   iterativeTest,
   generateRandomNumber,
   generateRandomWholeNumber,
-  generateRandomDate
+  generateRandomDate,
+  randomDegree,
+  randomTimeSpan
 };

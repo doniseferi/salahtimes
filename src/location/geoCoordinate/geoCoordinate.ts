@@ -1,9 +1,9 @@
 import { Degree, degree } from "../../maths/index"
-import { left, right } from "../../either/index";
+import { left, right, match, Either } from "../../either/index";
 
 interface GeoCoordinate {
-    latitude: Readonly<Degree>
-    longitude: Readonly<Degree>
+    readonly latitude: Degree
+    readonly longitude: Degree
 }
 
 /**
@@ -21,24 +21,60 @@ interface GeoCoordinate {
  */
 const geoCoordinate =
     (latitude: Readonly<Degree>,
-        longitude: Readonly<Degree>): GeoCoordinate => ({
+        longitude: Readonly<Degree>): Readonly<GeoCoordinate> => Object.freeze({
             latitude: latitude,
             longitude: longitude
         });
 
-const createLatitude = (value: number) => createCoordinate('Latitude', value, degree(-90), degree(90));
+const createLatitude = (value: Readonly<number>) =>
+  createCoordinate(
+    "Latitude",
+    value,
+    match<Degree, Error, Degree>(
+      degree(-90),
+      (err) => {
+        throw err;
+      },
+      (val) => val
+    ),
+    match<Degree, Error, Degree>(
+      degree(90),
+      (err) => {
+        throw err;
+      },
+      (val) => val
+    )
+  );
 
-const createLongitude = (value: number) => createCoordinate('Longitude', value, degree(-180), degree(180));
+  const createLongitude = (value: Readonly<number>) =>
+    createCoordinate(
+      "Latitude",
+      value,
+      match<Degree, Error, Degree>(
+        degree(-180),
+        (err) => {
+          throw err;
+        },
+        (val) => val
+      ),
+      match<Degree, Error, Degree>(
+        degree(180),
+        (err) => {
+          throw err;
+        },
+        (val) => val
+      )
+    );
 
 const createCoordinate = (
     name: 'Latitude' | 'Longitude',
-    value: number,
-    min: Degree,
-    max: Degree) =>
-    value < min.value || value > max.value
+    value: Readonly<number>,
+    min: Readonly<Degree>,
+    max: Readonly<Degree>): Either<RangeError, Readonly<Degree>> =>
+    (value < min.value || value > max.value)
         ? left(new RangeError(`${name} is set outside the valid range. 
         Please provide a value between ${min.value} and ${max.value}`))
-        : right(degree(value))
+        : right<Degree>(match<Degree, Error, Degree>(degree(value), (err) => {throw err}, (val) => val))
 
 export {
     GeoCoordinate,

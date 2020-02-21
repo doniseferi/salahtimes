@@ -5,7 +5,7 @@ import {
     degree,
 } from './maths/index';
 
-export {
-    geoCoordinate,
+export default Object.freeze({
     degree,
-};
+    geoCoordinate
+});

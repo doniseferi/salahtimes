@@ -7,28 +7,28 @@ import {
 } from "../testUtils/index";
 
 describe("Date", () => {
-  test("generates a new date when a timespan is added to it", () => {
+  test("generates a new date when a time span is added to it", () => {
     iterativeTest<DateTestResult, void>({
       numberOfExecutions: 500,
       generateInput: () => dateTestResult(),
-      assert: result => {
+      assert: (result) => {
         const expected = new Date(
-          result.initalDate.getTime() + result.timeSpan.value
+          result.initialDate.getTime() + result.timeSpan.value
         );
-        const actual = result.initalDate.add(result.timeSpan);
+        const actual = result.initialDate.add(result.timeSpan);
         expect(actual).toEqual(expected);
       }
     });
   });
-    test("generates a new date when a timespan is subtracted from it", () => {
+    test("generates a new date when a time span is subtracted from it", () => {
       iterativeTest<DateTestResult, void>({
         numberOfExecutions: 500,
         generateInput: () => dateTestResult(),
-        assert: result => {
+        assert: (result) => {
           const expected = new Date(
-            result.initalDate.getTime() - result.timeSpan.value
+            result.initialDate.getTime() - result.timeSpan.value
           );
-          const actual = result.initalDate.subtract(result.timeSpan);
+          const actual = result.initialDate.subtract(result.timeSpan);
           expect(actual).toEqual(expected);
         }
       });
@@ -36,11 +36,11 @@ describe("Date", () => {
 });
 
 interface DateTestResult {
-  initalDate: Date;
+  initialDate: Date;
   timeSpan: TimeSpan;
 }
 const dateTestResult = (): DateTestResult => ({
-  initalDate: generateRandomDate(2000, 2050),
+  initialDate: generateRandomDate(2000, 2050),
   timeSpan: timeSpan(
     generateRandomWholeNumber(0, 1000),
     generateRandomWholeNumber(0, 1000),

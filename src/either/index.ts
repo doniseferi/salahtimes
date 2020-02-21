@@ -4,7 +4,8 @@ import {
     Right,
     left,
     right,
-    match
+    match,
+    matchOrThrow
 } from './either';
 
 export {
@@ -13,5 +14,6 @@ export {
     Right,
     left,
     right,
-    match
+    match,
+    matchOrThrow
 };
