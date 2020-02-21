@@ -1,9 +1,9 @@
 import { angleBasedMethod } from '../../index';
-import { iterativeTest, generateRandomWholeNumber, randomTimeSpan, randomDegree } from '../../../testUtils/index';
 import { TimeSpan, timeSpan } from '../../../time/index';
 import { degree, Degree } from '../../../maths/index';
 import { Either, matchOrThrow } from "../../../either/index";
 import oneSeventhMethod from '../oneSeventhMethod';
+import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils/index'
 
 describe('High latitude:  Angle based method  pre conditions', () => {
     test('Angle based method throws an error when the degree angle is null', () => {
@@ -135,7 +135,7 @@ describe("High latitude: One seventh based method  post conditions", () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () =>randomTimeSpan(),
-      assert: val => {
+      assert: (val) => {
         expect(val).toMatchObject<TimeSpan>(val);
       }
     });
