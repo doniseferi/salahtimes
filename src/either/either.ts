@@ -13,10 +13,10 @@ const match = <T, L, R>(
 const matchOrThrow = <T>(input: Either<Error, T>) =>
   match<T, Error, T>(
     input,
-    e => {
+    (e) => {
       throw e;
     },
-    result => result
+    (result) => result
   );
 
 const left = <T>(err: T): Left<T> => ({ path: "left", error: err });
