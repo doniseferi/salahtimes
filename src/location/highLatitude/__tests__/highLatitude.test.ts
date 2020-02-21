@@ -3,8 +3,9 @@ import { iterativeTest, generateRandomWholeNumber, randomTimeSpan, randomDegree 
 import { TimeSpan, timeSpan } from '../../../time/index';
 import { degree, Degree } from '../../../maths/index';
 import { Either, matchOrThrow } from "../../../either/index";
+import oneSeventhMethod from '../oneSeventhMethod';
 
-describe('High latitude calculation pre conditions', () => {
+describe('High latitude:  Angle based method  pre conditions', () => {
     test('Angle based method throws an error when the degree angle is null', () => {
         iterativeTest<Degree, void>({
             numberOfExecutions: 500,
@@ -33,7 +34,7 @@ describe('High latitude calculation pre conditions', () => {
         });
     });
 });
-describe('High latitude calculation invariance', () => {
+describe('High latitude:  Angle based method  invariance', () => {
     test('Angle based method doesn\'t modify the degree object', () => {
         iterativeTest<Degree, void>({
             numberOfExecutions: 500,
@@ -82,6 +83,63 @@ describe('High latitude calculation post conditions', () => {
           }
         });
     });
+});
+
+describe("High latitude: One seventh method pre conditions", () => {
+  test("throws an error when no time span is null", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => (null as unknown) as TimeSpan,
+      assert: val => {
+        expect(() => oneSeventhMethod(val)).toThrowError();
+      }
+    });
+  });
+    test("throws an error when no time span is undefined", () => {
+      iterativeTest<TimeSpan, void>({
+        numberOfExecutions: 500,
+        generateInput: () => undefined as unknown as TimeSpan,
+        assert: val => {
+          expect(() => matchOrThrow(oneSeventhMethod(val))).toThrowError();
+        }
+      });
+    });
+});
+
+describe('High latitude: One seventh based method invariance', () => {
+    test('doesn\'t modify the passed in time span object', () => {
+        iterativeTest<TimeSpan, void>({
+            numberOfExecutions: 500,
+            generateInput: () => randomTimeSpan(),
+            assert: (val) => {
+                const deepClone = val;
+                oneSeventhMethod(val);
+                expect(deepClone).toEqual(val);
+            }
+        });
+    });
+});
+describe("High latitude: One seventh based method  post conditions", () => {
+  test("The result will always equal the time span divided by the 7", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => randomTimeSpan(),
+      assert: val => {
+        const expectedMilliseconds = (val.value / 7) >> 0;
+        const expectedTimeSpan = timeSpan(0, 0, 0, 0, expectedMilliseconds);
+        expect(matchOrThrow(oneSeventhMethod(val)).value).toEqual(expectedTimeSpan.value);
+      }
+    });
+  });
+  test("Angle based method The result will always return a time span", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () =>randomTimeSpan(),
+      assert: val => {
+        expect(val).toMatchObject<TimeSpan>(val);
+      }
+    });
+  });
 });
 
 interface HighLatitudeTestSpec {
