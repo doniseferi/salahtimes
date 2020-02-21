@@ -7,7 +7,7 @@ import {
 } from "../testUtils/index";
 
 describe("Date", () => {
-  test("generates a new date when a timespan is added to it", () => {
+  test("generates a new date when a time span is added to it", () => {
     iterativeTest<DateTestResult, void>({
       numberOfExecutions: 500,
       generateInput: () => dateTestResult(),
@@ -20,7 +20,7 @@ describe("Date", () => {
       }
     });
   });
-    test("generates a new date when a timespan is subtracted from it", () => {
+    test("generates a new date when a time span is subtracted from it", () => {
       iterativeTest<DateTestResult, void>({
         numberOfExecutions: 500,
         generateInput: () => dateTestResult(),
