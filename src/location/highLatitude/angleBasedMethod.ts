@@ -1,22 +1,20 @@
-import { Degree } from '../../maths';
-import { TimeSpan } from '../../time';
+import { Degree } from '../../maths/index';
+import { TimeSpan } from '../../time/index';
+import { left, right, Either, match } from '../../either/index';
+import { AngleBasedMethod } from '../index';
 
-export default (angle: Degree, timeSpanBetweenSunsetAndSunrise: TimeSpan) => {
-  if (angle === null || angle.value === null) {
-    throw new ReferenceError('Angle is not null or undefined.');
-  }
-
-  if (
-    timeSpanBetweenSunsetAndSunrise === null ||
-    timeSpanBetweenSunsetAndSunrise.value === null
-  ) {
-    throw new ReferenceError(
+export default (): AngleBasedMethod => (
+  angle: Readonly<Degree>,
+  timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>): Either<Error, Readonly<TimeSpan>> =>
+  (angle === null || angle.value === null)
+    ? left(new ReferenceError('Angle is not null or undefined.'))
+    : (
+      timeSpanBetweenSunsetAndSunrise === null ||
+      timeSpanBetweenSunsetAndSunrise.value === null
+    ) ? left(new ReferenceError(
       'timeSpanBetweenSunsetAndSunrise is null or undefined.'
-    );
-  }
-  if (angle.value === 0) {
-    throw new RangeError('Angle cannot have an angle of 0');
-  }
-
-  return Object.freeze(timeSpanBetweenSunsetAndSunrise.divide(angle.value));
-};
+    )) : (angle.value === 0)
+        ? left(new RangeError('Angle cannot have an angle of 0'))
+        : right(match(timeSpanBetweenSunsetAndSunrise.divide(angle.value), (err) => {
+          throw err;
+        }, (res) => res));

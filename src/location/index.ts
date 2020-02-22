@@ -1,6 +1,6 @@
 import { GeoCoordinate, geoCoordinate, createLatitude, createLongitude } from "./geoCoordinate/geoCoordinate";
-import { HighLatitudeMethod } from "./highLatitude/highLatitudeMethod";
+import { OneSeventhMethod, MiddleOfTheNight, AngleBasedMethod } from "./highLatitude/highLatitudeMethod";
 import angleBasedMethod from "./highLatitude/angleBasedMethod";
 import oneSeventhMethod from "./highLatitude/oneSeventhMethod";
 
-export { GeoCoordinate, geoCoordinate, createLatitude, createLongitude, angleBasedMethod, oneSeventhMethod, HighLatitudeMethod };
+export { GeoCoordinate, geoCoordinate, createLatitude, createLongitude, angleBasedMethod, oneSeventhMethod, OneSeventhMethod, MiddleOfTheNight, AngleBasedMethod };
