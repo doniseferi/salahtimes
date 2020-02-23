@@ -5,7 +5,7 @@ import { Either, matchOrThrow } from "../../../either/index";
 import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils/index'
 
 describe('High latitude: Angle based method  pre conditions', () => {
-  test('Angle based method throws an error when the degree angle is null', () => {
+  test('throws an error when the degree angle is null', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
       generateInput: () => null as unknown as Degree,
@@ -14,7 +14,7 @@ describe('High latitude: Angle based method  pre conditions', () => {
       }
     });
   });
-  test('Angle based method throws an error when no time span is provided', () => {
+  test('throws an error when no time span is provided', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => null as unknown as TimeSpan,
@@ -23,7 +23,7 @@ describe('High latitude: Angle based method  pre conditions', () => {
       }
     });
   });
-  test('Angle based method Angle based throws an error when the degree angle is 0.', () => {
+  test('throws an error when the degree angle is 0.', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
       generateInput: () => matchOrThrow(degree(0)),
@@ -34,18 +34,18 @@ describe('High latitude: Angle based method  pre conditions', () => {
   });
 });
 describe('High latitude: Angle based method  invariance', () => {
-  test('Angle based method doesn\'t modify the degree object', () => {
+  test('doesn\'t modify the degree object', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
       generateInput: () => randomDegree(1),
       assert: (val) => {
         const deepClone = matchOrThrow(degree(val.value));
-        angleBasedMethod(val, timeSpan(0, 0, 0, 0, 0));
+        angleBasedMethod(val, randomTimeSpan());
         expect(deepClone).toEqual(val);
       }
     });
   });
-  test('Angle based method doesn\'t modify the time span object', () => {
+  test('doesn\'t modify the time span object', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
@@ -63,9 +63,9 @@ describe('High latitude calculation post conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => highLatitudeTestSpec(matchOrThrow(degree(generateRandomWholeNumber(1, 90))), timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)),
       assert: (val) => {
-        const expectedMilliseconds = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle.value) >> 0;
-        const expectedTimeSpan = timeSpan(0, 0, 0, 0, expectedMilliseconds);
-        expect(matchOrThrow(val.actual).value).toEqual(expectedTimeSpan.value);
+        const expected = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle.value) >> 0;
+        const actual = matchOrThrow(val.actual).value;
+        expect(actual).toEqual(expected);
       }
     });
   });
@@ -124,9 +124,9 @@ describe("High latitude: One seventh based method  post conditions", () => {
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: val => {
-        const expectedMilliseconds = (val.value / 7) >> 0;
-        const expectedTimeSpan = timeSpan(0, 0, 0, 0, expectedMilliseconds);
-        expect(matchOrThrow(oneSeventhMethod(val))).toEqual(expectedTimeSpan.value);
+        const expected = (val.value / 7) >> 0;
+        const actual = matchOrThrow(oneSeventhMethod(val)).value;
+        expect(actual).toEqual(expected);
       }
     });
   });
@@ -135,8 +135,10 @@ describe("High latitude: One seventh based method  post conditions", () => {
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
+        const expectedMilliseconds = ((val.value / 7) >> 0);
+        const expected = timeSpan(0, 0, 0, 0, expectedMilliseconds);
         const result = matchOrThrow(oneSeventhMethod(val));
-        expect(result).toMatchObject<TimeSpan>(result);
+        expect(result).toEqual(expected);
       }
     });
   });
@@ -183,8 +185,8 @@ describe("High latitude: Middle of the night based method  post conditions", () 
       generateInput: () => randomTimeSpan(),
       assert: val => {
         const expectedMilliseconds = (val.value / 4) >> 0;
-        const expectedTimeSpan = timeSpan(0, 0, 0, 0, expectedMilliseconds);
-        expect(matchOrThrow(middleOfTheNightMethod(val))).toEqual(expectedTimeSpan.value);
+        const actual = matchOrThrow(middleOfTheNightMethod(val)).value;
+        expect(actual).toEqual(expectedMilliseconds);
       }
     });
   });
@@ -193,7 +195,9 @@ describe("High latitude: Middle of the night based method  post conditions", () 
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        expect(matchOrThrow(middleOfTheNightMethod(val))).toMatchObject<TimeSpan>(val);
+        const actual = matchOrThrow(middleOfTheNightMethod(val));
+        const expected = timeSpan(0, 0, 0, 0, (val.value / 4 >> 0));
+        expect(actual).toEqual(expected);
       }
     });
   });
