@@ -20,15 +20,7 @@ describe('High latitude:  Angle based method  pre conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => null as unknown as TimeSpan,
       assert: (val) => {
-        let res = null;
-        try {
-          res = angleBasedMethod((randomDegree()), val);
-        }
-        catch {
-          console.log(JSON.stringify(res));
-        }
-        console.log(JSON.stringify(res));
-        expect(() => angleBasedMethod((randomDegree()), val)).toBeInstanceOf(ReferenceError)
+        expect(() => matchOrThrow(angleBasedMethod((randomDegree()), val))).toThrowError(ReferenceError)
     }});
   });
   test('Angle based method Angle based throws an error when the degree angle is 0.', () => {
@@ -98,7 +90,7 @@ describe("High latitude: One seventh method pre conditions", () => {
       numberOfExecutions: 500,
       generateInput: () => (null as unknown) as TimeSpan,
       assert: val => {
-        expect(() => oneSeventhMethod(val)).toThrowError();
+        expect(() => matchOrThrow(oneSeventhMethod(val))).toThrowError();
       }
     });
   });
