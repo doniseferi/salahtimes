@@ -10,14 +10,9 @@ interface OneSeventhMethod {
     (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>): Either<Error, Readonly<TimeSpan>>
 };
 
-interface MiddleOfTheNight extends AngleBasedMethod { }
-
-interface HighLatitudeMethod
-    extends MiddleOfTheNight
-    extends OneSeventhMethod
-    extends AngleBasedMethod { }
+interface MiddleOfTheNightMethod extends OneSeventhMethod {}
 
 
 export {
-    HighLatitudeMethod, AngleBasedMethod, OneSeventhMethod, MiddleOfTheNight
+    AngleBasedMethod, OneSeventhMethod, MiddleOfTheNightMethod
 }

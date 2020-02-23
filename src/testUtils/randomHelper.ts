@@ -16,7 +16,7 @@ const generateRandomDate = (minYear: number, maxYear: number): Date => {
     return new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
 };
 
-const randomTimeSpan = (milliseconds = Number.MAX_SAFE_INTEGER) => timeSpan(0, 0, 0, 0, milliseconds);
+const randomTimeSpan = () => timeSpan(0, 0, 0, 0, generateRandomWholeNumber(1, 1_000_000_000_000));
 
 const randomDegree = (minValue: number = 0, maxValue: number = 360) => matchOrThrow(degree(generateRandomNumber(minValue, maxValue)));
 

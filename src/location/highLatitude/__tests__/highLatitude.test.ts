@@ -1,11 +1,10 @@
-import { angleBasedMethod } from '../../index';
+import { angleBasedMethod, oneSeventhMethod, middleOfTheNightMethod } from '../../index';
 import { TimeSpan, timeSpan } from '../../../time/index';
 import { degree, Degree } from '../../../maths/index';
 import { Either, matchOrThrow } from "../../../either/index";
-import oneSeventhMethod from '../oneSeventhMethod';
 import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils/index'
 
-describe('High latitude:  Angle based method  pre conditions', () => {
+describe('High latitude: Angle based method  pre conditions', () => {
   test('Angle based method throws an error when the degree angle is null', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
@@ -20,8 +19,9 @@ describe('High latitude:  Angle based method  pre conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => null as unknown as TimeSpan,
       assert: (val) => {
-        expect(() => matchOrThrow(angleBasedMethod((randomDegree()), val))).toThrowError(ReferenceError)
-    }});
+        expect(() => matchOrThrow(angleBasedMethod((randomDegree()), val))).toThrowError(ReferenceError);
+      }
+    });
   });
   test('Angle based method Angle based throws an error when the degree angle is 0.', () => {
     iterativeTest<Degree, void>({
@@ -33,7 +33,7 @@ describe('High latitude:  Angle based method  pre conditions', () => {
     });
   });
 });
-describe('High latitude:  Angle based method  invariance', () => {
+describe('High latitude: Angle based method  invariance', () => {
   test('Angle based method doesn\'t modify the degree object', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
@@ -119,23 +119,81 @@ describe('High latitude: One seventh based method invariance', () => {
   });
 });
 describe("High latitude: One seventh based method  post conditions", () => {
-  test("The result will always equal the time span divided by the 7", () => {
+  test("The result will always equal the time span divided by 7", () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: val => {
         const expectedMilliseconds = (val.value / 7) >> 0;
         const expectedTimeSpan = timeSpan(0, 0, 0, 0, expectedMilliseconds);
-        expect(matchOrThrow(oneSeventhMethod(val)).value).toEqual(expectedTimeSpan.value);
+        expect(matchOrThrow(oneSeventhMethod(val))).toEqual(expectedTimeSpan.value);
       }
     });
   });
-  test("Angle based method The result will always return a time span", () => {
+  test("the result will always return a time span", () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        expect(val).toMatchObject<TimeSpan>(val);
+        const result = matchOrThrow(oneSeventhMethod(val));
+        expect(result).toMatchObject<TimeSpan>(result);
+      }
+    });
+  });
+});
+
+describe("High latitude: Middle of the night method pre conditions", () => {
+  test("throws an error when no time span is null", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => (null as unknown) as TimeSpan,
+      assert: val => {
+        expect(() => matchOrThrow(middleOfTheNightMethod(val))).toThrowError();
+      }
+    });
+  });
+  test("throws an error when no time span is undefined", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => undefined as unknown as TimeSpan,
+      assert: val => {
+        expect(() => matchOrThrow(middleOfTheNightMethod(val))).toThrowError();
+      }
+    });
+  });
+});
+
+describe('High latitude: Middle of the night based method invariance', () => {
+  test('doesn\'t modify the passed in time span object', () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => randomTimeSpan(),
+      assert: (val) => {
+        const deepClone = val;
+        middleOfTheNightMethod(val);
+        expect(deepClone).toEqual(val);
+      }
+    });
+  });
+});
+describe("High latitude: Middle of the night based method  post conditions", () => {
+  test("The result will always equal the time span divided by 4", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => randomTimeSpan(),
+      assert: val => {
+        const expectedMilliseconds = (val.value / 4) >> 0;
+        const expectedTimeSpan = timeSpan(0, 0, 0, 0, expectedMilliseconds);
+        expect(matchOrThrow(middleOfTheNightMethod(val))).toEqual(expectedTimeSpan.value);
+      }
+    });
+  });
+  test("the result will always return a time span", () => {
+    iterativeTest<TimeSpan, void>({
+      numberOfExecutions: 500,
+      generateInput: () => randomTimeSpan(),
+      assert: (val) => {
+        expect(matchOrThrow(middleOfTheNightMethod(val))).toMatchObject<TimeSpan>(val);
       }
     });
   });
