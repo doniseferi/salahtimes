@@ -1,3 +1,4 @@
+
 export type Left<T> = { path: "left"; error: Readonly<T> };
 
 export type Right<T> = { path: "right"; result: Readonly<T> };
