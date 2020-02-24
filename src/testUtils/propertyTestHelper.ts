@@ -4,7 +4,7 @@
  * @template T - The return of the specified  method.
  */
 interface TestInput<T> {
-    generateInput(): T
+  generateInput(): T
 }
 
 /**
@@ -18,24 +18,23 @@ interface TestInput<T> {
  * @template U
  */
 interface MultipleTestExecution<T, U> extends TestInput<T> {
-    assert: (value: T) => U
-    numberOfExecutions: number
+  assert: (value: T) => U
+  numberOfExecutions: number
 }
 
-interface IterativeTestSpecification<T, U> extends MultipleTestExecution<T, U> {
+type IterativeTestSpecification<T, U> = MultipleTestExecution<T, U>
+
+const iterativeTest = <T, U>(testSpec: IterativeTestSpecification<T, U>): void => {
+  if (testSpec === null) {
+    throw new TypeError()
+  }
+
+  return Array
+    .from({ length: testSpec.numberOfExecutions },
+      testSpec.generateInput)
+    .forEach((val) => testSpec.assert(val))
 }
-
-const iterativeTest = <T, U>(testSpec: IterativeTestSpecification<T, U>) => {
-    if (testSpec === null) {
-        throw new TypeError();
-    }
-
-    return Array
-        .from({ length: testSpec.numberOfExecutions },
-            testSpec.generateInput)
-        .forEach((val) => testSpec.assert(val));
-};
 
 export {
-    iterativeTest
-};
+  iterativeTest
+}

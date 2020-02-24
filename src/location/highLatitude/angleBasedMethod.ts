@@ -1,7 +1,7 @@
-import { Degree } from '../../maths/index';
-import { TimeSpan } from '../../time/index';
-import { left, right, match } from '../../either/index';
-import { AngleBasedMethod } from '../index';
+import { Degree } from '../../maths/index'
+import { TimeSpan } from '../../time/index'
+import { left, right, match } from '../../either/index'
+import { AngleBasedMethod } from '../index'
 
 const angleBasedMethod: AngleBasedMethod = (
   angle: Readonly<Degree>,
@@ -12,11 +12,11 @@ const angleBasedMethod: AngleBasedMethod = (
       timeSpanBetweenSunsetAndSunrise === null ||
       timeSpanBetweenSunsetAndSunrise.value === null
     ) ? left(new ReferenceError(
-      'timeSpanBetweenSunsetAndSunrise is null or undefined.'
-    )) : (angle.value === 0)
+        'timeSpanBetweenSunsetAndSunrise is null or undefined.'
+      )) : (angle.value === 0)
         ? left(new RangeError('Angle cannot have an angle of 0'))
         : right(match(timeSpanBetweenSunsetAndSunrise.divide(angle.value), (err) => {
-          throw err;
-        }, (res) => Object.freeze(res)));
+          throw err
+        }, (res) => Object.freeze(res)))
 
-export default angleBasedMethod;
+export default angleBasedMethod

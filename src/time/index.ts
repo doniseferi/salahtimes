@@ -1,13 +1,13 @@
 import {
-    TimeSpan,
-    timeSpan
-} from './timeSpan';
+  TimeSpan,
+  timeSpan
+} from './timeSpan'
 import {
-    Duration
-} from './duration';
+  Duration
+} from './duration'
 
 export {
-    TimeSpan,
-    timeSpan,
-    Duration
-};
+  TimeSpan,
+  timeSpan,
+  Duration
+}

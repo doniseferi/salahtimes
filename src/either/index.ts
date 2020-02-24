@@ -1,19 +1,19 @@
 import {
-    Either,
-    Left,
-    Right,
-    left,
-    right,
-    match,
-    matchOrThrow
-} from './either';
+  Either,
+  Left,
+  Right,
+  left,
+  right,
+  match,
+  matchOrThrow
+} from './either'
 
 export {
-    Either,
-    Left,
-    Right,
-    left,
-    right,
-    match,
-    matchOrThrow
-};
+  Either,
+  Left,
+  Right,
+  left,
+  right,
+  match,
+  matchOrThrow
+}

@@ -1,10 +1,10 @@
-import calculateMilliseconds from "./calculateMilliseconds";
-import { Either, right, left } from "../either";
+import calculateMilliseconds from './calculateMilliseconds'
+import { Either, right, left } from '../either'
 
 export interface TimeSpan {
-  divide(divisor: number): Either<Error, TimeSpan>;
-  divideByTimeSpan(divisor: TimeSpan): Either<Error, TimeSpan>;
-  value: number;
+  divide(divisor: number): Either<Error, TimeSpan>
+  divideByTimeSpan(divisor: TimeSpan): Either<Error, TimeSpan>
+  value: number
 }
 
 const timeSpan = (
@@ -35,7 +35,7 @@ const timeSpan = (
             )
           )
         )
-        : left(new RangeError("Divide by zero error.")),
+        : left(new RangeError('Divide by zero error.')),
     divideByTimeSpan: (divisor: TimeSpan): Either<RangeError, TimeSpan> =>
       (divisor.value !== 0)
         ? right<TimeSpan>(
@@ -55,7 +55,7 @@ const timeSpan = (
             )
           )
         )
-        : left(new RangeError("Divide by zero error."))
-  });
+        : left(new RangeError('Divide by zero error.'))
+  })
 
-export { timeSpan };
+export { timeSpan }
