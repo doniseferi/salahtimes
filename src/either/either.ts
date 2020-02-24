@@ -20,7 +20,7 @@ const matchOrThrow = <T>(input: Either<Error, T>) =>
     (result) => result
   );
 
-const left = <T>(err: T): Left<T> => ({ path: "left", error: err })
+const left = <T>(err: T): Left<T> => ({ path: "left", error: err });
 
 const right = <T>(res: T): Right<T> => ({ path: "right", result: res });
 
