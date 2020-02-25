@@ -4,10 +4,6 @@ export interface Degree {
   readonly value: number
 }
 
-const args
-const l = `arg1 = ${arg1}`;
-
-
 const errorMessage = (value: number): string => `Out of range error. Attempted value: ${value}. Please provide a value within the range of -360 to 360.`
 
 const degree = (value: number): Either<RangeError, Readonly<Degree>> => (value < -360 || value > 360)

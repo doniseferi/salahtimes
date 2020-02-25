@@ -4,8 +4,8 @@
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
   "main": "salahtimes.js",
   "scripts": {
-    "lint": "eslint **/src/** --ext .html",
-    "lint-fix": "eslint **/src/** --fix",
+    "lint": "eslint **/src/** --ext .html,.md,./lib",
+    "lint-fix": "eslint **/src/** --ext .html,.md,./lib --fix",
     "clean-docs": "rimraf docs",
     "preversion": "npm test",
     "version": "npm run build",

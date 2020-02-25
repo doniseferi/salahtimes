@@ -17,4 +17,11 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
   - 'jest'
-rules: {}
+rules: {
+  no-extend-native: ["error", { "exceptions": ["Date"] }],
+  "@typescript-eslint/restrict-template-expressions": ["error", {
+      "allowNumber": true,
+      "allowBoolean": false,
+      "allowNullable": false
+    }]
+}
