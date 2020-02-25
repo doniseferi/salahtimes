@@ -4,10 +4,10 @@ import {
   generateRandomDate,
   randomDegree,
   randomTimeSpan
-} from "./randomHelper";
+} from './randomHelper'
 import {
   iterativeTest
-} from "./propertyTestHelper";
+} from './propertyTestHelper'
 
 export {
   iterativeTest,
@@ -16,4 +16,4 @@ export {
   generateRandomDate,
   randomDegree,
   randomTimeSpan
-};
+}

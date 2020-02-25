@@ -4,4 +4,4 @@ export default (
   minutes: number,
   seconds: number,
   milliseconds: number
-) => (days * 3600 * 24 + hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds;
+): number => (days * 3600 * 24 + hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds

@@ -1,7 +1,7 @@
-import { angleBasedMethod, oneSeventhMethod, middleOfTheNightMethod } from '../../index';
-import { timeSpan, TimeSpan } from '../../../time/index';
-import { degree, Degree } from '../../../maths/index';
-import { matchOrThrow } from '../../../either/index';
+import { angleBasedMethod, oneSeventhMethod, middleOfTheNightMethod } from '../../index'
+import { timeSpan, TimeSpan } from '../../../time/index'
+import { degree, Degree } from '../../../maths/index'
+import { matchOrThrow } from '../../../either/index'
 import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils/index'
 
 describe('High latitude: Angle based method  pre conditions', () => {
@@ -10,65 +10,65 @@ describe('High latitude: Angle based method  pre conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => null as unknown as Degree,
       assert: (val) => {
-        expect(() => matchOrThrow(angleBasedMethod(val, randomTimeSpan()))).toThrowError();
+        expect(() => matchOrThrow(angleBasedMethod(val, randomTimeSpan()))).toThrowError()
       }
-    });
-  });
+    })
+  })
   test('throws an error when no time span is provided', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => null as unknown as TimeSpan,
       assert: (val) => {
-        expect(() => matchOrThrow(angleBasedMethod((randomDegree()), val))).toThrowError(ReferenceError);
+        expect(() => matchOrThrow(angleBasedMethod((randomDegree()), val))).toThrowError(ReferenceError)
       }
-    });
-  });
+    })
+  })
   test('throws an error when the degree angle is 0.', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
       generateInput: () => matchOrThrow(degree(0)),
       assert: (val) => {
-        expect(() => matchOrThrow(angleBasedMethod(val, randomTimeSpan()))).toThrowError();
+        expect(() => matchOrThrow(angleBasedMethod(val, randomTimeSpan()))).toThrowError()
       }
-    });
-  });
-});
+    })
+  })
+})
 describe('High latitude: Angle based method  invariance', () => {
   test('doesn\'t modify the degree object', () => {
     iterativeTest<Degree, void>({
       numberOfExecutions: 500,
       generateInput: () => randomDegree(1),
       assert: (val) => {
-        const deepClone = matchOrThrow(degree(val.value));
-        angleBasedMethod(val, randomTimeSpan());
-        expect(deepClone).toEqual(val);
+        const deepClone = matchOrThrow(degree(val.value))
+        angleBasedMethod(val, randomTimeSpan())
+        expect(deepClone).toEqual(val)
       }
-    });
-  });
+    })
+  })
   test('doesn\'t modify the time span object', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        const deepClone = val;
-        angleBasedMethod(randomDegree(1), val);
-        expect(deepClone).toEqual(val);
+        const deepClone = val
+        angleBasedMethod(randomDegree(1), val)
+        expect(deepClone).toEqual(val)
       }
-    });
-  });
-});
+    })
+  })
+})
 describe('High latitude calculation post conditions', () => {
   test('Angle based method The result will always equal the time span divided by the angle', () => {
     iterativeTest<HighLatitudeTestSpec, void>({
       numberOfExecutions: 500,
       generateInput: () => highLatitudeTestSpec(matchOrThrow(degree(generateRandomWholeNumber(1, 90))), timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)),
       assert: (val) => {
-        const expected = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle) >> 0;
-        const actual = val.actual;
-        expect(actual.value).toEqual(expected);
+        const expected = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle) >> 0
+        const actual = val.actual
+        expect(actual.value).toEqual(expected)
       }
-    });
-  });
+    })
+  })
   test('the result will always return a time span', () => {
     iterativeTest<HighLatitudeTestSpec, void>({
       numberOfExecutions: 500,
@@ -78,11 +78,11 @@ describe('High latitude calculation post conditions', () => {
           timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)
         ),
       assert: testData => {
-        expect(testData.actual as TimeSpan).not.toBeNull();
+        expect(testData.actual as TimeSpan).not.toBeNull()
       }
-    });
-  });
-});
+    })
+  })
+})
 
 describe('High latitude: One seventh method pre conditions', () => {
   test('throws an error when no time span is null', () => {
@@ -90,20 +90,20 @@ describe('High latitude: One seventh method pre conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => (null as unknown) as TimeSpan,
       assert: val => {
-        expect(() => matchOrThrow(oneSeventhMethod(val))).toThrowError();
+        expect(() => matchOrThrow(oneSeventhMethod(val))).toThrowError()
       }
-    });
-  });
+    })
+  })
   test('throws an error when no time span is undefined', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => undefined as unknown as TimeSpan,
       assert: val => {
-        expect(() => matchOrThrow(oneSeventhMethod(val))).toThrowError();
+        expect(() => matchOrThrow(oneSeventhMethod(val))).toThrowError()
       }
-    });
-  });
-});
+    })
+  })
+})
 
 describe('High latitude: One seventh based method invariance', () => {
   test('doesn\'t modify the passed in time span object', () => {
@@ -111,35 +111,35 @@ describe('High latitude: One seventh based method invariance', () => {
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        const deepClone = val;
-        oneSeventhMethod(val);
-        expect(deepClone).toEqual(val);
+        const deepClone = val
+        oneSeventhMethod(val)
+        expect(deepClone).toEqual(val)
       }
-    });
-  });
-});
+    })
+  })
+})
 describe('High latitude: One seventh based method  post conditions', () => {
   test('The result will always equal the time span divided by 7', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: val => {
-        const expected = (val.value / 7) >> 0;
-        const actual = matchOrThrow(oneSeventhMethod(val)).value;
-        expect(actual).toEqual(expected);
+        const expected = (val.value / 7) >> 0
+        const actual = matchOrThrow(oneSeventhMethod(val)).value
+        expect(actual).toEqual(expected)
       }
-    });
-  });
+    })
+  })
   test('the result will always return a time span', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        expect(matchOrThrow(oneSeventhMethod(val)) as TimeSpan).not.toBeNull();
+        expect(matchOrThrow(oneSeventhMethod(val)) as TimeSpan).not.toBeNull()
       }
-    });
-  });
-});
+    })
+  })
+})
 
 describe('High latitude: Middle of the night method pre conditions', () => {
   test('throws an error when no time span is null', () => {
@@ -147,20 +147,20 @@ describe('High latitude: Middle of the night method pre conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => (null as unknown) as TimeSpan,
       assert: val => {
-        expect(() => matchOrThrow(middleOfTheNightMethod(val))).toThrowError();
+        expect(() => matchOrThrow(middleOfTheNightMethod(val))).toThrowError()
       }
-    });
-  });
+    })
+  })
   test('throws an error when no time span is undefined', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => undefined as unknown as TimeSpan,
       assert: val => {
-        expect(() => matchOrThrow(middleOfTheNightMethod(val))).toThrowError();
+        expect(() => matchOrThrow(middleOfTheNightMethod(val))).toThrowError()
       }
-    });
-  });
-});
+    })
+  })
+})
 
 describe('High latitude: Middle of the night based method invariance', () => {
   test('doesn\'t modify the passed in time span object', () => {
@@ -168,39 +168,39 @@ describe('High latitude: Middle of the night based method invariance', () => {
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        const deepClone = val;
-        middleOfTheNightMethod(val);
-        expect(deepClone).toEqual(val);
+        const deepClone = val
+        middleOfTheNightMethod(val)
+        expect(deepClone).toEqual(val)
       }
-    });
-  });
-});
+    })
+  })
+})
 describe('High latitude: Middle of the night based method  post conditions', () => {
   test('The result will always equal the time span divided by 4', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: val => {
-        const expectedMilliseconds = (val.value / 4) >> 0;
-        const actual = matchOrThrow(middleOfTheNightMethod(val)).value;
-        expect(actual).toEqual(expectedMilliseconds);
+        const expectedMilliseconds = (val.value / 4) >> 0
+        const actual = matchOrThrow(middleOfTheNightMethod(val)).value
+        expect(actual).toEqual(expectedMilliseconds)
       }
-    });
-  });
+    })
+  })
   test('the result will always return a time span', () => {
     iterativeTest<TimeSpan, void>({
       numberOfExecutions: 500,
       generateInput: () => randomTimeSpan(),
       assert: (val) => {
-        expect(matchOrThrow(middleOfTheNightMethod(val)) as TimeSpan).not.toBeNull();
+        expect(matchOrThrow(middleOfTheNightMethod(val)) as TimeSpan).not.toBeNull()
       }
-    });
-  });
-});
+    })
+  })
+})
 
 interface HighLatitudeTestSpec {
-  timeSpanBetweenSunsetAndSunrise: TimeSpan,
-  angle: number,
+  timeSpanBetweenSunsetAndSunrise: TimeSpan
+  angle: number
   actual: Readonly<TimeSpan>
 };
 
@@ -208,4 +208,4 @@ const highLatitudeTestSpec = (degree: Degree, timeSpanBetweenSunsetAndSunrise: T
   timeSpanBetweenSunsetAndSunrise,
   angle: degree.value,
   actual: matchOrThrow(angleBasedMethod(degree, timeSpanBetweenSunsetAndSunrise))
-});
+})

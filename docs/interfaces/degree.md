@@ -16,6 +16,6 @@
 
 ###  value
 
-• **value**: *Number*
+• **value**: *number*
 
-*Defined in [maths/degree.ts:2](https://github.com/doniseferi/salahtimes/blob/94386ba/src/maths/degree.ts#L2)*
+*Defined in [maths/degree.ts:4](https://github.com/doniseferi/salahtimes/blob/0c54339/src/maths/degree.ts#L4)*
