@@ -36,8 +36,8 @@ describe('Date', () => {
 })
 
 interface DateTestResult {
-  initialDate: Date
-  timeSpan: TimeSpan
+  initialDate: Readonly<Date>
+  timeSpan: Readonly<TimeSpan>
 }
 const dateTestResult = (): DateTestResult => ({
   initialDate: generateRandomDate(2000, 2050),
