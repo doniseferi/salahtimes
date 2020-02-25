@@ -1,10 +1,10 @@
-import './date-Augmentation'
-import { timeSpan, TimeSpan } from '../time/index'
+import '../date-Augmentation'
+import { timeSpan, TimeSpan } from '../../time'
 import {
   iterativeTest,
   generateRandomDate,
   generateRandomWholeNumber
-} from '../testUtils/index'
+} from '../../testUtils/index'
 
 describe('Date', () => {
   test('generates a new date when a time span is added to it', () => {

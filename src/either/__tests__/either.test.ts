@@ -1,4 +1,4 @@
-import { left, right, match, matchOrThrow, Either } from './either'
+import { left, right, match, matchOrThrow, Either } from '../index'
 
 describe('Either', () => {
   test('generic left contains error', () => {

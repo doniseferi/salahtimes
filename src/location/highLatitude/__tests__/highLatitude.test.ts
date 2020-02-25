@@ -1,8 +1,8 @@
 import { angleBasedMethod, oneSeventhMethod, middleOfTheNightMethod } from '../../index'
-import { timeSpan, TimeSpan } from '../../../time/index'
-import { degree, Degree } from '../../../maths/index'
-import { matchOrThrow } from '../../../either/index'
-import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils/index'
+import { timeSpan, TimeSpan } from '../../../time'
+import { degree, Degree } from '../../../maths'
+import { matchOrThrow } from '../../../either'
+import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils'
 
 describe('High latitude: Angle based method  pre conditions', () => {
   test('throws an error when the degree angle is null', () => {
