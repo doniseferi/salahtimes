@@ -1,6 +1,6 @@
-import { degree } from './index'
-import { iterativeTest, generateRandomNumber } from '../testUtils/index'
-import { match, matchOrThrow } from '../either/index'
+import { degree } from '../index'
+import { iterativeTest, generateRandomNumber } from '../../testUtils'
+import { match, matchOrThrow } from '../../either/index'
 
 describe('Degrees', () => {
   test('never accept a value greater than 360', () => {

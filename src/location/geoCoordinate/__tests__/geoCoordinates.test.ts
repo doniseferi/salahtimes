@@ -1,7 +1,7 @@
-import { geoCoordinate, createLatitude, createLongitude } from '../index'
-import { iterativeTest, generateRandomWholeNumber } from '../../testUtils/index'
-import { degree } from '../../maths/index'
-import { matchOrThrow } from '../../either'
+import { geoCoordinate, createLatitude, createLongitude } from '../../index'
+import { iterativeTest, generateRandomWholeNumber } from '../../../testUtils'
+import { degree } from '../../../maths'
+import { matchOrThrow } from '../../../either'
 
 describe('geoCoordinates', () => {
   test('rejects a latitude value less than -90', () => {
