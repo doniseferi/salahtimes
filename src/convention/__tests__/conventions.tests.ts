@@ -2,6 +2,10 @@ import { degree } from '../../maths'
 import { convention } from '..'
 
 describe('Conventions', () => {
+  test('returns a default convention when no value is passed in', () => {
+    expect(convention().fajr()).toEqual(degree(18))
+    expect(convention().fajr()).toEqual(degree(17))
+  })
   test('Muslim World League returns 18 degrees for Fajr', () => {
     expect(convention('MuslimWorldLeague').fajr()).toEqual(degree(18))
   })
