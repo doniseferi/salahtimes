@@ -56,6 +56,8 @@ const conventions: Array<{ name: string, value: Convention }> = [{
 const convention =
   (name: SupportedConventions = 'MuslimWorldLeague'): Convention =>
     conventions
-      .find(x => x.name.toLowerCase() === (name?.toLowerCase()))?.value ?? conventions[0].value
+      .find(convention =>
+        convention.name.toLowerCase() === name?.toLowerCase())
+      ?.value ?? conventions[0].value
 
 export default convention
