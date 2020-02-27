@@ -1,8 +1,9 @@
 import { degree, Degree } from './degree'
-import { arccot } from './trigonometry'
+import { arccot, tan } from './trigonometry'
 
 export {
   degree,
   Degree,
-  arccot
+  arccot,
+  tan
 }
