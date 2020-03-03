@@ -1,4 +1,4 @@
-import { tan, Degree, degree } from '..'
+import { tan, Degree } from '..'
 import { matchOrThrow } from '../../either'
 import { iterativeTest, randomDegree } from '../../testUtils'
 import { degreesToRadians } from '../trigonometry'
