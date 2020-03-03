@@ -6,6 +6,6 @@ export {
   Degree,
   arccot,
   tan,
-  radiansToDegrees, 
+  radiansToDegrees,
   degreesToRadians
 }

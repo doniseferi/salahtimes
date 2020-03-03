@@ -11,7 +11,7 @@ const asrElevationAngle = (
   const lsubdegree = matchOrThrow(degree(lsubd))
   const tanlSsubdeg = tan(lsubdegree)
   const toBeArccotted = shadowLength.value + tanlSsubdeg
-  const result = arccot(toBeArccotted)
+  const result = arccot(matchOrThrow(degree(toBeArccotted)))
   return matchOrThrow(result)
 }
 

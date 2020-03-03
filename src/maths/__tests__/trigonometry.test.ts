@@ -1,35 +1,19 @@
-import { arccot, tan, degree, Degree } from '..'
+import { tan } from '..'
 import { matchOrThrow } from '../../either'
-import { iterativeTest, generateRandomNumber } from '../../testUtils'
+import { iterativeTest, randomDegree } from '../../testUtils'
+import { degreesToRadians } from '../trigonometry'
 
-describe('Inverse Cotangent', () => {
-  test('arccot 0 equals 90 degrees', () => {
-    iterativeTest<Degree, void>({
-      generateInput: () => matchOrThrow(degree(generateRandomNumber(-360, 360))),
+describe('Tangent', () => {
+  test('returns the tangent for angular degrees', () => {
+    iterativeTest({
       numberOfExecutions: 500,
+      generateInput: () => randomDegree(-360, 360),
       assert: (degrees) => {
-        const resultInRadians = Math.PI / 2 - Math.atan(degrees.value)
-        const expectedInDegrees = resultInRadians * (180 / Math.PI)
-        expect(matchOrThrow(arccot(degrees)).value).toEqual(expectedInDegrees)
+        const angleInRadians = matchOrThrow(degreesToRadians(degrees))
+        const expected = Math.tan(angleInRadians)
+        const actual = tan(degrees)
+        expect(actual).toEqual(expected)
       }
     })
-  })
-  test('arccot 57.2958 angular degrees equals 45 degrees', () => {
-    expect(arccot(matchOrThrow(degree(57.2958)))).toEqual(matchOrThrow(degree(45)))
-  })
-  test('arccot 2 equals 26.565 degrees', () => {
-    expect(
-      arccot(
-        matchOrThrow(
-          degree(2))))
-      .toEqual(
-        matchOrThrow(
-          degree(26.565051177077994)))
-  })
-  test('tan 0 returns 0 degrees', () => {
-    expect(tan(matchOrThrow(degree(0)))).toEqual(0)
-  })
-  test('tan 1 returns 0.017455', () => {
-    expect(tan(matchOrThrow(degree(1)))).toEqual(0.017455064928217585)
   })
 })
