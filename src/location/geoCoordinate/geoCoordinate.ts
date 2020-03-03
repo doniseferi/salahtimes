@@ -16,7 +16,7 @@ interface GeoCoordinate {
  *
  * @param latitude - The latitude coordinate in degrees.
  * @param longitude - The longitude coordinate in degrees.
- * @returns THe GeoCoordinate value of coordinate latitude and longitude.
+ * @returns The GeoCoordinate value of coordinate latitude and longitude.
  *
  */
 const geoCoordinate =
@@ -48,7 +48,7 @@ const createLatitude = (value: Readonly<number>): Either<RangeError, Readonly<De
 
 const createLongitude = (value: Readonly<number>): Either<RangeError, Readonly<Degree>> =>
   createCoordinate(
-    'Latitude',
+    'Longitude',
     value,
     match<Degree, Error, Degree>(
       degree(-180),
