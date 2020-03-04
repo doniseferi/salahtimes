@@ -1,7 +1,8 @@
-import { degree, Degree, tan, arccot, degreesToRadians } from '../../maths'
+import { degree, Degree } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
 import { matchOrThrow } from '../../either'
 import { randomDegree, generateRandomWholeNumber, iterativeTest } from '../../testUtils'
+import { degreesToRadiansValue } from '../../maths/trigonometry'
 
 describe('Asr Elevation Angles', () => {
   test('throws an error when the angular degrees for shadow length is null', () => {
@@ -37,14 +38,10 @@ describe('Asr Elevation Angles', () => {
         }
       },
       assert: (input) => {
-        const expected = arccot(
-          matchOrThrow(
-            degree(
-              input.shadowLength.value + tan(
-                matchOrThrow(
-                  degree(
-                    input.latitude.value - input.declinationOfTheSun.value))))))
-        const actual = asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)
+        const value = degreesToRadiansValue(input.shadowLength.value + Math.tan(
+            degreesToRadiansValue(input.latitude.value - input.declinationOfTheSun.value)))
+        const expected = Math.atan(1 / value)
+        const actual = degreesToRadiansValue(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
         expect(actual).toEqual(expected)
       }
     })

@@ -2,7 +2,12 @@ import { Degree, degree } from '.'
 import { Either, match, left, right, matchOrThrow } from '../either'
 
 const angularConst = 0.017453292519943295769236907684888
+
+const radiansToDegreesValue = (radians: number): number => radians / angularConst
+
 const radiansToDegrees = (radians: number): Either<RangeError, Degree> => degree(radians / angularConst)
+
+const degreesToRadiansValue = (degrees: number): number => degrees * angularConst
 
 const degreesToRadians = (degrees: Readonly<Degree>): Either<Error, number> =>
   (degrees?.value !== null)
@@ -26,4 +31,4 @@ const tan = (degrees: Readonly<Degree>): number =>
       (err) => { throw err },
       (rad) => rad))
 
-export { arccot, tan, radiansToDegrees, degreesToRadians }
+export { arccot, tan, radiansToDegrees, degreesToRadians, degreesToRadiansValue, radiansToDegreesValue }
