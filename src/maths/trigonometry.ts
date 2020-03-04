@@ -1,5 +1,5 @@
 import { Degree, degree } from '.'
-import { Either, match, left, right } from '../either'
+import { Either, match, left, right, matchOrThrow } from '../either'
 
 const radiansToDegrees = (radians: number): Either<RangeError, Degree> => degree(radians * (180 / Math.PI))
 const degreesToRadians = (degrees: Readonly<Degree>): Either<Error, number> =>
@@ -13,12 +13,12 @@ const arccot = (degrees: Readonly<Degree>): Either<Error, Readonly<Degree>> =>
     ? left(new Error('The angular degrees is null or empty.'))
     : right(
       match(
-        degree(Math.PI / 2 - Math.atan(degrees.value)),
+        radiansToDegrees(Math.atan(1 / matchOrThrow(degreesToRadians(degrees)))),
         (err) => { throw err },
         (deg) => deg))
 
 const tan = (degrees: Readonly<Degree>): number =>
-  Math.tan(
+  Math.atan(
     match(
       degreesToRadians(degrees),
       (err) => { throw err },
