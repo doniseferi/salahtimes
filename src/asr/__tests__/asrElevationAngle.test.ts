@@ -4,9 +4,29 @@ import { matchOrThrow } from '../../either'
 import { randomDegree, generateRandomWholeNumber, iterativeTest } from '../../testUtils'
 import { degreesToRadiansValue } from '../../maths/trigonometry'
 
+const closeEnough = (x: number, y: number) => {
+  if (x === y) {
+    return true
+  }
+
+  if (isNaN(x) || isNaN(y)) {
+    return false
+  }
+
+  if (isFinite(x) && isFinite(y)) {
+    const diff = Math.abs(x - y)
+    if (diff < 1e-2) {
+      return true
+    } else {
+      return diff <= Math.max(Math.abs(x), Math.abs(y)) * 1e-2
+    }
+  }
+  return false
+}
+
 describe('Asr Elevation Angles', () => {
   test('throws an error when the angular degrees for shadow length is null', () => {
-    expect(() => asrElevationAngle(
+    expect(asrElevationAngle(
       null as unknown as Degree,
       randomDegree(-180, 180),
       randomDegree(-23.5, 23.5))).toThrow()
@@ -39,10 +59,10 @@ describe('Asr Elevation Angles', () => {
       },
       assert: (input) => {
         const value = degreesToRadiansValue(input.shadowLength.value + Math.tan(
-            degreesToRadiansValue(input.latitude.value - input.declinationOfTheSun.value)))
+          degreesToRadiansValue(input.latitude.value - input.declinationOfTheSun.value)))
         const expected = Math.atan(1 / value)
         const actual = degreesToRadiansValue(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
-        expect(actual).toEqual(expected)
+        expect(closeEnough(actual, expected)).toEqual(true)
       }
     })
   })
