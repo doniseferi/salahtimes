@@ -1,26 +1,52 @@
-import { degree } from '../../maths'
+import { degree, Degree, tan, arccot, degreesToRadians } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
 import { matchOrThrow } from '../../either'
+import { randomDegree, generateRandomWholeNumber, iterativeTest } from '../../testUtils'
 
 describe('Asr Elevation Angles', () => {
-  test('returns the correct angle for standard (shafi, maliki and hanbali) method', () => {
-    const latitude = matchOrThrow(degree(51))
-    const declinationOfTheSunOn20200226 = matchOrThrow(degree(-9.094927348779462))
-
-    const standard = matchOrThrow(degree(1))
-    const actualAngleForStandardMethod = asrElevationAngle(standard, latitude, declinationOfTheSunOn20200226)
-    const expectedAngleForStandardCalculation = 20.059015375480953
-
-    expect(actualAngleForStandardMethod.value).toEqual(expectedAngleForStandardCalculation)
+  test('throws an error when the angular degrees for shadow length is null', () => {
+    expect(() => asrElevationAngle(
+      null as unknown as Degree,
+      randomDegree(-180, 180),
+      randomDegree(-23.5, 23.5))).toThrow()
   })
-  test('returns the correct angle for hanafi method', () => {
-    const latitude = matchOrThrow(degree(51))
-    const declinationOfTheSunOn20200226 = matchOrThrow(degree(-9.094927348779462))
-
-    const hanafi = matchOrThrow(degree(2))
-    const actualAngleForHanafiMethod = asrElevationAngle(hanafi, latitude, declinationOfTheSunOn20200226)
-    const expectedAngleForHanafiCalculation = 14.974533384540926
-
-    expect(actualAngleForHanafiMethod.value).toEqual(expectedAngleForHanafiCalculation)
+  test('throws an error when the angular degrees for latitude is null', () => {
+    expect(() => asrElevationAngle(
+      matchOrThrow(degree(1)),
+      null as unknown as Degree,
+      randomDegree(-23.49, 23.49))).toThrow()
+  })
+  test('throws an error when the angular degrees for the declination of the sun is null', () => {
+    expect(() => asrElevationAngle(
+      matchOrThrow(degree(1)),
+      randomDegree(-180, 180),
+      null as unknown as Degree)).toThrow()
+  })
+  test('returns the inverse cotangent for angular degrees', () => {
+    iterativeTest<{
+      shadowLength: Readonly<Degree>,
+      latitude: Readonly<Degree>,
+      declinationOfTheSun: Readonly<Degree>
+    }, void>({
+      numberOfExecutions: 500,
+      generateInput: () => {
+        return {
+          shadowLength: matchOrThrow(degree(generateRandomWholeNumber(1, 2))),
+          latitude: randomDegree(-180, 180),
+          declinationOfTheSun: randomDegree(-23.49, 23.49)
+        }
+      },
+      assert: (input) => {
+        const expected = arccot(
+          matchOrThrow(
+            degree(
+              input.shadowLength.value + tan(
+                matchOrThrow(
+                  degree(
+                    input.latitude.value - input.declinationOfTheSun.value))))))
+        const actual = asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)
+        expect(actual).toEqual(expected)
+      }
+    })
   })
 })
