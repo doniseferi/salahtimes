@@ -1,10 +1,12 @@
 import { Degree, degree } from '.'
 import { Either, match, left, right, matchOrThrow } from '../either'
 
-const radiansToDegrees = (radians: number): Either<RangeError, Degree> => degree(radians * (180 / Math.PI))
+const angularConst = 0.017453292519943295769236907684888
+const radiansToDegrees = (radians: number): Either<RangeError, Degree> => degree(radians / angularConst)
+
 const degreesToRadians = (degrees: Readonly<Degree>): Either<Error, number> =>
   (degrees?.value !== null)
-    ? right(degrees.value * (Math.PI / 180))
+    ? right(degrees.value * angularConst)
     : left(new Error('degrees is null or undefined.'))
 
 // LaTeX formula = arccot(t+tan(D-L))
@@ -18,7 +20,7 @@ const arccot = (degrees: Readonly<Degree>): Either<Error, Readonly<Degree>> =>
         (deg) => deg))
 
 const tan = (degrees: Readonly<Degree>): number =>
-  Math.atan(
+  Math.tan(
     match(
       degreesToRadians(degrees),
       (err) => { throw err },
