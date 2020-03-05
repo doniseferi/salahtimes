@@ -13,8 +13,7 @@ describe('Inverse Cotangent', () => {
       numberOfExecutions: 500,
       generateInput: () => randomDegree(-360, 360),
       assert: (degrees) => {
-        const angleInRadians = matchOrThrow(degreesToRadians(degrees))
-        const expected = Math.atan(1 / angleInRadians)
+        const expected = Math.atan(1 / degrees.value)
         const expectedInDegrees = radiansToDegrees(expected)
         const actual = arccot(degrees.value)
         expect(actual).toEqual(expectedInDegrees)

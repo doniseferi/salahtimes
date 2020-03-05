@@ -47,8 +47,8 @@ describe('Asr Elevation Angles preconditions', () => {
         }
       },
       assert: (input) => {
-        const value = degreesToRadiansNumericConversion(input.shadowLength + Math.tan(
-          degreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value)))
+        const value = input.shadowLength + Math.tan(
+          degreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value))
         const expected = Math.atan(1 / value)
         const actual = degreesToRadiansNumericConversion(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
         expect(closeEnough(actual, expected)).toEqual(true)
