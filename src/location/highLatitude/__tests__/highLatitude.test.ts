@@ -1,14 +1,14 @@
 import { angleBasedMethod, oneSeventhMethod, middleOfTheNightMethod } from '../../index'
 import { timeSpan, TimeSpan } from '../../../time'
-import { degree, Degree } from '../../../maths'
+import { degrees, AngularDegrees } from '../../../maths'
 import { matchOrThrow } from '../../../either'
 import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../../testUtils'
 
 describe('High latitude: Angle based method  pre conditions', () => {
   test('throws an error when the degree angle is null', () => {
-    iterativeTest<Degree, void>({
+    iterativeTest<AngularDegrees, void>({
       numberOfExecutions: 500,
-      generateInput: () => null as unknown as Degree,
+      generateInput: () => null as unknown as AngularDegrees,
       assert: (val) => {
         expect(() => matchOrThrow(angleBasedMethod(val, randomTimeSpan()))).toThrowError()
       }
@@ -24,9 +24,9 @@ describe('High latitude: Angle based method  pre conditions', () => {
     })
   })
   test('throws an error when the degree angle is 0.', () => {
-    iterativeTest<Degree, void>({
+    iterativeTest<AngularDegrees, void>({
       numberOfExecutions: 500,
-      generateInput: () => matchOrThrow(degree(0)),
+      generateInput: () => matchOrThrow(degrees(0)),
       assert: (val) => {
         expect(() => matchOrThrow(angleBasedMethod(val, randomTimeSpan()))).toThrowError()
       }
@@ -35,11 +35,11 @@ describe('High latitude: Angle based method  pre conditions', () => {
 })
 describe('High latitude: Angle based method  invariance', () => {
   test('doesn\'t modify the degree object', () => {
-    iterativeTest<Degree, void>({
+    iterativeTest<AngularDegrees, void>({
       numberOfExecutions: 500,
       generateInput: () => randomDegree(1),
       assert: (val) => {
-        const deepClone = matchOrThrow(degree(val.value))
+        const deepClone = matchOrThrow(degrees(val.value))
         angleBasedMethod(val, randomTimeSpan())
         expect(deepClone).toEqual(val)
       }
@@ -61,7 +61,7 @@ describe('High latitude calculation post conditions', () => {
   test('Angle based method The result will always equal the time span divided by the angle', () => {
     iterativeTest<HighLatitudeTestSpec, void>({
       numberOfExecutions: 500,
-      generateInput: () => highLatitudeTestSpec(matchOrThrow(degree(generateRandomWholeNumber(1, 90))), timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)),
+      generateInput: () => highLatitudeTestSpec(matchOrThrow(degrees(generateRandomWholeNumber(1, 90))), timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)),
       assert: (val) => {
         const expected = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle) >> 0
         const actual = val.actual
@@ -74,7 +74,7 @@ describe('High latitude calculation post conditions', () => {
       numberOfExecutions: 500,
       generateInput: () =>
         highLatitudeTestSpec(
-          matchOrThrow(degree(generateRandomWholeNumber(1, 90))),
+          matchOrThrow(degrees(generateRandomWholeNumber(1, 90))),
           timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)
         ),
       assert: testData => {
@@ -204,7 +204,7 @@ interface HighLatitudeTestSpec {
   actual: Readonly<TimeSpan>
 };
 
-const highLatitudeTestSpec = (degree: Degree, timeSpanBetweenSunsetAndSunrise: TimeSpan): HighLatitudeTestSpec => ({
+const highLatitudeTestSpec = (degree: AngularDegrees, timeSpanBetweenSunsetAndSunrise: TimeSpan): HighLatitudeTestSpec => ({
   timeSpanBetweenSunsetAndSunrise,
   angle: degree.value,
   actual: matchOrThrow(angleBasedMethod(degree, timeSpanBetweenSunsetAndSunrise))

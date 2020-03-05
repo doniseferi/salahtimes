@@ -1,10 +1,10 @@
-import { Degree } from '../../maths/index'
+import { AngularDegrees } from '../../maths/index'
 import { TimeSpan } from '../../time/index'
 import { left, right, match } from '../../either/index'
 import { AngleBasedMethod } from '../index'
 
 const angleBasedMethod: AngleBasedMethod = (
-  angle: Readonly<Degree>,
+  angle: Readonly<AngularDegrees>,
   timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>) =>
   (angle === null || angle.value === null)
     ? left(new ReferenceError('Angle is not null or undefined.'))

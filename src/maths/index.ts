@@ -1,6 +1,19 @@
-import { degree, Degree } from './degree'
+import { degrees, AngularDegrees } from './degree'
+import { arccot, tan } from './trigonometry'
+import {
+  radiansToAngularDegrees,
+  radiansToAngularDegreesNumericConversion,
+  angularDegreesToRadians,
+  angularDegreesToRadiansNumericConversion
+} from './angularConversions'
 
 export {
-  degree,
-  Degree
+  degrees,
+  AngularDegrees,
+  arccot,
+  tan,
+  radiansToAngularDegrees,
+  radiansToAngularDegreesNumericConversion,
+  angularDegreesToRadians,
+  angularDegreesToRadiansNumericConversion
 }

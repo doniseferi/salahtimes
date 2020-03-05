@@ -2,10 +2,10 @@ import {
   geoCoordinate
 } from './location/index'
 import {
-  degree
+  degrees
 } from './maths/index'
 
 export default Object.freeze({
-  degree,
+  degree: degrees,
   geoCoordinate
 })
