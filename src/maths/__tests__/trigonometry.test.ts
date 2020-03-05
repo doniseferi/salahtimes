@@ -1,4 +1,4 @@
-import { degreesToRadians, arccot, tan, Degree, radiansToDegrees } from '..'
+import { angularDegreesToRadians, arccot, tan, AngularDegrees, radiansToAngularDegrees } from '..'
 import { matchOrThrow, left } from '../../either'
 import { iterativeTest, randomDegree } from '../../testUtils'
 
@@ -14,7 +14,7 @@ describe('Inverse Cotangent', () => {
       generateInput: () => randomDegree(-360, 360),
       assert: (degrees) => {
         const expected = Math.atan(1 / degrees.value)
-        const expectedInDegrees = radiansToDegrees(expected)
+        const expectedInDegrees = radiansToAngularDegrees(expected)
         const actual = arccot(degrees.value)
         expect(actual).toEqual(expectedInDegrees)
       }
@@ -24,7 +24,7 @@ describe('Inverse Cotangent', () => {
 
 describe('Tangent', () => {
   test('throws an error when the angular degrees object is null', () => {
-    expect(() => tan(null as unknown as Degree)).toThrow()
+    expect(() => tan(null as unknown as AngularDegrees)).toThrow()
   })
   test('returns the tangent for angular degrees', () => {
     iterativeTest({
@@ -34,7 +34,7 @@ describe('Tangent', () => {
         expect(tan(degrees))
           .toEqual(
             Math.tan(
-              matchOrThrow(degreesToRadians(degrees))))
+              matchOrThrow(angularDegreesToRadians(degrees))))
       }
     })
   })

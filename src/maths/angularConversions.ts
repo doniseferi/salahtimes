@@ -1,23 +1,23 @@
 import { Either, right, left } from '../either'
-import { Degree, degree } from '.'
+import { AngularDegrees, degrees } from '.'
 
 const angularConst = 0.017453292519943295769236907684888
 
-const radiansToDegrees = (radians: number): Either<RangeError, Degree> => degree(radians / angularConst)
+const radiansToAngularDegrees = (radians: number): Either<RangeError, AngularDegrees> => degrees(radians / angularConst)
 
-const degreesToRadians = (degrees: Readonly<Degree>): Either<Error, number> =>
+const angularDegreesToRadians = (degrees: Readonly<AngularDegrees>): Either<Error, number> =>
   (degrees?.value === null)
     ? left(new Error('degrees is null or undefined.'))
     : right(degrees.value * angularConst)
 
-const radiansToDegreesNumericConversion = (radians: number): number => radians / angularConst
+const radiansToAngularDegreesNumericConversion = (radians: number): number => radians / angularConst
 
-const degreesToRadiansNumericConversion = (degrees: number): number => degrees * angularConst
+const angularDegreesToRadiansNumericConversion = (degrees: number): number => degrees * angularConst
 
 export {
   angularConst,
-  radiansToDegrees,
-  degreesToRadians,
-  radiansToDegreesNumericConversion,
-  degreesToRadiansNumericConversion
+  radiansToAngularDegrees,
+  angularDegreesToRadians,
+  radiansToAngularDegreesNumericConversion,
+  angularDegreesToRadiansNumericConversion
 }

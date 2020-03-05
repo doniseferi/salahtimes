@@ -1,4 +1,4 @@
-import { Degree, degreesToRadiansNumericConversion } from '../../maths'
+import { AngularDegrees, angularDegreesToRadiansNumericConversion } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
 import { matchOrThrow, left } from '../../either'
 import {
@@ -21,7 +21,7 @@ describe('Asr Elevation Angles preconditions', () => {
   test('returns an error when the angular degrees for latitude is null', () => {
     expect(asrElevationAngle(
       generateRandomWholeNumber(1, 2) as 1 | 2,
-      null as unknown as Degree,
+      null as unknown as AngularDegrees,
       randomDegree(-23.49, 23.49)))
       .toEqual(left(new Error(errorMessage('Latitude'))))
   })
@@ -29,14 +29,14 @@ describe('Asr Elevation Angles preconditions', () => {
     expect(asrElevationAngle(
       generateRandomWholeNumber(1, 2) as 1 | 2,
       randomDegree(-180, 180),
-      null as unknown as Degree))
+      null as unknown as AngularDegrees))
       .toEqual(left(new Error(errorMessage('Declination of the sun'))))
   })
   test('returns the inverse cotangent for angular degrees', () => {
     iterativeTest<{
       shadowLength: 1 | 2
-      latitude: Readonly<Degree>
-      declinationOfTheSun: Readonly<Degree>
+      latitude: Readonly<AngularDegrees>
+      declinationOfTheSun: Readonly<AngularDegrees>
     }, void>({
       numberOfExecutions: 500,
       generateInput: () => {
@@ -48,9 +48,9 @@ describe('Asr Elevation Angles preconditions', () => {
       },
       assert: (input) => {
         const value = input.shadowLength + Math.tan(
-          degreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value))
+          angularDegreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value))
         const expected = Math.atan(1 / value)
-        const actual = degreesToRadiansNumericConversion(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
+        const actual = angularDegreesToRadiansNumericConversion(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
         expect(closeEnough(actual, expected)).toEqual(true)
       }
     })
