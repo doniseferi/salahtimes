@@ -1,11 +1,12 @@
-import { degreesToRadians, arccot, tan, Degree } from '..'
-import { matchOrThrow } from '../../either'
+import { degreesToRadians, arccot, tan, Degree, radiansToDegrees } from '..'
+import { matchOrThrow, left } from '../../either'
 import { iterativeTest, randomDegree } from '../../testUtils'
-import { radiansToDegrees } from '../trigonometry'
 
 describe('Inverse Cotangent', () => {
-  test('throws an error when the angular degrees object is null', () => {
-    expect(() => arccot(null as unknown as Degree)).toThrow()
+  test('throws an error when the angular degrees is null', () => {
+    expect(
+      arccot(null as unknown as number))
+      .toEqual(left(new Error('The angular degrees is null or empty.')))
   })
   test('returns the inverse cotangent for angular degrees', () => {
     iterativeTest({
@@ -15,7 +16,7 @@ describe('Inverse Cotangent', () => {
         const angleInRadians = matchOrThrow(degreesToRadians(degrees))
         const expected = Math.atan(1 / angleInRadians)
         const expectedInDegrees = radiansToDegrees(expected)
-        const actual = arccot(degrees)
+        const actual = arccot(degrees.value)
         expect(actual).toEqual(expectedInDegrees)
       }
     })

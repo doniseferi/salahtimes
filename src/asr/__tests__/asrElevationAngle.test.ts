@@ -1,67 +1,56 @@
-import { degree, Degree } from '../../maths'
+import { Degree, degreesToRadiansNumericConversion } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
-import { matchOrThrow } from '../../either'
-import { randomDegree, generateRandomWholeNumber, iterativeTest } from '../../testUtils'
-import { degreesToRadiansValue } from '../../maths/trigonometry'
+import { matchOrThrow, left } from '../../either'
+import {
+  randomDegree,
+  generateRandomWholeNumber,
+  iterativeTest,
+  closeEnough
+} from '../../testUtils'
 
-const closeEnough = (x: number, y: number) => {
-  if (x === y) {
-    return true
-  }
+const errorMessage = (param: string): string => `${param} is either null or undefined. To calculate the Asr elevation Angle please provide ${param}`
 
-  if (isNaN(x) || isNaN(y)) {
-    return false
-  }
-
-  if (isFinite(x) && isFinite(y)) {
-    const diff = Math.abs(x - y)
-    if (diff < 1e-2) {
-      return true
-    } else {
-      return diff <= Math.max(Math.abs(x), Math.abs(y)) * 1e-2
-    }
-  }
-  return false
-}
-
-describe('Asr Elevation Angles', () => {
-  test('throws an error when the angular degrees for shadow length is null', () => {
+describe('Asr Elevation Angles preconditions', () => {
+  test('Accepts only value of 1 or 2 for shadow length ', () => {
     expect(asrElevationAngle(
-      null as unknown as Degree,
+      null as unknown as 1 | 2,
       randomDegree(-180, 180),
-      randomDegree(-23.5, 23.5))).toThrow()
+      randomDegree(-23.5, 23.5)))
+      .toEqual(left(new Error(errorMessage('Shadow Length'))))
   })
-  test('throws an error when the angular degrees for latitude is null', () => {
-    expect(() => asrElevationAngle(
-      matchOrThrow(degree(1)),
+  test('returns an error when the angular degrees for latitude is null', () => {
+    expect(asrElevationAngle(
+      generateRandomWholeNumber(1, 2) as 1 | 2,
       null as unknown as Degree,
-      randomDegree(-23.49, 23.49))).toThrow()
+      randomDegree(-23.49, 23.49)))
+      .toEqual(left(new Error(errorMessage('Latitude'))))
   })
-  test('throws an error when the angular degrees for the declination of the sun is null', () => {
-    expect(() => asrElevationAngle(
-      matchOrThrow(degree(1)),
+  test('returns an error when the angular degrees for the declination of the sun is null', () => {
+    expect(asrElevationAngle(
+      generateRandomWholeNumber(1, 2) as 1 | 2,
       randomDegree(-180, 180),
-      null as unknown as Degree)).toThrow()
+      null as unknown as Degree))
+      .toEqual(left(new Error(errorMessage('Declination of the sun'))))
   })
   test('returns the inverse cotangent for angular degrees', () => {
     iterativeTest<{
-      shadowLength: Readonly<Degree>,
-      latitude: Readonly<Degree>,
+      shadowLength: 1 | 2
+      latitude: Readonly<Degree>
       declinationOfTheSun: Readonly<Degree>
     }, void>({
       numberOfExecutions: 500,
       generateInput: () => {
         return {
-          shadowLength: matchOrThrow(degree(generateRandomWholeNumber(1, 2))),
+          shadowLength: generateRandomWholeNumber(1, 2) as 1 | 2,
           latitude: randomDegree(-180, 180),
-          declinationOfTheSun: randomDegree(-23.49, 23.49)
+          declinationOfTheSun: randomDegree(23.439942762529427, 23.439942762529427)
         }
       },
       assert: (input) => {
-        const value = degreesToRadiansValue(input.shadowLength.value + Math.tan(
-          degreesToRadiansValue(input.latitude.value - input.declinationOfTheSun.value)))
+        const value = degreesToRadiansNumericConversion(input.shadowLength + Math.tan(
+          degreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value)))
         const expected = Math.atan(1 / value)
-        const actual = degreesToRadiansValue(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
+        const actual = degreesToRadiansNumericConversion(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
         expect(closeEnough(actual, expected)).toEqual(true)
       }
     })

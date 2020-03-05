@@ -1,6 +1,6 @@
 import { right, left, Either } from '../either'
 
-export interface Degree {
+interface Degree {
   readonly value: number
 }
 
@@ -11,5 +11,6 @@ const degree = (value: number): Either<RangeError, Readonly<Degree>> => (value <
   : right({ value })
 
 export {
+  Degree,
   degree
 }

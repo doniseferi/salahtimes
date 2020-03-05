@@ -1,34 +1,16 @@
-import { Degree, degree } from '.'
-import { Either, match, left, right, matchOrThrow } from '../either'
+import { Degree, radiansToDegrees } from '.'
+import { Either, left, right, matchOrThrow } from '../either'
+import {
+  degreesToRadians,
+  degreesToRadiansNumericConversion
+} from './angularConversions'
 
-const angularConst = 0.017453292519943295769236907684888
-
-const radiansToDegreesValue = (radians: number): number => radians / angularConst
-
-const radiansToDegrees = (radians: number): Either<RangeError, Degree> => degree(radians / angularConst)
-
-const degreesToRadiansValue = (degrees: number): number => degrees * angularConst
-
-const degreesToRadians = (degrees: Readonly<Degree>): Either<Error, number> =>
-  (degrees?.value !== null)
-    ? right(degrees.value * angularConst)
-    : left(new Error('degrees is null or undefined.'))
-
-// LaTeX formula = arccot(t+tan(D-L))
-const arccot = (degrees: Readonly<Degree>): Either<Error, Readonly<Degree>> =>
-  (degrees?.value === null)
+const arccot = (degrees: number): Either<Error, Readonly<Degree>> =>
+  (degrees === null)
     ? left(new Error('The angular degrees is null or empty.'))
-    : right(
-      match(
-        radiansToDegrees(Math.atan(1 / matchOrThrow(degreesToRadians(degrees)))),
-        (err) => { throw err },
-        (deg) => deg))
+    : right(matchOrThrow(
+      radiansToDegrees(Math.atan(1 / degreesToRadiansNumericConversion(degrees)))))
 
-const tan = (degrees: Readonly<Degree>): number =>
-  Math.tan(
-    match(
-      degreesToRadians(degrees),
-      (err) => { throw err },
-      (rad) => rad))
+const tan = (degrees: Readonly<Degree>): number => Math.tan(matchOrThrow(degreesToRadians(degrees)))
 
-export { arccot, tan, radiansToDegrees, degreesToRadians, degreesToRadiansValue, radiansToDegreesValue }
+export { arccot, tan }

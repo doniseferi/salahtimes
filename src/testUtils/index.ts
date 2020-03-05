@@ -5,6 +5,8 @@ import {
   randomDegree,
   randomTimeSpan
 } from './randomHelper'
+import closeEnough from './closeEnough'
+
 import {
   iterativeTest
 } from './propertyTestHelper'
@@ -15,5 +17,6 @@ export {
   generateRandomWholeNumber,
   generateRandomDate,
   randomDegree,
-  randomTimeSpan
+  randomTimeSpan,
+  closeEnough
 }
