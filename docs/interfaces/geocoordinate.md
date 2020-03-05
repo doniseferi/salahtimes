@@ -19,7 +19,7 @@
 
 • **latitude**: *[AngularDegrees](angulardegrees.md)*
 
-*Defined in [location/geoCoordinate/geoCoordinate.ts:5](https://github.com/doniseferi/salahtimes/blob/ad87efb/src/location/geoCoordinate/geoCoordinate.ts#L5)*
+*Defined in [location/geoCoordinate/geoCoordinate.ts:5](https://github.com/doniseferi/salahtimes/blob/5c01234/src/location/geoCoordinate/geoCoordinate.ts#L5)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **longitude**: *[AngularDegrees](angulardegrees.md)*
 
-*Defined in [location/geoCoordinate/geoCoordinate.ts:6](https://github.com/doniseferi/salahtimes/blob/ad87efb/src/location/geoCoordinate/geoCoordinate.ts#L6)*
+*Defined in [location/geoCoordinate/geoCoordinate.ts:6](https://github.com/doniseferi/salahtimes/blob/5c01234/src/location/geoCoordinate/geoCoordinate.ts#L6)*
