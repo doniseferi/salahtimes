@@ -1,14 +1,12 @@
 import { AngularDegrees, angularDegreesToRadiansNumericConversion } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
-import { throwOnError, failure } from '../../either'
+import { throwOnError } from '../../either'
 import {
   randomDegree,
   generateRandomWholeNumber,
   iterativeTest,
   closeEnough
 } from '../../testUtils'
-
-const errorMessage = (param: string): string => `${param} is either null or undefined. To calculate the Asr elevation Angle please provide ${param}`
 
 describe('Asr Elevation Angles preconditions', () => {
   test('Accepts only value of 1 or 2 for shadow length ', () => {
@@ -20,20 +18,22 @@ describe('Asr Elevation Angles preconditions', () => {
       .toThrow()
   })
   test('returns an error when the angular degrees for latitude is null', () => {
-    expect(
-      asrElevationAngle(
-        generateRandomWholeNumber(1, 2) as 1 | 2,
-        null as unknown as AngularDegrees,
-        randomDegree(-23.49, 23.49)))
-      .toEqual(failure(new Error(errorMessage('Latitude'))))
+    expect(() =>
+      throwOnError(
+        asrElevationAngle(
+          generateRandomWholeNumber(1, 2) as 1 | 2,
+          null as unknown as AngularDegrees,
+          randomDegree(-23.49, 23.49))))
+      .toThrow()
   })
   test('returns an error when the angular degrees for the declination of the sun is null', () => {
     expect(
-      asrElevationAngle(
-        generateRandomWholeNumber(1, 2) as 1 | 2,
-        randomDegree(-180, 180),
-        null as unknown as AngularDegrees))
-      .toEqual(failure(new Error(errorMessage('Declination of the sun'))))
+      throwOnError(
+        asrElevationAngle(
+          generateRandomWholeNumber(1, 2) as 1 | 2,
+          randomDegree(-180, 180),
+          null as unknown as AngularDegrees)))
+      .toThrow()
   })
   test('returns the inverse cotangent for angular degrees', () => {
     iterativeTest<{

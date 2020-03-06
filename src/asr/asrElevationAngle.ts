@@ -7,10 +7,7 @@ const asrElevationAngle = (
   shadowLength: 1 | 2,
   latitude: Readonly<AngularDegrees>,
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
-  if (shadowLength === null || shadowLength === undefined) {
-    return failure(new ReferenceError())
-  }
-    const nullProperties = getNullProperties([latitude, declinationOfTheSun])
+  const nullProperties = getNullProperties([shadowLength, latitude, declinationOfTheSun])
 
   return nullProperties.length > 0
     ? failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
