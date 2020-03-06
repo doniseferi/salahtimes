@@ -3,7 +3,7 @@ import {
   failure,
   success,
   ErrorOr
-} from '../errorOr'
+} from '../'
 
 describe('Error Or', () => {
   test('success callback on T', () => {
@@ -20,6 +20,30 @@ describe('Error Or', () => {
       (err) => { throw err }, (val) => val + val)).toThrow()
     expect(matchErrorOr(createFailure(),
       () => -1, (val) => val)).toEqual(-1)
+  })
+  test('throws an error when input isn\'t provided', () => {
+    expect(() =>
+      matchErrorOr(
+        null as unknown as ErrorOr<number>,
+        (left) => left,
+        (right) => right))
+      .toThrow()
+  })
+  test('an error is thrown when the left call back isn\'t provided', () => {
+    expect(() =>
+      matchErrorOr(
+        createSuccess(1),
+        null as unknown as (val: Error) => unknown,
+        (val) => val))
+      .toThrow()
+  })
+  test('an error is thrown when the right call back isn\'t provided', () => {
+    expect(() =>
+      matchErrorOr(
+        createSuccess(1),
+        (val) => val,
+        null as unknown as (val: number) => number))
+      .toThrow()
   })
 })
 

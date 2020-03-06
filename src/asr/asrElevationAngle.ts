@@ -1,28 +1,24 @@
 import { arccot, tan, degrees, AngularDegrees } from '../maths'
 import { failure, success, throwOnError, ErrorOr } from '../either'
+import { getNullProperties } from '../error'
 
 // TODO: try make functional
 const asrElevationAngle = (
   shadowLength: 1 | 2,
   latitude: Readonly<AngularDegrees>,
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
-  if (shadowLength == null) {
-    return failure(ErrorFor('Shadow Length'))
+  if (shadowLength === null || shadowLength === undefined) {
+    return failure(new ReferenceError())
   }
-  if (latitude?.value == null) {
-    return failure(ErrorFor('Latitude'))
-  }
-  if (declinationOfTheSun?.value == null) {
-    return failure(ErrorFor('Declination of the sun'))
-  }
-  return success(
-    throwOnError(
-      arccot(
-        shadowLength + tan(throwOnError(degrees(latitude.value - declinationOfTheSun.value))))))
-}
+    const nullProperties = getNullProperties([latitude, declinationOfTheSun])
 
-const ErrorFor = (componentName: string): Error => (
-  new Error(`${componentName} is either null or undefined. To calculate the Asr elevation Angle please provide ${componentName}`))
+  return nullProperties.length > 0
+    ? failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
+    : success(
+      throwOnError(
+        arccot(
+          shadowLength + tan(throwOnError(degrees(latitude.value - declinationOfTheSun.value))))))
+}
 
 export {
   asrElevationAngle

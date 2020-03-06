@@ -1,3 +1,4 @@
+import { throwErrorOnNullOrUndefined } from '../error'
 
 type ErrorOr<T> = Readonly<Failure<Error>> | Readonly<Success<T>>
 interface Failure<T extends Error> { path: 'error', error: Readonly<T> }
@@ -10,10 +11,15 @@ const matchErrorOr = <S, F>(
   input: ErrorOr<S>,
   onFailureCallback: (val: Error) => F,
   onSuccessCallback: (val: S) => S
-): S | F =>
-  (input.path === 'error')
+): S | F => {
+  throwErrorOnNullOrUndefined(input)
+  throwErrorOnNullOrUndefined(onFailureCallback)
+  throwErrorOnNullOrUndefined(onSuccessCallback)
+
+  return (input.path === 'error')
     ? onFailureCallback(input.error)
     : onSuccessCallback(input.result)
+}
 
 const throwOnError = <T>(input: ErrorOr<T>): T => matchErrorOr(
   input,
