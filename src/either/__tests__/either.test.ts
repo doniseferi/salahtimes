@@ -20,9 +20,9 @@ describe('Either', () => {
   test('an error is thrown when input isn\'t provided', () => {
     expect(() =>
       match(
-        null as unknown as Either<void, void>,
-        () => { },
-        () => { }))
+        null as unknown as Either<string, number>,
+        (left) => left,
+        (right) => right))
       .toThrow()
   })
   test('an error is thrown when the left call back isn\'t provided', () => {
