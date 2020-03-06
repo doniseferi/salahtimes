@@ -18,6 +18,13 @@ describe('Either', () => {
       )
     ).toEqual('One')
   })
+  test('null input throws an error', () => {
+    expect(() =>
+      match(null as unknown as Either<void, void>,
+        () => { },
+        () => { })).
+      toThrow()
+  })
 })
 
 const isNumber = (shouldReturnNumber: boolean): Either<number, string> =>
