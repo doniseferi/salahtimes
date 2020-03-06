@@ -1,10 +1,10 @@
 import { TimeSpan } from '../../time'
-import { Either } from '../../either'
+import { ErrorOr } from '../../either'
 import { AngularDegrees } from '../../maths'
 
-type AngleBasedMethod = (angle: Readonly<AngularDegrees>, timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>) => Either<Error, Readonly<TimeSpan>>
+type AngleBasedMethod = (angle: Readonly<AngularDegrees>, timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>) => ErrorOr<Readonly<TimeSpan>>
 
-type OneSeventhMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>) => Either<Error, Readonly<TimeSpan>>;
+type OneSeventhMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>) => ErrorOr<Readonly<TimeSpan>>;
 
 type MiddleOfTheNightMethod = OneSeventhMethod
 

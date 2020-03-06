@@ -1,12 +1,12 @@
 import { angularDegreesToRadians, arccot, tan, AngularDegrees, radiansToAngularDegrees } from '..'
-import { matchOrThrow, left } from '../../either'
+import { throwOnError, failure } from '../../either'
 import { iterativeTest, randomDegree } from '../../testUtils'
 
 describe('Inverse Cotangent', () => {
   test('throws an error when the angular degrees is null', () => {
     expect(
       arccot(null as unknown as number))
-      .toEqual(left(new Error('The angular degrees is null or empty.')))
+      .toEqual(failure(new Error('The angular degrees is null or empty.')))
   })
   test('returns the inverse cotangent for angular degrees', () => {
     iterativeTest({
@@ -34,7 +34,7 @@ describe('Tangent', () => {
         expect(tan(degrees))
           .toEqual(
             Math.tan(
-              matchOrThrow(angularDegreesToRadians(degrees))))
+              throwOnError(angularDegreesToRadians(degrees))))
       }
     })
   })

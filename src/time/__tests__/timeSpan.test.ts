@@ -3,7 +3,7 @@ import {
   iterativeTest,
   generateRandomWholeNumber
 } from '../../testUtils/index'
-import { matchOrThrow } from '../../either/index'
+import { throwOnError } from '../../either'
 
 interface testSpec {
   expected: number
@@ -88,23 +88,23 @@ const timeSpanDivideTestSpec = (
 ): testSpec[] => [
   {
     expected: ((timeSpanUnits.day * initialValue) / divisor) >> 0,
-    actual: matchOrThrow(timeSpan(initialValue, 0, 0, 0, 0).divide(divisor))
+    actual: throwOnError(timeSpan(initialValue, 0, 0, 0, 0).divide(divisor))
   },
   {
     expected: ((timeSpanUnits.hour * initialValue) / divisor) >> 0,
-    actual: matchOrThrow(timeSpan(0, initialValue, 0, 0, 0).divide(divisor))
+    actual: throwOnError(timeSpan(0, initialValue, 0, 0, 0).divide(divisor))
   },
   {
     expected: ((timeSpanUnits.minute * initialValue) / divisor) >> 0,
-    actual: matchOrThrow(timeSpan(0, 0, initialValue, 0, 0).divide(divisor))
+    actual: throwOnError(timeSpan(0, 0, initialValue, 0, 0).divide(divisor))
   },
   {
     expected: ((timeSpanUnits.second * initialValue) / divisor) >> 0,
-    actual: matchOrThrow(timeSpan(0, 0, 0, initialValue, 0).divide(divisor))
+    actual: throwOnError(timeSpan(0, 0, 0, initialValue, 0).divide(divisor))
   },
   {
     expected: ((timeSpanUnits.millisecond * initialValue) / divisor) >> 0,
-    actual: matchOrThrow(timeSpan(0, 0, 0, 0, initialValue).divide(divisor))
+    actual: throwOnError(timeSpan(0, 0, 0, 0, initialValue).divide(divisor))
   }
 ]
 
@@ -114,22 +114,22 @@ const timeSpamDivideByTimeSpanTestSpec = (
 ): testSpec[] => [
   {
     expected: ((timeSpanUnits.day * initialValue) / divisor.value) >> 0,
-    actual: matchOrThrow(timeSpan(initialValue, 0, 0, 0, 0).divideByTimeSpan(divisor))
+    actual: throwOnError(timeSpan(initialValue, 0, 0, 0, 0).divideByTimeSpan(divisor))
   },
   {
     expected: ((timeSpanUnits.hour * initialValue) / divisor.value) >> 0,
-    actual: matchOrThrow(timeSpan(0, initialValue, 0, 0, 0).divideByTimeSpan(divisor))
+    actual: throwOnError(timeSpan(0, initialValue, 0, 0, 0).divideByTimeSpan(divisor))
   },
   {
     expected: ((timeSpanUnits.minute * initialValue) / divisor.value) >> 0,
-    actual: matchOrThrow(timeSpan(0, 0, initialValue, 0, 0).divideByTimeSpan(divisor))
+    actual: throwOnError(timeSpan(0, 0, initialValue, 0, 0).divideByTimeSpan(divisor))
   },
   {
     expected: ((timeSpanUnits.second * initialValue) / divisor.value) >> 0,
-    actual: matchOrThrow(timeSpan(0, 0, 0, initialValue, 0).divideByTimeSpan(divisor))
+    actual: throwOnError(timeSpan(0, 0, 0, initialValue, 0).divideByTimeSpan(divisor))
   },
   {
     expected: ((timeSpanUnits.millisecond * initialValue) / divisor.value) >> 0,
-    actual: matchOrThrow(timeSpan(0, 0, 0, 0, initialValue).divideByTimeSpan(divisor))
+    actual: throwOnError(timeSpan(0, 0, 0, 0, initialValue).divideByTimeSpan(divisor))
   }
 ]

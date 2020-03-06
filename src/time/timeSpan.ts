@@ -1,9 +1,9 @@
 import calculateMilliseconds from './calculateMilliseconds'
-import { Either, right, left } from '../either'
+import { ErrorOr, success, failure } from '../either'
 
 export interface TimeSpan {
-  divide(divisor: number): Either<Error, TimeSpan>
-  divideByTimeSpan(divisor: TimeSpan): Either<Error, TimeSpan>
+  divide(divisor: number): ErrorOr<TimeSpan>
+  divideByTimeSpan(divisor: TimeSpan): ErrorOr<TimeSpan>
   value: number
 }
 
@@ -16,9 +16,9 @@ const timeSpan = (
 ): TimeSpan =>
   Object.freeze({
     value: calculateMilliseconds(days, hours, minutes, seconds, milliseconds),
-    divide: (divisor: number): Either<RangeError, TimeSpan> =>
+    divide: (divisor: number): ErrorOr<TimeSpan> =>
       (divisor !== 0)
-        ? right<TimeSpan>(
+        ? success<TimeSpan>(
           timeSpan(
             0,
             0,
@@ -35,10 +35,10 @@ const timeSpan = (
             )
           )
         )
-        : left(new RangeError('Divide by zero error.')),
-    divideByTimeSpan: (divisor: TimeSpan): Either<RangeError, TimeSpan> =>
+        : failure(new RangeError('Divide by zero error.')),
+    divideByTimeSpan: (divisor: TimeSpan): ErrorOr<TimeSpan> =>
       (divisor.value !== 0)
-        ? right<TimeSpan>(
+        ? success<TimeSpan>(
           timeSpan(
             0,
             0,
@@ -55,7 +55,7 @@ const timeSpan = (
             )
           )
         )
-        : left(new RangeError('Divide by zero error.'))
+        : failure(new RangeError('Divide by zero error.'))
   })
 
 export { timeSpan }

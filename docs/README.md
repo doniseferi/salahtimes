@@ -53,7 +53,7 @@
 * [left](README.md#const-left)
 * [maliki](README.md#const-maliki)
 * [match](README.md#const-match)
-* [matchOrThrow](README.md#const-matchorthrow)
+* [throwOnError](README.md#const-matchorthrow)
 * [middleOfTheNightMethod](README.md#const-middleofthenightmethod)
 * [oneSeventhMethod](README.md#const-oneseventhmethod)
 * [radiansToAngularDegrees](README.md#const-radianstoangulardegrees)
@@ -540,9 +540,9 @@ Name | Type |
 
 ___
 
-### `Const` matchOrThrow
+### `Const` throwOnError
 
-▸ **matchOrThrow**<**T**>(`input`: [Either](README.md#either)‹Error, T›): *T*
+▸ **throwOnError**<**T**>(`input`: [Either](README.md#either)‹Error, T›): *T*
 
 *Defined in [either/either.ts:14](https://github.com/doniseferi/salahtimes/blob/5c01234/src/either/either.ts#L14)*
 

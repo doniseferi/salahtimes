@@ -1,11 +1,18 @@
 import { AngularDegrees, degrees } from '../maths'
-import { Either } from '../either'
+import { ErrorOr } from '../either'
 
 type SupportedConventions = 'MuslimWorldLeague' | 'IslamicSocietyOfNorthAmerica' | 'EgyptianGeneralAuthorityOfSurvey' | 'UmmAlQuraUniversityMekkah' | 'UniversityOfIslamicSciencesKarachi' | 'InstituteOfGeophysicsUniversityOfTehranOfSurvey' | 'ShiaIthnaAshariLevaResearchInstituteQumOfSurvey'
 
+const convention =
+  (name: SupportedConventions = 'MuslimWorldLeague'): Convention =>
+    conventions
+      .find(convention =>
+        convention.name.toLowerCase() === name?.toLowerCase())
+      ?.value ?? conventions[0].value
+
 interface Convention {
-  fajr(): Either<RangeError, Readonly<AngularDegrees>>
-  isha(): Either<RangeError, Readonly<AngularDegrees>>
+  fajr(): ErrorOr<Readonly<AngularDegrees>>
+  isha(): ErrorOr<Readonly<AngularDegrees>>
 }
 
 const conventions: Array<{ name: string, value: Convention }> = [{
@@ -52,12 +59,5 @@ const conventions: Array<{ name: string, value: Convention }> = [{
     isha: () => degrees(14)
   }
 }]
-
-const convention =
-  (name: SupportedConventions = 'MuslimWorldLeague'): Convention =>
-    conventions
-      .find(convention =>
-        convention.name.toLowerCase() === name?.toLowerCase())
-      ?.value ?? conventions[0].value
 
 export default convention

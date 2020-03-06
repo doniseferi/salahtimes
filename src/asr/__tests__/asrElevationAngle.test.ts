@@ -1,6 +1,6 @@
 import { AngularDegrees, angularDegreesToRadiansNumericConversion } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
-import { matchOrThrow, left } from '../../either'
+import { throwOnError, failure } from '../../either'
 import {
   randomDegree,
   generateRandomWholeNumber,
@@ -16,21 +16,21 @@ describe('Asr Elevation Angles preconditions', () => {
       null as unknown as 1 | 2,
       randomDegree(-180, 180),
       randomDegree(-23.5, 23.5)))
-      .toEqual(left(new Error(errorMessage('Shadow Length'))))
+      .toEqual(failure(new Error(errorMessage('Shadow Length'))))
   })
   test('returns an error when the angular degrees for latitude is null', () => {
     expect(asrElevationAngle(
       generateRandomWholeNumber(1, 2) as 1 | 2,
       null as unknown as AngularDegrees,
       randomDegree(-23.49, 23.49)))
-      .toEqual(left(new Error(errorMessage('Latitude'))))
+      .toEqual(failure(new Error(errorMessage('Latitude'))))
   })
   test('returns an error when the angular degrees for the declination of the sun is null', () => {
     expect(asrElevationAngle(
       generateRandomWholeNumber(1, 2) as 1 | 2,
       randomDegree(-180, 180),
       null as unknown as AngularDegrees))
-      .toEqual(left(new Error(errorMessage('Declination of the sun'))))
+      .toEqual(failure(new Error(errorMessage('Declination of the sun'))))
   })
   test('returns the inverse cotangent for angular degrees', () => {
     iterativeTest<{
@@ -50,7 +50,7 @@ describe('Asr Elevation Angles preconditions', () => {
         const value = input.shadowLength + Math.tan(
           angularDegreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value))
         const expected = Math.atan(1 / value)
-        const actual = angularDegreesToRadiansNumericConversion(matchOrThrow(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
+        const actual = angularDegreesToRadiansNumericConversion(throwOnError(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
         expect(closeEnough(actual, expected)).toEqual(true)
       }
     })
