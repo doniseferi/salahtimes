@@ -1,8 +1,5 @@
-
 export interface Left<T> { path: 'left', error: Readonly<T> }
-
 export interface Right<T> { path: 'right', result: Readonly<T> }
-
 export type Either<L, R> = Readonly<Left<L>> | Readonly<Right<R>>;
 
 const match = <T, L, R>(
@@ -24,4 +21,9 @@ const left = <T>(err: T): Left<T> => ({ path: 'left', error: err })
 
 const right = <T>(res: T): Right<T> => ({ path: 'right', result: res })
 
-export { match, matchOrThrow, left, right }
+export {
+  match,
+  matchOrThrow,
+  left,
+  right
+}
