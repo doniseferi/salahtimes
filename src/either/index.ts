@@ -3,17 +3,31 @@ import {
   Left,
   Right,
   match,
-  matchOrThrow,
   left,
   right
 } from './either'
+import {
+  ErrorOr,
+  Failure,
+  Success,
+  failure,
+  success,
+  matchErrorOr,
+  throwOnError
+} from './errorOr'
 
 export {
   Either,
   Left,
   Right,
   match,
-  matchOrThrow,
   left,
-  right
+  right,
+  ErrorOr,
+  Failure,
+  Success,
+  failure,
+  success,
+  matchErrorOr,
+  throwOnError
 }

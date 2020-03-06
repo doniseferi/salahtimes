@@ -1,57 +1,24 @@
-import { left, right, match, matchOrThrow, Either } from '../index'
+import { left, right, match, Either } from '../index'
 
 describe('Either', () => {
-  test('generic left contains error', () => {
-    expect(() =>
-      match<string, Error, string>(
-        testMethod(true),
-        (e) => {
-          throw e
-        },
+  test('left contains a number', () => {
+    expect(match(
+        isNumber(true),
+        (e) => e,
         (v) => v
       )
-    ).toThrowError(Error)
+    ).toEqual(1)
   })
   test('generic right contains result', () => {
     expect(
-      match<string, Error, string>(
-        testMethod(false),
-        (e) => {
-          throw e
-        },
-        (v) => v
-      )
-    ).toEqual('Tung')
-  })
-  test('left contains error', () => {
-    expect(() =>
       match(
-        testMethod(true),
-        (e) => {
-          throw e
-        },
+        isNumber(false),
+        (e) => e,
         (v) => v
       )
-    ).toThrowError(Error)
-  })
-  test('right contains result', () => {
-    expect(
-      match(
-        testMethod(false),
-        (e) => {
-          throw e
-        },
-        (v) => v
-      )
-    ).toEqual('Tung')
-  })
-  test('match or throw unwraps returns an object when no error is thrown from the error.', () => {
-    expect(matchOrThrow<string>(testMethod(false))).toEqual('Tung')
-  })
-  test('match or throw throws an error when the return object has an error.', () => {
-    expect(matchOrThrow<string>(testMethod(false))).toEqual('Tung')
+    ).toEqual('One')
   })
 })
 
-const testMethod = (shouldError: boolean): Either<Error, string> =>
-  shouldError ? left(new Error()) : right('Tung')
+const isNumber = (shouldReturnNumber: boolean): Either<number, string> =>
+  shouldReturnNumber ? left(1) : right("One")
