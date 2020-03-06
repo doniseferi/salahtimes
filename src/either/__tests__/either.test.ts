@@ -2,28 +2,44 @@ import { left, right, match, Either } from '../index'
 
 describe('Either', () => {
   test('left contains a number', () => {
-    expect(match(
-      isNumber(true),
-      (e) => e,
-      (v) => v
-    )
-    ).toEqual(1)
+    expect(
+      match(
+        isNumber(true),
+        (e) => e,
+        (v) => v))
+      .toEqual(1)
   })
   test('generic right contains result', () => {
     expect(
       match(
         isNumber(false),
         (e) => e,
-        (v) => v
-      )
-    ).toEqual('One')
+        (v) => v))
+      .toEqual('One')
   })
-  test('null input throws an error', () => {
+  test('an error is thrown when input isn\'t provided', () => {
     expect(() =>
-      match(null as unknown as Either<void, void>,
+      match(
+        null as unknown as Either<void, void>,
         () => { },
-        () => { })).
-      toThrow()
+        () => { }))
+      .toThrow()
+  })
+  test('an error is thrown when the left call back isn\'t provided', () => {
+    expect(() =>
+      match(
+        isNumber(false),
+        null as unknown as (val: number) => number,
+        (val) => val))
+      .toThrow()
+  })
+  test('an error is thrown when the right call back isn\'t provided', () => {
+    expect(() =>
+      match(
+        isNumber(true),
+        (val) => val,
+        null as unknown as (val: string) => string))
+      .toThrow()
   })
 })
 
