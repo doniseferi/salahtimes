@@ -1,5 +1,6 @@
-import convention from './convention'
+import { convention, SupportedConventions } from './convention'
 
 export {
-  convention
+  convention,
+  SupportedConventions
 }

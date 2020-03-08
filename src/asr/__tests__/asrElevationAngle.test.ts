@@ -10,11 +10,11 @@ import {
 
 describe('Asr Elevation Angles preconditions', () => {
   test('Accepts only value of 1 or 2 for shadow length ', () => {
-    expect(
-      throwOnError((asrElevationAngle(
+    expect(() =>
+      throwOnError(asrElevationAngle(
         null as unknown as 1 | 2,
         randomDegree(-180, 180),
-        randomDegree(-23.5, 23.5)))))
+        randomDegree(-23.5, 23.5))))
       .toThrow()
   })
   test('returns an error when the angular degrees for latitude is null', () => {
@@ -27,7 +27,7 @@ describe('Asr Elevation Angles preconditions', () => {
       .toThrow()
   })
   test('returns an error when the angular degrees for the declination of the sun is null', () => {
-    expect(
+    expect(() =>
       throwOnError(
         asrElevationAngle(
           generateRandomWholeNumber(1, 2) as 1 | 2,
