@@ -17,14 +17,14 @@
 
 ###  latitude
 
-• **latitude**: *[AngularDegrees](angulardegrees.md)*
+• **latitude**: *Readonly‹[Latitude](latitude.md)›*
 
-*Defined in [location/geoCoordinate/geoCoordinate.ts:5](https://github.com/doniseferi/salahtimes/blob/8d68cf5/src/location/geoCoordinate/geoCoordinate.ts#L5)*
+Defined in location/coordinates/geoCoordinate.ts:4
 
 ___
 
 ###  longitude
 
-• **longitude**: *[AngularDegrees](angulardegrees.md)*
+• **longitude**: *Readonly‹[Longitude](longitude.md)›*
 
-*Defined in [location/geoCoordinate/geoCoordinate.ts:6](https://github.com/doniseferi/salahtimes/blob/8d68cf5/src/location/geoCoordinate/geoCoordinate.ts#L6)*
+Defined in location/coordinates/geoCoordinate.ts:5
