@@ -1,4 +1,4 @@
-import { throwErrorOnNullOrUndefined } from '../error'
+import { throwErrorOnNull } from '../validation'
 
 interface Left<T> { path: 'left', result: Readonly<T> }
 interface Right<T> { path: 'right', result: Readonly<T> }
@@ -9,9 +9,9 @@ const match = <L, R>(
   left: (result: L) => L,
   right: (right: R) => R
 ): L | R => {
-  throwErrorOnNullOrUndefined(input)
-  throwErrorOnNullOrUndefined(left)
-  throwErrorOnNullOrUndefined(right)
+  throwErrorOnNull(input)
+  throwErrorOnNull(left)
+  throwErrorOnNull(right)
 
   return (input.path === 'left')
     ? left(input.result)
