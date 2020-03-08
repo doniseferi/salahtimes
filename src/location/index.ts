@@ -1,16 +1,42 @@
-import { GeoCoordinate, geoCoordinate, createLatitude, createLongitude } from './geoCoordinate/geoCoordinate'
-import { OneSeventhMethod, MiddleOfTheNightMethod, AngleBasedMethod } from './highLatitude/highLatitudeMethod'
+import {
+  GeoCoordinate,
+  geoCoordinate
+} from './coordinates/geoCoordinate'
+
+import {
+  Latitude,
+  Longitude,
+  Coordinate,
+  latitude,
+  longitude,
+  createCoordinate
+} from '../location/coordinates/coordinate'
+
+import {
+  OneSeventhMethod,
+  MiddleOfTheNightMethod,
+  AngleBasedMethod
+} from './highLatitude/highLatitudeMethod'
+
 import angleBasedMethod from './highLatitude/angleBasedMethod'
-import { oneSeventhMethod, middleOfTheNightMethod } from './highLatitude/divisionBasedMethods'
+
+import {
+  oneSeventhMethod,
+  middleOfTheNightMethod
+} from './highLatitude/divisionBasedMethods'
 
 export {
   GeoCoordinate,
-  AngleBasedMethod,
+  geoCoordinate,
+  Latitude,
+  Longitude,
+  Coordinate,
+  latitude,
+  longitude,
+  createCoordinate,
   OneSeventhMethod,
   MiddleOfTheNightMethod,
-  createLatitude,
-  createLongitude,
-  geoCoordinate,
+  AngleBasedMethod,
   angleBasedMethod,
   oneSeventhMethod,
   middleOfTheNightMethod
