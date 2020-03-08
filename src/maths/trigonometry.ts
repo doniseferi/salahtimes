@@ -1,15 +1,21 @@
-import { AngularDegrees, radiansToAngularDegrees } from '.'
-import { Either, left, right, matchOrThrow } from '../either'
+import {
+  AngularDegrees,
+  radiansToAngularDegrees
+} from '.'
 import {
   angularDegreesToRadians
 } from './angularConversions'
-
-const arccot = (value: number): Either<Error, Readonly<AngularDegrees>> =>
+import {
+  throwOnError,
+  ErrorOr,
+  failure,
+  success
+} from '../either'
+const arccot = (value: number): ErrorOr<Readonly<AngularDegrees>> =>
   (value === null)
-    ? left(new Error('The angular degrees is null or empty.'))
-    : right(matchOrThrow(
-      radiansToAngularDegrees(Math.atan(1 / value))))
+    ? failure(new Error('The angular degrees is null or empty.'))
+    : success(throwOnError(radiansToAngularDegrees(Math.atan(1 / value))))
 
-const tan = (degrees: Readonly<AngularDegrees>): number => Math.tan(matchOrThrow(angularDegreesToRadians(degrees)))
+const tan = (degrees: Readonly<AngularDegrees>): number => Math.tan(throwOnError(angularDegreesToRadians(degrees)))
 
 export { arccot, tan }

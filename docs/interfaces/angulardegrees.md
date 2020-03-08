@@ -18,4 +18,4 @@
 
 • **value**: *number*
 
-*Defined in [maths/degree.ts:4](https://github.com/doniseferi/salahtimes/blob/5c01234/src/maths/degree.ts#L4)*
+*Defined in [maths/degree.ts:4](https://github.com/doniseferi/salahtimes/blob/8d68cf5/src/maths/degree.ts#L4)*

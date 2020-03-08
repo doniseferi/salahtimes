@@ -1,6 +1,6 @@
 import { timeSpan, TimeSpan } from '../time'
 import { AngularDegrees, degrees } from '../maths'
-import { matchOrThrow } from '../either/either'
+import { throwOnError } from '../either'
 
 const generateRandomNumber = (
   min: number = Number.MIN_SAFE_INTEGER,
@@ -18,7 +18,7 @@ const generateRandomDate = (minYear: number, maxYear: number): Readonly<Date> =>
 
 const randomTimeSpan = (): Readonly<TimeSpan> => timeSpan(0, 0, 0, 0, generateRandomWholeNumber(1, 1_000_000_000_000))
 
-const randomDegree = (minValue: number = 0, maxValue: number = 360): Readonly<AngularDegrees> => matchOrThrow(degrees(generateRandomNumber(minValue, maxValue)))
+const randomDegree = (minValue: number = 0, maxValue: number = 360): Readonly<AngularDegrees> => throwOnError(degrees(generateRandomNumber(minValue, maxValue)))
 
 export {
   generateRandomNumber,

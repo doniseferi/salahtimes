@@ -1,11 +1,18 @@
 import { AngularDegrees, degrees } from '../maths'
-import { Either } from '../either'
+import { ErrorOr } from '../either'
 
-type SupportedConventions = 'MuslimWorldLeague' | 'IslamicSocietyOfNorthAmerica' | 'EgyptianGeneralAuthorityOfSurvey' | 'UmmAlQuraUniversityMekkah' | 'UniversityOfIslamicSciencesKarachi' | 'InstituteOfGeophysicsUniversityOfTehranOfSurvey' | 'ShiaIthnaAshariLevaResearchInstituteQumOfSurvey'
+type SupportedConventions =
+  'MuslimWorldLeague' |
+  'IslamicSocietyOfNorthAmerica' |
+  'EgyptianGeneralAuthorityOfSurvey' |
+  'UmmAlQuraUniversityMekkah' |
+  'UniversityOfIslamicSciencesKarachi' |
+  'InstituteOfGeophysicsUniversityOfTehranOfSurvey' |
+  'ShiaIthnaAshariLevaResearchInstituteQumOfSurvey'
 
 interface Convention {
-  fajr(): Either<RangeError, Readonly<AngularDegrees>>
-  isha(): Either<RangeError, Readonly<AngularDegrees>>
+  fajr(): ErrorOr<Readonly<AngularDegrees>>
+  isha(): ErrorOr<Readonly<AngularDegrees>>
 }
 
 const conventions: Array<{ name: string, value: Convention }> = [{

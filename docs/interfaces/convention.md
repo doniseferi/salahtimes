@@ -17,18 +17,18 @@
 
 ###  fajr
 
-▸ **fajr**(): *[Either](../README.md#either)‹RangeError, Readonly‹[AngularDegrees](angulardegrees.md)››*
+▸ **fajr**(): *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
 
-*Defined in [convention/convention.ts:7](https://github.com/doniseferi/salahtimes/blob/5c01234/src/convention/convention.ts#L7)*
+*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/8d68cf5/src/convention/convention.ts#L14)*
 
-**Returns:** *[Either](../README.md#either)‹RangeError, Readonly‹[AngularDegrees](angulardegrees.md)››*
+**Returns:** *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
 
 ___
 
 ###  isha
 
-▸ **isha**(): *[Either](../README.md#either)‹RangeError, Readonly‹[AngularDegrees](angulardegrees.md)››*
+▸ **isha**(): *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
 
-*Defined in [convention/convention.ts:8](https://github.com/doniseferi/salahtimes/blob/5c01234/src/convention/convention.ts#L8)*
+*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/8d68cf5/src/convention/convention.ts#L15)*
 
-**Returns:** *[Either](../README.md#either)‹RangeError, Readonly‹[AngularDegrees](angulardegrees.md)››*
+**Returns:** *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*

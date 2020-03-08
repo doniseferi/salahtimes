@@ -1,57 +1,47 @@
-import { left, right, match, matchOrThrow, Either } from '../index'
+import { left, right, match, Either } from '../index'
 
 describe('Either', () => {
-  test('generic left contains error', () => {
-    expect(() =>
-      match<string, Error, string>(
-        testMethod(true),
-        (e) => {
-          throw e
-        },
-        (v) => v
-      )
-    ).toThrowError(Error)
+  test('left contains a number', () => {
+    expect(
+      match(
+        isNumber(true),
+        (e) => e,
+        (v) => v))
+      .toEqual(1)
   })
   test('generic right contains result', () => {
     expect(
-      match<string, Error, string>(
-        testMethod(false),
-        (e) => {
-          throw e
-        },
-        (v) => v
-      )
-    ).toEqual('Tung')
+      match(
+        isNumber(false),
+        (e) => e,
+        (v) => v))
+      .toEqual('One')
   })
-  test('left contains error', () => {
+  test('an error is thrown when input isn\'t provided', () => {
     expect(() =>
       match(
-        testMethod(true),
-        (e) => {
-          throw e
-        },
-        (v) => v
-      )
-    ).toThrowError(Error)
+        null as unknown as Either<string, number>,
+        (left) => left,
+        (right) => right))
+      .toThrow()
   })
-  test('right contains result', () => {
-    expect(
+  test('an error is thrown when the left call back isn\'t provided', () => {
+    expect(() =>
       match(
-        testMethod(false),
-        (e) => {
-          throw e
-        },
-        (v) => v
-      )
-    ).toEqual('Tung')
+        isNumber(false),
+        null as unknown as (val: number) => number,
+        (val) => val))
+      .toThrow()
   })
-  test('match or throw unwraps returns an object when no error is thrown from the error.', () => {
-    expect(matchOrThrow<string>(testMethod(false))).toEqual('Tung')
-  })
-  test('match or throw throws an error when the return object has an error.', () => {
-    expect(matchOrThrow<string>(testMethod(false))).toEqual('Tung')
+  test('an error is thrown when the right call back isn\'t provided', () => {
+    expect(() =>
+      match(
+        isNumber(true),
+        (val) => val,
+        null as unknown as (val: string) => string))
+      .toThrow()
   })
 })
 
-const testMethod = (shouldError: boolean): Either<Error, string> =>
-  shouldError ? left(new Error()) : right('Tung')
+const isNumber = (shouldReturnNumber: boolean): Either<number, string> =>
+  shouldReturnNumber ? left(1) : right('One')

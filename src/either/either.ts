@@ -1,27 +1,32 @@
+import { throwErrorOnNull } from '../validation'
 
-export interface Left<T> { path: 'left', error: Readonly<T> }
+interface Left<T> { path: 'left', result: Readonly<T> }
+interface Right<T> { path: 'right', result: Readonly<T> }
+type Either<L, R> = Readonly<Left<L>> | Readonly<Right<R>>;
 
-export interface Right<T> { path: 'right', result: Readonly<T> }
-
-export type Either<L, R> = Readonly<Left<L>> | Readonly<Right<R>>;
-
-const match = <T, L, R>(
+const match = <L, R>(
   input: Either<L, R>,
-  left: (error: L) => T,
-  right: (right: R) => T
-): T => (input.path === 'left' ? left(input.error) : right(input.result))
+  left: (result: L) => L,
+  right: (right: R) => R
+): L | R => {
+  throwErrorOnNull(input)
+  throwErrorOnNull(left)
+  throwErrorOnNull(right)
 
-const matchOrThrow = <T>(input: Either<Error, T>): T =>
-  match<T, Error, T>(
-    input,
-    (e) => {
-      throw e
-    },
-    (result) => result
-  )
+  return (input.path === 'left')
+    ? left(input.result)
+    : right(input.result)
+}
 
-const left = <T>(err: T): Left<T> => ({ path: 'left', error: err })
+const left = <T>(result: T): Left<T> => ({ path: 'left', result: result })
 
 const right = <T>(res: T): Right<T> => ({ path: 'right', result: res })
 
-export { match, matchOrThrow, left, right }
+export {
+  Either,
+  Left,
+  Right,
+  match,
+  left,
+  right
+}

@@ -1,15 +1,15 @@
 import { TimeSpan } from '../../time/index'
-import { left, right, match, Either } from '../../either/index'
+import { failure, success, matchErrorOr, ErrorOr } from '../../either'
 import { OneSeventhMethod, MiddleOfTheNightMethod } from '../index'
 
-const oneSeventhMethod: OneSeventhMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>): Either<Error, Readonly<TimeSpan>> => divisionBasedMethod(timeSpanBetweenSunsetAndSunrise, 7)
+const oneSeventhMethod: OneSeventhMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>): ErrorOr<Readonly<TimeSpan>> => divisionBasedMethod(timeSpanBetweenSunsetAndSunrise, 7)
 
-const middleOfTheNightMethod: MiddleOfTheNightMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>): Either<Error, Readonly<TimeSpan>> => divisionBasedMethod(timeSpanBetweenSunsetAndSunrise, 4)
+const middleOfTheNightMethod: MiddleOfTheNightMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>): ErrorOr<Readonly<TimeSpan>> => divisionBasedMethod(timeSpanBetweenSunsetAndSunrise, 4)
 
-const divisionBasedMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>, divisor: number): Either<Error, Readonly<TimeSpan>> =>
+const divisionBasedMethod = (timeSpanBetweenSunsetAndSunrise: Readonly<TimeSpan>, divisor: number): ErrorOr<Readonly<TimeSpan>> =>
   (timeSpanBetweenSunsetAndSunrise?.value === (null ?? undefined))
-    ? left(Error('timeSpanBetweenSunsetAndSunrise is null or undefined.'))
-    : right(match<TimeSpan, Error, TimeSpan>(
+    ? failure(Error('timeSpanBetweenSunsetAndSunrise is null or undefined.'))
+    : success(matchErrorOr(
       timeSpanBetweenSunsetAndSunrise.divide(divisor),
       (err) => {
         throw err
