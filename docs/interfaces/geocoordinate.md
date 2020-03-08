@@ -17,14 +17,14 @@
 
 ###  latitude
 
-• **latitude**: *Readonly‹[Latitude](latitude.md)›*
+• **latitude**: *Readonly‹[Latitude](../README.md#latitude)›*
 
-Defined in location/coordinates/geoCoordinate.ts:4
+*Defined in [location/coordinates/geoCoordinate.ts:4](https://github.com/doniseferi/salahtimes/blob/bfd9f15/src/location/coordinates/geoCoordinate.ts#L4)*
 
 ___
 
 ###  longitude
 
-• **longitude**: *Readonly‹[Longitude](longitude.md)›*
+• **longitude**: *Readonly‹[Longitude](../README.md#longitude)›*
 
-Defined in location/coordinates/geoCoordinate.ts:5
+*Defined in [location/coordinates/geoCoordinate.ts:5](https://github.com/doniseferi/salahtimes/blob/bfd9f15/src/location/coordinates/geoCoordinate.ts#L5)*
