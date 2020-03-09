@@ -19,7 +19,7 @@
 
 ▸ **fajr**(): *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
 
-*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/845eb45/src/convention/convention.ts#L14)*
+*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L14)*
 
 **Returns:** *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
 
@@ -29,6 +29,6 @@ ___
 
 ▸ **isha**(): *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
 
-*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/845eb45/src/convention/convention.ts#L15)*
+*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L15)*
 
 **Returns:** *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
