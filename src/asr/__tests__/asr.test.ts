@@ -3,7 +3,6 @@ import { throwOnError } from '../../either'
 import { asr } from '../asr'
 
 const standard = 1;
-const hanafi = 1;
 
 describe('Asr Standard Method', () => {
   test('returns the correct time for Asr in UTC', () => {
@@ -56,15 +55,15 @@ describe('Asr Standard Method', () => {
   })
 })
 
-// describe('Asr Hanafi Method', () => {
-//   test('returns the correct time for Asr in UTC', () => {
-//   })
-// })
-
-const asrReturnsCorrectDateTimeInUtc = (date: Date, lat: Latitude, lng: Longitude, expectedDateTimeUtc: Date, shadowLength: 1 | 2) => {
-  expect(asr(
-    date,
-    geoCoordinate(lat, lng),
-    shadowLength))
-    .toEqual(expectedDateTimeUtc)
-}
+const asrReturnsCorrectDateTimeInUtc =
+  (date: Date,
+    lat: Latitude,
+    lng: Longitude,
+    expectedDateTimeUtc: Date,
+    shadowLength: 1 | 2) =>
+    expect(
+      asr(
+        date,
+        geoCoordinate(lat, lng),
+        shadowLength))
+      .toEqual(expectedDateTimeUtc)
