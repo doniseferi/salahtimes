@@ -4,11 +4,10 @@ import { asrElevationAngle } from './asrElevationAngle'
 import { throwOnError } from '../either'
 import { degrees } from '../maths'
 
-const asr = (date: Date, geoCoordinate: GeoCoordinate) => {
+const asr = (date: Date, geoCoordinate: GeoCoordinate): string => {
   const declination = suntimes.getDeclinationOfTheSun(date)
   const asrAngle = throwOnError(asrElevationAngle(1, geoCoordinate.latitude, throwOnError(degrees(declination))))
-  const result = suntimes.getDateTimeUtcOfAngleAfterNoon(asrAngle.value, date, getCoordinateValue(geoCoordinate.latitude), getCoordinateValue(geoCoordinate.longitude))
-  return result
+  return suntimes.getDateTimeUtcOfAngleAfterNoon(asrAngle.value, date, getCoordinateValue(geoCoordinate.latitude), getCoordinateValue(geoCoordinate.longitude))
 }
 
 const getCoordinateValue = (coordinate: Coordinate) => coordinate.value

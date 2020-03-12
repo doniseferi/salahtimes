@@ -36,5 +36,21 @@ describe('Asr Standard Method', () => {
       geoCoordinate(throwOnError(latitude(64.7336613)),
         throwOnError(longitude(177.4968265)))))
       .toEqual(new Date(Date.UTC(2040, 1, 29, 2, 32, 33, 196)))
+    expect(asr(
+      new Date(2027, 11, 25),
+      geoCoordinate(
+        throwOnError(latitude(-51.6230485)),
+        throwOnError(longitude(-69.2168291)))))
+      .toEqual(
+        new Date(
+          Date.UTC(2027, 11, 25, 20, 59, 32, 738)))
+    expect(asr(
+      new Date(2020, 5, 6),
+      geoCoordinate(
+        throwOnError(latitude(39.0392193)),
+        throwOnError(longitude(125.7625241)))))
+      .toEqual(
+        new Date(
+          Date.UTC(2020, 5, 6, 7, 31, 44, 417)))
   })
 })
