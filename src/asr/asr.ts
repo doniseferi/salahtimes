@@ -1,12 +1,13 @@
-import { GeoCoordinate, Coordinate } from '../location'
 import suntimes from 'suntimes'
+import { GeoCoordinate, Coordinate } from '../location'
 import { asrElevationAngle } from './asrElevationAngle'
 import { throwOnError } from '../either'
 import { degrees } from '../maths'
 
-const asr = (date: Date, geoCoordinate: GeoCoordinate): string => {
+//todo: refactor shadow legnth to be its own object
+const asr = (date: Date, geoCoordinate: GeoCoordinate, shadowLength: 1 | 2): string => {
   const declination = suntimes.getDeclinationOfTheSun(date)
-  const asrAngle = throwOnError(asrElevationAngle(1, geoCoordinate.latitude, throwOnError(degrees(declination))))
+  const asrAngle = throwOnError(asrElevationAngle(shadowLength, geoCoordinate.latitude, throwOnError(degrees(declination))))
   return suntimes.getDateTimeUtcOfAngleAfterNoon(asrAngle.value, date, getCoordinateValue(geoCoordinate.latitude), getCoordinateValue(geoCoordinate.longitude))
 }
 
