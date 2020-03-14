@@ -1,17 +1,13 @@
 import {
-  AsrAngle,
-  standard,
-  shafii,
-  maliki,
-  hanbali,
-  hanafi
-} from './madhab'
+  AsrJursiticMethod,
+  madhhab
+} from './madhhab'
+import {
+  asr
+} from '../asr/asr'
 
 export {
-  AsrAngle,
-  standard,
-  shafii,
-  maliki,
-  hanbali,
-  hanafi
+  AsrJursiticMethod,
+  madhhab,
+  asr
 }

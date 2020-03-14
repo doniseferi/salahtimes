@@ -1,9 +1,10 @@
 import { geoCoordinate, latitude, longitude, Longitude, Latitude } from '../../location'
 import { throwOnError } from '../../either'
-import { asr } from '../asr'
+import { asr, madhhab } from '../../asr'
+import { AsrJursiticMethod } from '../madhhab'
 
-const standard = 1
-const hanafi = 2
+const standard = throwOnError(madhhab('standard'))
+const hanafi = throwOnError(madhhab('hanafi'))
 
 describe('Asr Standard Method', () => {
   test('returns the correct time for Asr in UTC', () => {
@@ -65,7 +66,10 @@ describe('Asr Standard Method', () => {
       getAsrDateTimeUtc(new Date(2027, 11, 25),
         throwOnError(latitude(-51.6230485)),
         throwOnError(longitude(-69.2168291)),
-        standard)).toEqual(new Date(Date.UTC(2027, 11, 25, 20, 59, 32, 738)))
+        standard))
+      .toEqual(
+        new Date(
+          Date.UTC(2027, 11, 25, 20, 59, 32, 738)))
     expect(
       getAsrDateTimeUtc(
         new Date(2020, 5, 6),
@@ -158,8 +162,8 @@ const getAsrDateTimeUtc =
   (date: Date,
     lat: Latitude,
     lng: Longitude,
-    shadowLength: 1 | 2): Date =>
-    new Date(asr(
+    madhhab: AsrJursiticMethod): Date =>
+    new Date(throwOnError(asr(
       date,
       geoCoordinate(lat, lng),
-      shadowLength))
+      madhhab)))

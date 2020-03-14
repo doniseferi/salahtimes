@@ -4,15 +4,15 @@ import { getNullMembers } from '../validation'
 import { Latitude } from '../location'
 
 const asrElevationAngle = (
-  shadowLength: 1 | 2,
+  shadowLengthToHeightProportion: 1 | 2,
   latitude: Readonly<Latitude>,
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
-  const nullProperties = getNullMembers([shadowLength, latitude, declinationOfTheSun])
+  const nullProperties = getNullMembers([shadowLengthToHeightProportion, latitude, declinationOfTheSun])
 
   return (nullProperties.length > 0)
     ? failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
     : success(throwOnError(
-      arccot(shadowLength + tan(
+      arccot(shadowLengthToHeightProportion + tan(
         throwOnError(
           degrees(abs(latitude.value - declinationOfTheSun.value)))))))
 }
