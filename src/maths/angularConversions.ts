@@ -1,4 +1,4 @@
-import { failure, success, ErrorOr } from '../either'
+import { ErrorOr, failure, success } from '../either'
 import { AngularDegrees, degrees } from '.'
 
 const angularConst = 0.017453292519943295769236907684888
