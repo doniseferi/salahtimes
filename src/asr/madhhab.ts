@@ -35,6 +35,7 @@ const madhhab = (madhhab: Madhhab): ErrorOr<AsrJursiticMethod> => {
 const errorMessage = 'Please provide one of the following values: standard, shafii, maliki, hanbali or hanafi'
 
 export {
+  Madhhab,
   AsrJursiticMethod,
   madhhab
 }
