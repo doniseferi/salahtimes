@@ -9,14 +9,12 @@ const asrElevationAngle = (
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
   const nullProperties = getNullMembers([shadowLength, latitude, declinationOfTheSun])
 
-  if (nullProperties.length > 0) {
-    return failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
-  } else {
-    return success(throwOnError(
+  return (nullProperties.length > 0)
+    ? failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
+    : success(throwOnError(
       arccot(shadowLength + tan(
         throwOnError(
           degrees(abs(latitude.value - declinationOfTheSun.value)))))))
-  }
 }
 
 export {
