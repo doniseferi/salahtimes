@@ -6,6 +6,7 @@ import {
   angularDegreesToRadians,
   angularDegreesToRadiansNumericConversion
 } from './angularConversions'
+const abs = Math.abs
 
 export {
   degrees,
@@ -15,5 +16,6 @@ export {
   radiansToAngularDegrees,
   radiansToAngularDegreesNumericConversion,
   angularDegreesToRadians,
-  angularDegreesToRadiansNumericConversion
+  angularDegreesToRadiansNumericConversion,
+  abs
 }

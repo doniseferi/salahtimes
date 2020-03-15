@@ -1,11 +1,12 @@
-import { AngularDegrees, angularDegreesToRadiansNumericConversion } from '../../maths'
+import { AngularDegrees, angularDegreesToRadiansNumericConversion, radiansToAngularDegrees } from '../../maths'
 import { asrElevationAngle } from '../asrElevationAngle'
 import { throwOnError } from '../../either'
 import {
   randomDegree,
   generateRandomWholeNumber,
   iterativeTest,
-  closeEnough
+  closeEnough,
+  generateRandomNumber
 } from '../../testUtils'
 
 describe('Asr Elevation Angles preconditions', () => {
@@ -40,21 +41,28 @@ describe('Asr Elevation Angles preconditions', () => {
       shadowLength: 1 | 2
       latitude: Readonly<AngularDegrees>
       declinationOfTheSun: Readonly<AngularDegrees>
+      declinationOfTheSunInRadians: number
+      latitudeInRadians: number
     }, void>({
       numberOfExecutions: 500,
       generateInput: () => {
+        const latitudeInRadians = angularDegreesToRadiansNumericConversion(generateRandomNumber(-180, 180))
+        const declinationOfTheSunInRadians = angularDegreesToRadiansNumericConversion(generateRandomNumber(23.439942762529427, 23.439942762529427))
+        const shadowLength = generateRandomWholeNumber(1, 2) as 1 | 2
         return {
-          shadowLength: generateRandomWholeNumber(1, 2) as 1 | 2,
-          latitude: randomDegree(-180, 180),
-          declinationOfTheSun: randomDegree(23.439942762529427, 23.439942762529427)
+          latitudeInRadians,
+          latitude: throwOnError(radiansToAngularDegrees(latitudeInRadians)),
+          declinationOfTheSunInRadians,
+          declinationOfTheSun: throwOnError(radiansToAngularDegrees(declinationOfTheSunInRadians)),
+          shadowLength
         }
       },
-      assert: (input) => {
-        const value = input.shadowLength + Math.tan(
-          angularDegreesToRadiansNumericConversion(input.latitude.value - input.declinationOfTheSun.value))
-        const expected = Math.atan(1 / value)
-        const actual = angularDegreesToRadiansNumericConversion(throwOnError(asrElevationAngle(input.shadowLength, input.latitude, input.declinationOfTheSun)).value)
-        expect(closeEnough(actual, expected)).toEqual(true)
+      assert: ({ shadowLength, latitude, latitudeInRadians, declinationOfTheSunInRadians, declinationOfTheSun }) => {
+        const arElevationAlgorithm = Math.atan(1 / (shadowLength + Math.tan(Math.abs(latitudeInRadians - declinationOfTheSunInRadians))))
+        const actual = angularDegreesToRadiansNumericConversion(throwOnError(asrElevationAngle(shadowLength, latitude, declinationOfTheSun)).value)
+        expect(
+          closeEnough(actual, arElevationAlgorithm))
+          .toEqual(true)
       }
     })
   })
