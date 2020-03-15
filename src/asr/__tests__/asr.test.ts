@@ -13,10 +13,10 @@ describe('Asr Standard Method', () => {
         new Date(2032, 7, 1),
         throwOnError(latitude(21.3890824)),
         throwOnError(longitude(39.8579118)),
-        standard))
+        standard).toISOString())
       .toEqual(
         new Date(
-          Date.UTC(2032, 7, 1, 12, 45, 21, 236)))
+          Date.UTC(2032, 7, 1, 12, 45, 21, 236)).toISOString())
     expect(
       getAsrDateTimeUtc(
         new Date(2009, 11, 26),
