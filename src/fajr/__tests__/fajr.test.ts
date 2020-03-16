@@ -20,7 +20,15 @@ describe('Fajr', () => {
         19.4326077,
         -99.133208,
         convention(),
-        Date.UTC(2020, 5, 30, 5, 30, 36, 569)))
+        Date.UTC(2020, 5, 30, 10, 38, 14, 403)))
+      .toEqual(true)
+    expect(
+      isFajrDateTimeUtcCloseEnough(
+        new Date(2023, 7, 1),
+        12.904759,
+        80.0890842,
+        convention(),
+        Date.UTC(2023, 6, 31, 23, 9, 19, 950)))
       .toEqual(true)
   })
 })
