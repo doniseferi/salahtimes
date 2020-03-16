@@ -16,7 +16,6 @@ const fajr = (date: Date, geoCoordinates: GeoCoordinate, convention: Convention 
   const latitude = getCoordinateValue(geoCoordinates.latitude)
   const longitude = getCoordinateValue(geoCoordinates.longitude)
   const result = suntimes.getDateTimeUtcOfAngleBeforeNoon(fajrAngle, date, latitude, longitude)
-
   return isValidDate(new Date(result))
     ? success(result)
     : createFailure(geoCoordinates, convention)
