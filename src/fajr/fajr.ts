@@ -21,8 +21,8 @@ const fajr = (date: Date, geoCoordinates: GeoCoordinate, convention: Convention 
     : createFailure(geoCoordinates, convention)
 }
 
-const fajrConvention = (convention: Convention): Readonly<AngularDegrees> => convention.fajr
 const adaptFajrAngleForSuntimes = (angle: Readonly<AngularDegrees>): number => angle.value * -1
+const fajrConvention = (convention: Convention): Readonly<AngularDegrees> => convention.fajr
 const getCoordinateValue = (coordinate: Coordinate): number => coordinate.value
 const isValidDate = (value: Date): boolean => getNullMembers(value).length === 0 && !isNaN(value.getTime())
 const createFailure = (geoCoordinates: GeoCoordinate, convention: Convention): Failure<Error> =>
