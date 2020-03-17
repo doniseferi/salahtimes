@@ -1,7 +1,7 @@
 import fajr from '../'
 import { convention, Convention } from '../../convention'
 import { geoCoordinate, latitude, longitude } from '../../location'
-import { throwOnError } from '../../either'
+import { throwOnError, success } from '../../either'
 import { closeEnough } from '../../testUtils'
 
 describe('Fajr', () => {
@@ -30,6 +30,22 @@ describe('Fajr', () => {
         convention(),
         Date.UTC(2023, 6, 31, 23, 9, 19, 950)))
       .toEqual(true)
+    expect(
+      isFajrDateTimeUtcCloseEnough(
+        new Date(2026, 0, 1),
+        -36.8484597,
+        174.7633315,
+        convention(),
+        Date.UTC(2025, 11, 31, 15, 13, 38, 499)))
+      .toEqual(true)
+    expect(
+      fajr(
+        new Date(2026, 0, 1),
+        geoCoordinate(
+          throwOnError(latitude(-36.8484597)),
+          throwOnError(longitude(174.7633315))),
+        convention()))
+      .toEqual(success(new Date(Date.UTC(2025, 11, 31, 15, 13, 38, 499))))
   })
 })
 
