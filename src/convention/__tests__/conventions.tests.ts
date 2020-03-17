@@ -5,7 +5,7 @@ import { throwOnError } from '../../either'
 describe('Conventions', () => {
   test('returns a default convention when no value is passed in', () => {
     expect(convention().fajr).toEqual(throwOnError(degrees(18)))
-    expect(convention().isha).toEqual(throwOnError(degrees(17)))
+    expect(convention().ishaa).toEqual(throwOnError(degrees(17)))
   })
   test('Muslim World League returns 18 degrees for Fajr', () => {
     expect(
@@ -20,7 +20,7 @@ describe('Conventions', () => {
   test('Muslim World League returns 17 degrees for Isha', () => {
     expect(
       convention('MuslimWorldLeague')
-        .isha)
+        .ishaa)
       .toEqual(throwOnError(degrees(17)))
     expect(
       convention('MuslimWorldLeague')
@@ -40,7 +40,7 @@ describe('Conventions', () => {
   test('Islamic Society of North America (ISNA) returns 15 degrees for Isha', () => {
     expect(
       convention('IslamicSocietyOfNorthAmerica')
-        .isha)
+        .ishaa)
       .toEqual(throwOnError(degrees(15)))
     expect(
       convention('IslamicSocietyOfNorthAmerica')
@@ -60,7 +60,7 @@ describe('Conventions', () => {
   test('Egyptian General Authority of Survey returns 17.5 degrees for Isha', () => {
     expect(
       convention('EgyptianGeneralAuthorityOfSurvey')
-        .isha)
+        .ishaa)
       .toEqual(throwOnError(degrees(17.5)))
     expect(
       convention('EgyptianGeneralAuthorityOfSurvey')
@@ -80,7 +80,7 @@ describe('Conventions', () => {
   test('Umm al-Qura University, Makkah', () => {
     expect(
       convention('UmmAlQuraUniversityMekkah')
-        .isha)
+        .ishaa)
       .toEqual(throwOnError(degrees(22.5)))
     expect(
       convention('UmmAlQuraUniversityMekkah')
@@ -100,7 +100,7 @@ describe('Conventions', () => {
   test('University of Islamic Sciences, Karachi returns 18 degrees for Isha', () => {
     expect(
       convention('UniversityOfIslamicSciencesKarachi')
-        .isha)
+        .ishaa)
       .toEqual(throwOnError(degrees(18)))
     expect(
       convention('UniversityOfIslamicSciencesKarachi')
@@ -120,7 +120,7 @@ describe('Conventions', () => {
   test('Institute of Geophysics, University of Tehran of Survey returns 14 degrees for Isha', () => {
     expect(
       convention('InstituteOfGeophysicsUniversityOfTehranOfSurvey')
-        .isha)
+        .ishaa)
       .toEqual(throwOnError(degrees(14)))
     expect(
       convention('InstituteOfGeophysicsUniversityOfTehranOfSurvey')
@@ -138,7 +138,7 @@ describe('Conventions', () => {
       .toEqual('ShiaIthnaAshariLevaResearchInstituteQumOfSurvey')
   })
   test('Shia Ithna Ashari, Leva Research Institute, Qum of Survey returns 14 degrees for Isha', () => {
-    expect(convention('ShiaIthnaAshariLevaResearchInstituteQumOfSurvey').isha).toEqual(throwOnError(degrees(14)))
+    expect(convention('ShiaIthnaAshariLevaResearchInstituteQumOfSurvey').ishaa).toEqual(throwOnError(degrees(14)))
     expect(
       convention('ShiaIthnaAshariLevaResearchInstituteQumOfSurvey')
         .name)
