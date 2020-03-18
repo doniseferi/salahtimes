@@ -1,4 +1,4 @@
-export default (x: number, y: number, epsilon: number = 1.1e-13): boolean => {
+export default (x: number, y: number, epsilon: number = 1.1e-1): boolean => {
   if (x === y) {
     return true
   }
