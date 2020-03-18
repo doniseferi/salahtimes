@@ -7,7 +7,8 @@ interface GeoCoordinate {
 
 const geoCoordinate =
   (latitude: Readonly<Latitude>,
-    longitude: Readonly<Longitude>): Readonly<GeoCoordinate> => Object.freeze({
+    longitude: Readonly<Longitude>):
+  Readonly<GeoCoordinate> => Object.freeze({
     latitude: latitude,
     longitude: longitude
   })

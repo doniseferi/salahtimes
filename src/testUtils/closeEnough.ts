@@ -1,4 +1,4 @@
-export default (x: number, y: number, epsilon: number = 1e-2): boolean => {
+export default (x: number, y: number, epsilon: number = 1.1e-1): boolean => {
   if (x === y) {
     return true
   }
@@ -9,11 +9,12 @@ export default (x: number, y: number, epsilon: number = 1e-2): boolean => {
 
   if (isFinite(x) && isFinite(y)) {
     const diff = Math.abs(x - y)
-    if (diff < epsilon) {
+    if (diff < Number.EPSILON) {
       return true
     } else {
       return diff <= Math.max(Math.abs(x), Math.abs(y)) * epsilon
     }
   }
+
   return false
 }

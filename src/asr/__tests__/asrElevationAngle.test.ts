@@ -58,10 +58,10 @@ describe('Asr Elevation Angles preconditions', () => {
         }
       },
       assert: ({ shadowLength, latitude, latitudeInRadians, declinationOfTheSunInRadians, declinationOfTheSun }) => {
-        const arElevationAlgorithm = Math.atan(1 / (shadowLength + Math.tan(Math.abs(latitudeInRadians - declinationOfTheSunInRadians))))
+        const asrElevationAlgorithm = Math.atan(1 / (shadowLength + Math.tan(Math.abs(latitudeInRadians - declinationOfTheSunInRadians))))
         const actual = angularDegreesToRadiansNumericConversion(throwOnError(asrElevationAngle(shadowLength, latitude, declinationOfTheSun)).value)
         expect(
-          closeEnough(actual, arElevationAlgorithm))
+          closeEnough(actual, asrElevationAlgorithm))
           .toEqual(true)
       }
     })

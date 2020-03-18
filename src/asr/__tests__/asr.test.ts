@@ -16,7 +16,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(39.8579118)),
         standard),
       new Date(
-        Date.UTC(2032, 7, 1, 12, 45, 21, 236)).getTime(), 1000))
+        Date.UTC(2032, 7, 1, 12, 45, 21, 236)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -25,7 +25,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(-0.127758)),
         standard),
       new Date(
-        Date.UTC(2009, 11, 26, 13, 40, 3, 478)).getTime(), 1000))
+        Date.UTC(2009, 11, 26, 13, 40, 3, 478)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -34,7 +34,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(-111.379044)),
         standard),
       new Date(
-        Date.UTC(2024, 5, 1, 23, 53, 11, 190)).getTime(), 1000))
+        Date.UTC(2024, 5, 1, 23, 53, 11, 190)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -43,7 +43,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(93.515149999)),
         standard),
       new Date(
-        Date.UTC(2039, 2, 31, 9, 22, 56, 998)).getTime(), 1000))
+        Date.UTC(2039, 2, 31, 9, 22, 56, 998)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -52,7 +52,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(-169.70222)),
         standard),
       new Date(
-        Date.UTC(2046, 2, 22, 2, 19, 29, 700)).getTime(), 1000))
+        Date.UTC(2046, 2, 22, 2, 19, 29, 700)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -61,7 +61,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(177.4968265)),
         standard),
       new Date(
-        Date.UTC(2040, 1, 29, 2, 32, 33, 196)).getTime(), 1000))
+        Date.UTC(2040, 1, 29, 2, 32, 33, 196)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(new Date(2027, 11, 25),
@@ -69,7 +69,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(-69.2168291)),
         standard),
       new Date(
-        Date.UTC(2027, 11, 25, 20, 59, 32, 738)).getTime(), 1000))
+        Date.UTC(2027, 11, 25, 20, 59, 32, 738)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -78,7 +78,7 @@ describe('Asr Standard Method', () => {
         throwOnError(longitude(125.7625241)),
         standard),
       new Date(
-        Date.UTC(2020, 5, 6, 7, 31, 44, 417)).getTime(), 1000))
+        Date.UTC(2020, 5, 6, 7, 31, 44, 417)).getTime()))
       .toEqual(true)
   })
 })
@@ -91,7 +91,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(-70.6692655)),
         hanafi),
       new Date(
-        Date.UTC(2026, 4, 5, 20, 22, 1, 116)).getTime(), 1000))
+        Date.UTC(2026, 4, 5, 20, 22, 1, 116)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -100,7 +100,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(-66.5)),
         hanafi),
       new Date(
-        Date.UTC(2020, 4, 9, 18, 54, 31, 45)).getTime(), 1000))
+        Date.UTC(2020, 4, 9, 18, 54, 31, 45)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -109,7 +109,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(139.7690174)),
         hanafi),
       new Date(
-        Date.UTC(2025, 5, 30, 7, 48, 36, 87)).getTime(), 1000))
+        Date.UTC(2025, 5, 30, 7, 48, 36, 87)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -118,7 +118,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(101.686852)),
         hanafi),
       new Date(
-        Date.UTC(2037, 1, 21, 9, 46, 17, 737)).getTime(), 1000))
+        Date.UTC(2037, 1, 21, 9, 46, 17, 737)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -127,7 +127,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(27.477820)),
         hanafi),
       new Date(
-        Date.UTC(2010, 7, 1, 14, 1, 6, 400)).getTime(), 1000))
+        Date.UTC(2010, 7, 1, 14, 1, 6, 400)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -136,7 +136,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(-5.261721)),
         hanafi),
       new Date(
-        Date.UTC(2020, 2, 14, 16, 44, 49, 515)).getTime(), 1000))
+        Date.UTC(2020, 2, 14, 16, 44, 49, 515)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -145,7 +145,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(74.36607839999999)),
         hanafi),
       new Date(
-        Date.UTC(2023, 6, 31, 11, 58, 45, 493)).getTime(), 1000))
+        Date.UTC(2023, 6, 31, 11, 58, 45, 493)).getTime()))
       .toEqual(true)
     expect(closeEnough(
       getAsrDateTimeUtc(
@@ -154,7 +154,7 @@ describe('Asr Hanafi Method', () => {
         throwOnError(longitude(19.8187)),
         hanafi),
       new Date(
-        Date.UTC(2027, 0, 27, 14, 7, 38, 731)).getTime(), 1000))
+        Date.UTC(2027, 0, 27, 14, 7, 38, 731)).getTime()))
       .toEqual(true)
   })
 })

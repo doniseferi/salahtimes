@@ -1,5 +1,5 @@
 import { AngularDegrees, degrees } from '../maths'
-import { ErrorOr } from '../either'
+import { throwOnError } from '../either'
 
 type SupportedConventions =
   'MuslimWorldLeague' |
@@ -11,60 +11,51 @@ type SupportedConventions =
   'ShiaIthnaAshariLevaResearchInstituteQumOfSurvey'
 
 interface Convention {
-  fajr(): ErrorOr<Readonly<AngularDegrees>>
-  isha(): ErrorOr<Readonly<AngularDegrees>>
+  name: SupportedConventions
+  fajr: Readonly<AngularDegrees>
+  ishaa: Readonly<AngularDegrees>
 }
 
-const conventions: Array<{ name: string, value: Convention }> = [{
-  name: 'muslimWorldLeague',
-  value: {
-    fajr: () => degrees(18),
-    isha: () => degrees(17)
-  }
+const conventions: Convention[] = [{
+  name: 'MuslimWorldLeague',
+  fajr: throwOnError(degrees(18)),
+  ishaa: throwOnError(degrees(17))
 },
 {
-  name: 'islamicSocietyOfNorthAmerica',
-  value: {
-    fajr: () => degrees(15),
-    isha: () => degrees(15)
-  }
+  name: 'IslamicSocietyOfNorthAmerica',
+  fajr: throwOnError(degrees(15)),
+  ishaa: throwOnError(degrees(15))
 }, {
-  name: 'egyptianGeneralAuthorityOfSurvey',
-  value: {
-    fajr: () => degrees(19.5),
-    isha: () => degrees(17.5)
-  }
+  name: 'EgyptianGeneralAuthorityOfSurvey',
+  fajr: throwOnError(degrees(19.5)),
+  ishaa: throwOnError(degrees(17.5))
 }, {
-  name: 'ummAlQuraUniversityMekkah',
-  value: {
-    fajr: () => degrees(18.5),
-    isha: () => degrees(22.5)
-  }
+  name: 'UmmAlQuraUniversityMekkah',
+  fajr: throwOnError(degrees(18.5)),
+  ishaa: throwOnError(degrees(22.5))
 }, {
-  name: 'universityOfIslamicSciencesKarachi',
-  value: {
-    fajr: () => degrees(18),
-    isha: () => degrees(18)
-  }
+  name: 'UniversityOfIslamicSciencesKarachi',
+  fajr: throwOnError(degrees(18)),
+  ishaa: throwOnError(degrees(18))
 }, {
-  name: 'instituteOfGeophysicsUniversityOfTehranOfSurvey',
-  value: {
-    fajr: () => degrees(17.7),
-    isha: () => degrees(14)
-  }
+  name: 'InstituteOfGeophysicsUniversityOfTehranOfSurvey',
+  fajr: throwOnError(degrees(17.7)),
+  ishaa: throwOnError(degrees(14))
 }, {
-  name: 'shiaIthnaAshariLevaResearchInstituteQumOfSurvey',
-  value: {
-    fajr: () => degrees(16),
-    isha: () => degrees(14)
-  }
+  name: 'ShiaIthnaAshariLevaResearchInstituteQumOfSurvey',
+  fajr: throwOnError(degrees(16)),
+  ishaa: throwOnError(degrees(14))
 }]
 
 const convention =
   (name: SupportedConventions = 'MuslimWorldLeague'): Convention =>
     conventions
       .find(convention =>
-        convention.name.toLowerCase() === name?.toLowerCase())
-      ?.value ?? conventions[0].value
+        convention.name.toLowerCase() === name?.toLowerCase()) ??
+      conventions[0]
 
-export default convention
+export {
+  convention,
+  SupportedConventions,
+  Convention
+}
