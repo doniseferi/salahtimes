@@ -12,7 +12,7 @@ const ishaa = (date: Date, geoCoordinates: GeoCoordinate, convention: Convention
     return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
   }
 
-  const ishaaAngle = adaptishaaAngleForSuntimes(ishaaConvention(convention))
+  const ishaaAngle = adaptishaaAngleForSuntimes(convention)
   const latitude = getCoordinateValue(geoCoordinates.latitude)
   const longitude = getCoordinateValue(geoCoordinates.longitude)
   const result = suntimes.getDateTimeUtcOfAngleAfterNoon(ishaaAngle, date, latitude, longitude)
@@ -21,7 +21,7 @@ const ishaa = (date: Date, geoCoordinates: GeoCoordinate, convention: Convention
     : createFailure(geoCoordinates, convention)
 }
 
-const adaptishaaAngleForSuntimes = (angle: Readonly<AngularDegrees>): number => angle.value * -1
+const adaptishaaAngleForSuntimes = (convention: Convention): number => ishaaConvention(convention).value * -1
 const ishaaConvention = (convention: Convention): Readonly<AngularDegrees> => convention.ishaa
 const getCoordinateValue = (coordinate: Coordinate): number => coordinate.value
 const isValidDate = (value: Date): boolean => getNullMembers(value).length === 0 && !isNaN(value.getTime())
