@@ -1,12 +1,12 @@
 import suntimes from 'suntimes'
-import { GeoCoordinate, Coordinate } from '../location'
-import { asrElevationAngle } from './asrElevationAngle'
+import { getNullMembers } from '../validation'
+import asrElevationAngle from '../asrElevationAngle'
 import { throwOnError, success, failure, ErrorOr } from '../either'
 import { degrees } from '../maths'
-import { getNullMembers } from '../validation'
-import { AsrJursiticMethod } from './madhhab'
+import { GeoCoordinate, Coordinate } from '../location'
+import { AsrJursiticMethod } from '../madhab/madhab'
 
-const asr = (
+export default (
   date: Date,
   geoCoordinate: GeoCoordinate,
   asrjuristicMethod: AsrJursiticMethod): ErrorOr<string> => {
@@ -27,7 +27,3 @@ const asr = (
 }
 
 const getCoordinateValue = (coordinate: Coordinate): number => coordinate.value
-
-export {
-  asr
-}

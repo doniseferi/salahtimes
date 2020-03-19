@@ -8,27 +8,32 @@
 
 ## Index
 
-### Methods
+### Properties
 
 * [fajr](convention.md#fajr)
-* [isha](convention.md#isha)
+* [ishaa](convention.md#ishaa)
+* [name](convention.md#name)
 
-## Methods
+## Properties
 
 ###  fajr
 
-▸ **fajr**(): *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
+• **fajr**: *Readonly‹[AngularDegrees](angulardegrees.md)›*
 
-*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L14)*
-
-**Returns:** *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
+*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/convention/convention.ts#L15)*
 
 ___
 
-###  isha
+###  ishaa
 
-▸ **isha**(): *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
+• **ishaa**: *Readonly‹[AngularDegrees](angulardegrees.md)›*
 
-*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L15)*
+*Defined in [convention/convention.ts:16](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/convention/convention.ts#L16)*
 
-**Returns:** *[ErrorOr](../README.md#erroror)‹Readonly‹[AngularDegrees](angulardegrees.md)››*
+___
+
+###  name
+
+• **name**: *[SupportedConventions](../README.md#supportedconventions)*
+
+*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/convention/convention.ts#L14)*
