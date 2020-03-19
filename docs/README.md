@@ -11,6 +11,8 @@
 ### Interfaces
 
 * [AngularDegrees](interfaces/angulardegrees.md)
+* [AsrJursiticMethod](interfaces/asrjursiticmethod.md)
+* [BelowHorizonParams](interfaces/belowhorizonparams.md)
 * [Convention](interfaces/convention.md)
 * [Coordinate](interfaces/coordinate.md)
 * [Duration](interfaces/duration.md)
@@ -18,48 +20,53 @@
 * [GeoCoordinate](interfaces/geocoordinate.md)
 * [Left](interfaces/left.md)
 * [Right](interfaces/right.md)
+* [SalahStrategy](interfaces/salahstrategy.md)
 * [Success](interfaces/success.md)
 * [TimeSpan](interfaces/timespan.md)
 
 ### Type aliases
 
 * [AngleBasedMethod](README.md#anglebasedmethod)
-* [AsrAngle](README.md#asrangle)
 * [Either](README.md#either)
 * [ErrorOr](README.md#erroror)
 * [Latitude](README.md#latitude)
 * [Longitude](README.md#longitude)
+* [Madhab](README.md#madhab)
 * [MiddleOfTheNightMethod](README.md#middleofthenightmethod)
 * [OneSeventhMethod](README.md#oneseventhmethod)
 * [SupportedConventions](README.md#supportedconventions)
 
 ### Variables
 
+* [abs](README.md#const-abs)
 * [angularConst](README.md#const-angularconst)
 * [conventions](README.md#const-conventions)
 
 ### Functions
 
+* [adaptAngleForSuntimes](README.md#const-adaptangleforsuntimes)
 * [angleBasedMethod](README.md#const-anglebasedmethod)
 * [angularDegreesToRadians](README.md#const-angulardegreestoradians)
 * [angularDegreesToRadiansNumericConversion](README.md#const-angulardegreestoradiansnumericconversion)
 * [arccot](README.md#const-arccot)
-* [asrElevationAngle](README.md#const-asrelevationangle)
 * [containsNullMembers](README.md#const-containsnullmembers)
 * [convention](README.md#const-convention)
 * [createCoordinate](README.md#const-createcoordinate)
+* [createFailure](README.md#const-createfailure)
 * [degrees](README.md#const-degrees)
 * [divisionBasedMethod](README.md#const-divisionbasedmethod)
 * [errorMessage](README.md#const-errormessage)
 * [failure](README.md#const-failure)
 * [geoCoordinate](README.md#const-geocoordinate)
+* [getCoordinateValue](README.md#const-getcoordinatevalue)
+* [getFajrDateTimeUtc](README.md#const-getfajrdatetimeutc)
+* [getIshaaDateTimeUtc](README.md#const-getishaadatetimeutc)
 * [getNullMembers](README.md#const-getnullmembers)
-* [hanafi](README.md#const-hanafi)
-* [hanbali](README.md#const-hanbali)
+* [isValidDate](README.md#const-isvaliddate)
 * [latitude](README.md#const-latitude)
 * [left](README.md#const-left)
 * [longitude](README.md#const-longitude)
-* [maliki](README.md#const-maliki)
+* [madhab](README.md#const-madhab)
 * [match](README.md#const-match)
 * [matchErrorOr](README.md#const-matcherroror)
 * [middleOfTheNightMethod](README.md#const-middleofthenightmethod)
@@ -67,8 +74,6 @@
 * [radiansToAngularDegrees](README.md#const-radianstoangulardegrees)
 * [radiansToAngularDegreesNumericConversion](README.md#const-radianstoangulardegreesnumericconversion)
 * [right](README.md#const-right)
-* [shafii](README.md#const-shafii)
-* [standard](README.md#const-standard)
 * [success](README.md#const-success)
 * [tan](README.md#const-tan)
 * [throwErrorOnNull](README.md#const-throwerroronnull)
@@ -81,7 +86,7 @@
 
 Ƭ **AngleBasedMethod**: *function*
 
-*Defined in [location/highLatitude/highLatitudeMethod.ts:5](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/highLatitudeMethod.ts#L5)*
+*Defined in [location/highLatitude/highLatitudeMethod.ts:5](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/highLatitudeMethod.ts#L5)*
 
 #### Type declaration:
 
@@ -96,19 +101,11 @@ Name | Type |
 
 ___
 
-###  AsrAngle
-
-Ƭ **AsrAngle**: *Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›*
-
-*Defined in [asr/madhab.ts:5](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/madhab.ts#L5)*
-
-___
-
 ###  Either
 
 Ƭ **Either**: *Readonly‹[Left](interfaces/left.md)‹L›› | Readonly‹[Right](interfaces/right.md)‹R››*
 
-*Defined in [either/either.ts:5](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/either.ts#L5)*
+*Defined in [either/either.ts:5](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/either.ts#L5)*
 
 ___
 
@@ -116,7 +113,7 @@ ___
 
 Ƭ **ErrorOr**: *Readonly‹[Failure](interfaces/failure.md)‹Error›› | Readonly‹[Success](interfaces/success.md)‹T››*
 
-*Defined in [either/errorOr.ts:3](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/errorOr.ts#L3)*
+*Defined in [either/errorOr.ts:3](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/errorOr.ts#L3)*
 
 ___
 
@@ -124,7 +121,7 @@ ___
 
 Ƭ **Latitude**: *[Coordinate](interfaces/coordinate.md)*
 
-*Defined in [location/coordinates/coordinate.ts:8](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/coordinates/coordinate.ts#L8)*
+*Defined in [location/coordinates/coordinate.ts:8](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/coordinate.ts#L8)*
 
 ___
 
@@ -132,7 +129,15 @@ ___
 
 Ƭ **Longitude**: *[Coordinate](interfaces/coordinate.md)*
 
-*Defined in [location/coordinates/coordinate.ts:10](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/coordinates/coordinate.ts#L10)*
+*Defined in [location/coordinates/coordinate.ts:10](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/coordinate.ts#L10)*
+
+___
+
+###  Madhab
+
+Ƭ **Madhab**: *"standard" | "shafii" | "maliki" | "hanbali" | "hanafi"*
+
+*Defined in [madhab/madhab.ts:4](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/madhab/madhab.ts#L4)*
 
 ___
 
@@ -140,7 +145,7 @@ ___
 
 Ƭ **MiddleOfTheNightMethod**: *[OneSeventhMethod](README.md#oneseventhmethod)*
 
-*Defined in [location/highLatitude/highLatitudeMethod.ts:9](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/highLatitudeMethod.ts#L9)*
+*Defined in [location/highLatitude/highLatitudeMethod.ts:9](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/highLatitudeMethod.ts#L9)*
 
 ___
 
@@ -148,7 +153,7 @@ ___
 
 Ƭ **OneSeventhMethod**: *function*
 
-*Defined in [location/highLatitude/highLatitudeMethod.ts:7](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/highLatitudeMethod.ts#L7)*
+*Defined in [location/highLatitude/highLatitudeMethod.ts:7](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/highLatitudeMethod.ts#L7)*
 
 #### Type declaration:
 
@@ -166,74 +171,84 @@ ___
 
 Ƭ **SupportedConventions**: *"MuslimWorldLeague" | "IslamicSocietyOfNorthAmerica" | "EgyptianGeneralAuthorityOfSurvey" | "UmmAlQuraUniversityMekkah" | "UniversityOfIslamicSciencesKarachi" | "InstituteOfGeophysicsUniversityOfTehranOfSurvey" | "ShiaIthnaAshariLevaResearchInstituteQumOfSurvey"*
 
-*Defined in [convention/convention.ts:4](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L4)*
+*Defined in [convention/convention.ts:4](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/convention/convention.ts#L4)*
 
 ## Variables
+
+### `Const` abs
+
+• **abs**: *abs* = Math.abs
+
+*Defined in [maths/index.ts:9](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/index.ts#L9)*
+
+___
 
 ### `Const` angularConst
 
 • **angularConst**: *0.017453292519943295* = 0.017453292519943295
 
-*Defined in [maths/angularConversions.ts:4](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/angularConversions.ts#L4)*
+*Defined in [maths/angularConversions.ts:4](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/angularConversions.ts#L4)*
 
 ___
 
 ### `Const` conventions
 
-• **conventions**: *Array‹object›* = [{
-  name: 'muslimWorldLeague',
-  value: {
-    fajr: () => degrees(18),
-    isha: () => degrees(17)
-  }
+• **conventions**: *[Convention](interfaces/convention.md)[]* = [{
+  name: 'MuslimWorldLeague',
+  fajr: throwOnError(degrees(18)),
+  ishaa: throwOnError(degrees(17))
 },
 {
-  name: 'islamicSocietyOfNorthAmerica',
-  value: {
-    fajr: () => degrees(15),
-    isha: () => degrees(15)
-  }
+  name: 'IslamicSocietyOfNorthAmerica',
+  fajr: throwOnError(degrees(15)),
+  ishaa: throwOnError(degrees(15))
 }, {
-  name: 'egyptianGeneralAuthorityOfSurvey',
-  value: {
-    fajr: () => degrees(19.5),
-    isha: () => degrees(17.5)
-  }
+  name: 'EgyptianGeneralAuthorityOfSurvey',
+  fajr: throwOnError(degrees(19.5)),
+  ishaa: throwOnError(degrees(17.5))
 }, {
-  name: 'ummAlQuraUniversityMekkah',
-  value: {
-    fajr: () => degrees(18.5),
-    isha: () => degrees(22.5)
-  }
+  name: 'UmmAlQuraUniversityMekkah',
+  fajr: throwOnError(degrees(18.5)),
+  ishaa: throwOnError(degrees(22.5))
 }, {
-  name: 'universityOfIslamicSciencesKarachi',
-  value: {
-    fajr: () => degrees(18),
-    isha: () => degrees(18)
-  }
+  name: 'UniversityOfIslamicSciencesKarachi',
+  fajr: throwOnError(degrees(18)),
+  ishaa: throwOnError(degrees(18))
 }, {
-  name: 'instituteOfGeophysicsUniversityOfTehranOfSurvey',
-  value: {
-    fajr: () => degrees(17.7),
-    isha: () => degrees(14)
-  }
+  name: 'InstituteOfGeophysicsUniversityOfTehranOfSurvey',
+  fajr: throwOnError(degrees(17.7)),
+  ishaa: throwOnError(degrees(14))
 }, {
-  name: 'shiaIthnaAshariLevaResearchInstituteQumOfSurvey',
-  value: {
-    fajr: () => degrees(16),
-    isha: () => degrees(14)
-  }
+  name: 'ShiaIthnaAshariLevaResearchInstituteQumOfSurvey',
+  fajr: throwOnError(degrees(16)),
+  ishaa: throwOnError(degrees(14))
 }]
 
-*Defined in [convention/convention.ts:18](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L18)*
+*Defined in [convention/convention.ts:19](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/convention/convention.ts#L19)*
 
 ## Functions
+
+### `Const` adaptAngleForSuntimes
+
+▸ **adaptAngleForSuntimes**(`angle`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *number*
+
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:29](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L29)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`angle` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
+
+**Returns:** *number*
+
+___
 
 ### `Const` angleBasedMethod
 
 ▸ **angleBasedMethod**(`angle`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `timeSpanBetweenSunsetAndSunrise`: Readonly‹[TimeSpan](interfaces/timespan.md)›): *[ErrorOr](README.md#erroror)‹Readonly‹[TimeSpan](interfaces/timespan.md)››*
 
-*Defined in [location/highLatitude/angleBasedMethod.ts:6](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/angleBasedMethod.ts#L6)*
+*Defined in [location/highLatitude/angleBasedMethod.ts:6](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/angleBasedMethod.ts#L6)*
 
 **Parameters:**
 
@@ -250,7 +265,7 @@ ___
 
 ▸ **angularDegreesToRadians**(`degrees`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹number›*
 
-*Defined in [maths/angularConversions.ts:8](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/angularConversions.ts#L8)*
+*Defined in [maths/angularConversions.ts:8](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/angularConversions.ts#L8)*
 
 **Parameters:**
 
@@ -266,7 +281,7 @@ ___
 
 ▸ **angularDegreesToRadiansNumericConversion**(`degrees`: number): *number*
 
-*Defined in [maths/angularConversions.ts:15](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/angularConversions.ts#L15)*
+*Defined in [maths/angularConversions.ts:15](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/angularConversions.ts#L15)*
 
 **Parameters:**
 
@@ -282,7 +297,7 @@ ___
 
 ▸ **arccot**(`value`: number): *[ErrorOr](README.md#erroror)‹Readonly‹[AngularDegrees](interfaces/angulardegrees.md)››*
 
-*Defined in [maths/trigonometry.ts:14](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/trigonometry.ts#L14)*
+*Defined in [maths/trigonometry.ts:14](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/trigonometry.ts#L14)*
 
 **Parameters:**
 
@@ -294,29 +309,11 @@ Name | Type |
 
 ___
 
-### `Const` asrElevationAngle
-
-▸ **asrElevationAngle**(`shadowLength`: 1 | 2, `latitude`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `declinationOfTheSun`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹Readonly‹[AngularDegrees](interfaces/angulardegrees.md)››*
-
-*Defined in [asr/asrElevationAngle.ts:6](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/asrElevationAngle.ts#L6)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`shadowLength` | 1 &#124; 2 |
-`latitude` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-`declinationOfTheSun` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-
-**Returns:** *[ErrorOr](README.md#erroror)‹Readonly‹[AngularDegrees](interfaces/angulardegrees.md)››*
-
-___
-
 ### `Const` containsNullMembers
 
 ▸ **containsNullMembers**<**T**>(`target`: T): *boolean*
 
-*Defined in [validation/validate.ts:1](https://github.com/doniseferi/salahtimes/blob/9740421/src/validation/validate.ts#L1)*
+*Defined in [validation/validate.ts:1](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/validation/validate.ts#L1)*
 
 **Type parameters:**
 
@@ -336,7 +333,7 @@ ___
 
 ▸ **convention**(`name`: [SupportedConventions](README.md#supportedconventions)): *[Convention](interfaces/convention.md)*
 
-*Defined in [convention/convention.ts:63](https://github.com/doniseferi/salahtimes/blob/9740421/src/convention/convention.ts#L63)*
+*Defined in [convention/convention.ts:50](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/convention/convention.ts#L50)*
 
 **Parameters:**
 
@@ -352,7 +349,7 @@ ___
 
 ▸ **createCoordinate**(`name`: "Latitude" | "Longitude", `value`: Readonly‹number›, `min`: Readonly‹[Coordinate](interfaces/coordinate.md)›, `max`: Readonly‹[Coordinate](interfaces/coordinate.md)›): *[ErrorOr](README.md#erroror)‹Readonly‹[Coordinate](interfaces/coordinate.md)››*
 
-*Defined in [location/coordinates/coordinate.ts:30](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/coordinates/coordinate.ts#L30)*
+*Defined in [location/coordinates/coordinate.ts:30](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/coordinate.ts#L30)*
 
 **Parameters:**
 
@@ -367,11 +364,28 @@ Name | Type |
 
 ___
 
+### `Const` createFailure
+
+▸ **createFailure**(`geoCoordinates`: [GeoCoordinate](interfaces/geocoordinate.md), `salahAngle`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[Failure](interfaces/failure.md)‹Error›*
+
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:32](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L32)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`geoCoordinates` | [GeoCoordinate](interfaces/geocoordinate.md) |
+`salahAngle` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
+
+**Returns:** *[Failure](interfaces/failure.md)‹Error›*
+
+___
+
 ### `Const` degrees
 
 ▸ **degrees**(`value`: number): *[ErrorOr](README.md#erroror)‹Readonly‹[AngularDegrees](interfaces/angulardegrees.md)››*
 
-*Defined in [maths/degree.ts:9](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/degree.ts#L9)*
+*Defined in [maths/degree.ts:9](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/degree.ts#L9)*
 
 **Parameters:**
 
@@ -387,7 +401,7 @@ ___
 
 ▸ **divisionBasedMethod**(`timeSpanBetweenSunsetAndSunrise`: Readonly‹[TimeSpan](interfaces/timespan.md)›, `divisor`: number): *[ErrorOr](README.md#erroror)‹Readonly‹[TimeSpan](interfaces/timespan.md)››*
 
-*Defined in [location/highLatitude/divisionBasedMethods.ts:9](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/divisionBasedMethods.ts#L9)*
+*Defined in [location/highLatitude/divisionBasedMethods.ts:9](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/divisionBasedMethods.ts#L9)*
 
 **Parameters:**
 
@@ -404,7 +418,7 @@ ___
 
 ▸ **errorMessage**(`value`: number): *string*
 
-*Defined in [maths/degree.ts:7](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/degree.ts#L7)*
+*Defined in [maths/degree.ts:7](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/degree.ts#L7)*
 
 **Parameters:**
 
@@ -420,7 +434,7 @@ ___
 
 ▸ **failure**<**T**>(`failure`: T): *[Failure](interfaces/failure.md)‹Error›*
 
-*Defined in [either/errorOr.ts:7](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/errorOr.ts#L7)*
+*Defined in [either/errorOr.ts:7](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/errorOr.ts#L7)*
 
 **Type parameters:**
 
@@ -440,7 +454,7 @@ ___
 
 ▸ **geoCoordinate**(`latitude`: Readonly‹[Latitude](README.md#latitude)›, `longitude`: Readonly‹[Longitude](README.md#longitude)›): *Readonly‹[GeoCoordinate](interfaces/geocoordinate.md)›*
 
-*Defined in [location/coordinates/geoCoordinate.ts:8](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/coordinates/geoCoordinate.ts#L8)*
+*Defined in [location/coordinates/geoCoordinate.ts:8](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/geoCoordinate.ts#L8)*
 
 **Parameters:**
 
@@ -453,11 +467,75 @@ Name | Type |
 
 ___
 
+### `Const` getCoordinateValue
+
+▸ **getCoordinateValue**(`coordinate`: [Coordinate](interfaces/coordinate.md)): *number*
+
+*Defined in [salah/asr.ts:29](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/salah/asr.ts#L29)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`coordinate` | [Coordinate](interfaces/coordinate.md) |
+
+**Returns:** *number*
+
+▸ **getCoordinateValue**(`coordinate`: [Coordinate](interfaces/coordinate.md)): *number*
+
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:30](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L30)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`coordinate` | [Coordinate](interfaces/coordinate.md) |
+
+**Returns:** *number*
+
+___
+
+### `Const` getFajrDateTimeUtc
+
+▸ **getFajrDateTimeUtc**(`convention`: [Convention](interfaces/convention.md), `date`: [Date](interfaces/__global.date.md), `geoCoordinates`: [GeoCoordinate](interfaces/geocoordinate.md)): *[ErrorOr](README.md#erroror)‹string›*
+
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:34](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L34)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`convention` | [Convention](interfaces/convention.md) |
+`date` | [Date](interfaces/__global.date.md) |
+`geoCoordinates` | [GeoCoordinate](interfaces/geocoordinate.md) |
+
+**Returns:** *[ErrorOr](README.md#erroror)‹string›*
+
+___
+
+### `Const` getIshaaDateTimeUtc
+
+▸ **getIshaaDateTimeUtc**(`convention`: [Convention](interfaces/convention.md), `date`: [Date](interfaces/__global.date.md), `geoCoordinates`: [GeoCoordinate](interfaces/geocoordinate.md)): *[ErrorOr](README.md#erroror)‹string›*
+
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:31](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L31)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`convention` | [Convention](interfaces/convention.md) |
+`date` | [Date](interfaces/__global.date.md) |
+`geoCoordinates` | [GeoCoordinate](interfaces/geocoordinate.md) |
+
+**Returns:** *[ErrorOr](README.md#erroror)‹string›*
+
+___
+
 ### `Const` getNullMembers
 
 ▸ **getNullMembers**<**T**>(`target`: T): *string[]*
 
-*Defined in [validation/validate.ts:3](https://github.com/doniseferi/salahtimes/blob/9740421/src/validation/validate.ts#L3)*
+*Defined in [validation/validate.ts:3](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/validation/validate.ts#L3)*
 
 **Type parameters:**
 
@@ -473,37 +551,19 @@ Name | Type |
 
 ___
 
-### `Const` hanafi
+### `Const` isValidDate
 
-▸ **hanafi**(`latitude`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `declinationOfTheSub`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
+▸ **isValidDate**(`value`: [Date](interfaces/__global.date.md)): *boolean*
 
-*Defined in [asr/madhab.ts:11](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/madhab.ts#L11)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`latitude` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-`declinationOfTheSub` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-
-**Returns:** *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
-
-___
-
-### `Const` hanbali
-
-▸ **hanbali**(`latitude`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `declinationOfTheSub`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
-
-*Defined in [asr/madhab.ts:10](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/madhab.ts#L10)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:31](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L31)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`latitude` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-`declinationOfTheSub` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
+`value` | [Date](interfaces/__global.date.md) |
 
-**Returns:** *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
+**Returns:** *boolean*
 
 ___
 
@@ -511,7 +571,7 @@ ___
 
 ▸ **latitude**(`value`: Readonly‹number›): *[ErrorOr](README.md#erroror)‹Readonly‹[Latitude](README.md#latitude)››*
 
-*Defined in [location/coordinates/coordinate.ts:12](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/coordinates/coordinate.ts#L12)*
+*Defined in [location/coordinates/coordinate.ts:12](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/coordinate.ts#L12)*
 
 **Parameters:**
 
@@ -527,7 +587,7 @@ ___
 
 ▸ **left**<**T**>(`result`: T): *[Left](interfaces/left.md)‹T›*
 
-*Defined in [either/either.ts:21](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/either.ts#L21)*
+*Defined in [either/either.ts:21](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/either.ts#L21)*
 
 **Type parameters:**
 
@@ -547,7 +607,7 @@ ___
 
 ▸ **longitude**(`value`: Readonly‹number›): *[ErrorOr](README.md#erroror)‹Readonly‹[Longitude](README.md#longitude)››*
 
-*Defined in [location/coordinates/coordinate.ts:21](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/coordinates/coordinate.ts#L21)*
+*Defined in [location/coordinates/coordinate.ts:21](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/coordinate.ts#L21)*
 
 **Parameters:**
 
@@ -559,20 +619,19 @@ Name | Type |
 
 ___
 
-### `Const` maliki
+### `Const` madhab
 
-▸ **maliki**(`latitude`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `declinationOfTheSub`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
+▸ **madhab**(`madhab`: [Madhab](README.md#madhab)): *[ErrorOr](README.md#erroror)‹[AsrJursiticMethod](interfaces/asrjursiticmethod.md)›*
 
-*Defined in [asr/madhab.ts:9](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/madhab.ts#L9)*
+*Defined in [madhab/madhab.ts:15](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/madhab/madhab.ts#L15)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`latitude` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-`declinationOfTheSub` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
+`madhab` | [Madhab](README.md#madhab) |
 
-**Returns:** *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
+**Returns:** *[ErrorOr](README.md#erroror)‹[AsrJursiticMethod](interfaces/asrjursiticmethod.md)›*
 
 ___
 
@@ -580,7 +639,7 @@ ___
 
 ▸ **match**<**L**, **R**>(`input`: [Either](README.md#either)‹L, R›, `left`: function, `right`: function): *L | R*
 
-*Defined in [either/either.ts:7](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/either.ts#L7)*
+*Defined in [either/either.ts:7](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/either.ts#L7)*
 
 **Type parameters:**
 
@@ -620,7 +679,7 @@ ___
 
 ▸ **matchErrorOr**<**S**, **F**>(`input`: [ErrorOr](README.md#erroror)‹S›, `onFailureCallback`: function, `onSuccessCallback`: function): *S | F*
 
-*Defined in [either/errorOr.ts:10](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/errorOr.ts#L10)*
+*Defined in [either/errorOr.ts:10](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/errorOr.ts#L10)*
 
 **Type parameters:**
 
@@ -660,7 +719,7 @@ ___
 
 ▸ **middleOfTheNightMethod**(`timeSpanBetweenSunsetAndSunrise`: Readonly‹[TimeSpan](interfaces/timespan.md)›): *[ErrorOr](README.md#erroror)‹Readonly‹[TimeSpan](interfaces/timespan.md)››*
 
-*Defined in [location/highLatitude/divisionBasedMethods.ts:7](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/divisionBasedMethods.ts#L7)*
+*Defined in [location/highLatitude/divisionBasedMethods.ts:7](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/divisionBasedMethods.ts#L7)*
 
 **Parameters:**
 
@@ -676,7 +735,7 @@ ___
 
 ▸ **oneSeventhMethod**(`timeSpanBetweenSunsetAndSunrise`: Readonly‹[TimeSpan](interfaces/timespan.md)›): *[ErrorOr](README.md#erroror)‹Readonly‹[TimeSpan](interfaces/timespan.md)››*
 
-*Defined in [location/highLatitude/divisionBasedMethods.ts:5](https://github.com/doniseferi/salahtimes/blob/9740421/src/location/highLatitude/divisionBasedMethods.ts#L5)*
+*Defined in [location/highLatitude/divisionBasedMethods.ts:5](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/highLatitude/divisionBasedMethods.ts#L5)*
 
 **Parameters:**
 
@@ -692,7 +751,7 @@ ___
 
 ▸ **radiansToAngularDegrees**(`radians`: number): *[ErrorOr](README.md#erroror)‹[AngularDegrees](interfaces/angulardegrees.md)›*
 
-*Defined in [maths/angularConversions.ts:6](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/angularConversions.ts#L6)*
+*Defined in [maths/angularConversions.ts:6](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/angularConversions.ts#L6)*
 
 **Parameters:**
 
@@ -708,7 +767,7 @@ ___
 
 ▸ **radiansToAngularDegreesNumericConversion**(`radians`: number): *number*
 
-*Defined in [maths/angularConversions.ts:13](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/angularConversions.ts#L13)*
+*Defined in [maths/angularConversions.ts:13](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/angularConversions.ts#L13)*
 
 **Parameters:**
 
@@ -724,7 +783,7 @@ ___
 
 ▸ **right**<**T**>(`res`: T): *[Right](interfaces/right.md)‹T›*
 
-*Defined in [either/either.ts:23](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/either.ts#L23)*
+*Defined in [either/either.ts:23](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/either.ts#L23)*
 
 **Type parameters:**
 
@@ -740,45 +799,11 @@ Name | Type |
 
 ___
 
-### `Const` shafii
-
-▸ **shafii**(`latitude`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `declinationOfTheSub`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
-
-*Defined in [asr/madhab.ts:8](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/madhab.ts#L8)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`latitude` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-`declinationOfTheSub` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-
-**Returns:** *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
-
-___
-
-### `Const` standard
-
-▸ **standard**(`latitude`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›, `declinationOfTheSub`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
-
-*Defined in [asr/madhab.ts:7](https://github.com/doniseferi/salahtimes/blob/9740421/src/asr/madhab.ts#L7)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`latitude` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-`declinationOfTheSub` | Readonly‹[AngularDegrees](interfaces/angulardegrees.md)› |
-
-**Returns:** *[ErrorOr](README.md#erroror)‹[AsrAngle](README.md#asrangle)›*
-
-___
-
 ### `Const` success
 
 ▸ **success**<**T**>(`value`: T): *[Success](interfaces/success.md)‹T›*
 
-*Defined in [either/errorOr.ts:8](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/errorOr.ts#L8)*
+*Defined in [either/errorOr.ts:8](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/errorOr.ts#L8)*
 
 **Type parameters:**
 
@@ -798,7 +823,7 @@ ___
 
 ▸ **tan**(`degrees`: Readonly‹[AngularDegrees](interfaces/angulardegrees.md)›): *number*
 
-*Defined in [maths/trigonometry.ts:19](https://github.com/doniseferi/salahtimes/blob/9740421/src/maths/trigonometry.ts#L19)*
+*Defined in [maths/trigonometry.ts:19](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/maths/trigonometry.ts#L19)*
 
 **Parameters:**
 
@@ -814,7 +839,7 @@ ___
 
 ▸ **throwErrorOnNull**<**T**>(`target`: T): *void*
 
-*Defined in [validation/validate.ts:17](https://github.com/doniseferi/salahtimes/blob/9740421/src/validation/validate.ts#L17)*
+*Defined in [validation/validate.ts:17](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/validation/validate.ts#L17)*
 
 **Type parameters:**
 
@@ -834,7 +859,7 @@ ___
 
 ▸ **throwOnError**<**T**>(`input`: [ErrorOr](README.md#erroror)‹T›): *T*
 
-*Defined in [either/errorOr.ts:24](https://github.com/doniseferi/salahtimes/blob/9740421/src/either/errorOr.ts#L24)*
+*Defined in [either/errorOr.ts:24](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/errorOr.ts#L24)*
 
 **Type parameters:**
 
@@ -854,7 +879,7 @@ ___
 
 ▸ **timeSpan**(`days`: number, `hours`: number, `minutes`: number, `seconds`: number, `milliseconds`: number): *[TimeSpan](interfaces/timespan.md)*
 
-*Defined in [time/timeSpan.ts:10](https://github.com/doniseferi/salahtimes/blob/9740421/src/time/timeSpan.ts#L10)*
+*Defined in [time/timeSpan.ts:10](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/time/timeSpan.ts#L10)*
 
 **Parameters:**
 
