@@ -18,4 +18,4 @@
 
 • **value**: *number*
 
-*Defined in [location/coordinates/coordinate.ts:5](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/location/coordinates/coordinate.ts#L5)*
+*Defined in [location/coordinates/coordinate.ts:5](https://github.com/doniseferi/salahtimes/blob/c687593/src/location/coordinates/coordinate.ts#L5)*

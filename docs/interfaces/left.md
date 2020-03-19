@@ -23,7 +23,7 @@
 
 • **path**: *"left"*
 
-*Defined in [either/either.ts:3](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/either.ts#L3)*
+*Defined in [either/either.ts:3](https://github.com/doniseferi/salahtimes/blob/c687593/src/either/either.ts#L3)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **result**: *Readonly‹T›*
 
-*Defined in [either/either.ts:3](https://github.com/doniseferi/salahtimes/blob/e419fc1/src/either/either.ts#L3)*
+*Defined in [either/either.ts:3](https://github.com/doniseferi/salahtimes/blob/c687593/src/either/either.ts#L3)*
