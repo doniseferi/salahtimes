@@ -3,7 +3,7 @@ import { failure, success, throwOnError, ErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 import { Latitude } from '../location'
 
-const asrElevationAngle = (
+export default (
   shadowLengthToHeightProportion: 1 | 2,
   latitude: Readonly<Latitude>,
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
@@ -15,8 +15,4 @@ const asrElevationAngle = (
       arccot(shadowLengthToHeightProportion + tan(
         throwOnError(
           degrees(abs(latitude.value - declinationOfTheSun.value)))))))
-}
-
-export {
-  asrElevationAngle
 }

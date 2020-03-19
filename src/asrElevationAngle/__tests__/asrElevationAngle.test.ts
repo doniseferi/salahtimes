@@ -1,5 +1,5 @@
 import { AngularDegrees, angularDegreesToRadiansNumericConversion, radiansToAngularDegrees } from '../../maths'
-import { asrElevationAngle } from '../asrElevationAngle'
+import asrElevationAngle from '../index'
 import { throwOnError } from '../../either'
 import {
   randomDegree,

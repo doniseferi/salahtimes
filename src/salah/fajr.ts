@@ -1,7 +1,7 @@
-import salahStrategy from './salahStrategy'
-import { GeoCoordinate } from '../location'
+import getDateTimeUtcAtSunDepressionAngleFactory from '../sunDepressionAngle'
 import { Convention, convention as defauttConvention } from '../convention'
+import { GeoCoordinate } from '../location'
 import { ErrorOr } from '../either'
 
 export default (date: Date, geoCoordinates: GeoCoordinate, convention: Convention = defauttConvention()): ErrorOr<string> =>
-  salahStrategy({ salah: 'fajr', date, geoCoordinates, convention })
+  getDateTimeUtcAtSunDepressionAngleFactory({ salah: 'fajr', date, geoCoordinates, convention })

@@ -1,0 +1,3 @@
+import getDateTimeUtcAtSunDepressionAngleFactory from './getDateTimeUtcAtSunDepressionAngleFactory'
+
+export default getDateTimeUtcAtSunDepressionAngleFactory

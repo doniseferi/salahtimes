@@ -1,7 +1,7 @@
 import { failure, success, ErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 
-type Madhhab =
+type Madhab =
 'standard' |
 'shafii' |
 'maliki' |
@@ -12,14 +12,14 @@ interface AsrJursiticMethod {
   value: 1 | 2
 }
 
-const madhhab = (madhhab: Madhhab): ErrorOr<AsrJursiticMethod> => {
-  const nullProperties = getNullMembers(madhhab)
+const madhab = (madhab: Madhab): ErrorOr<AsrJursiticMethod> => {
+  const nullProperties = getNullMembers(madhab)
 
   if (nullProperties.length > 0) {
-    return failure(new ReferenceError(`Madhhab is null or undefined. ${errorMessage}`))
+    return failure(new ReferenceError(`Madhab is null or undefined. ${errorMessage}`))
   }
 
-  switch (madhhab) {
+  switch (madhab) {
     case 'standard':
     case 'shafii':
     case 'maliki':
@@ -35,7 +35,7 @@ const madhhab = (madhhab: Madhhab): ErrorOr<AsrJursiticMethod> => {
 const errorMessage = 'Please provide one of the following values: standard, shafii, maliki, hanbali or hanafi'
 
 export {
-  Madhhab,
+  Madhab,
   AsrJursiticMethod,
-  madhhab
+  madhab
 }
