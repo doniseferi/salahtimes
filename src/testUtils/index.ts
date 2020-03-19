@@ -3,7 +3,10 @@ import {
   generateRandomWholeNumber,
   generateRandomDate,
   randomDegree,
-  randomTimeSpan
+  randomTimeSpan,
+  randomGeoCoordinates,
+  randomLatitude,
+  randomLongitude
 } from './randomHelper'
 import closeEnough from './closeEnough'
 
@@ -18,5 +21,8 @@ export {
   generateRandomDate,
   randomDegree,
   randomTimeSpan,
-  closeEnough
+  closeEnough,
+  randomGeoCoordinates,
+  randomLatitude,
+  randomLongitude
 }
