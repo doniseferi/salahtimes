@@ -55,7 +55,7 @@ const convention =
       conventions[0]
 
 export {
-  convention,
   SupportedConventions,
-  Convention
+  Convention,
+  convention
 }

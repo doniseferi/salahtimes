@@ -1,7 +1,14 @@
 import { timeSpan, TimeSpan } from '../time'
 import { AngularDegrees, degrees } from '../maths'
 import { throwOnError } from '../either'
-import { latitude, Latitude, Longitude, longitude, geoCoordinate, GeoCoordinate } from '../location'
+import {
+  GeoCoordinates,
+  Latitude,
+  Longitude,
+  geoCoordinates,
+  latitude,
+  longitude
+} from '../geoCoordinates'
 
 const generateRandomNumber = (
   min: number = Number.MIN_SAFE_INTEGER,
@@ -23,7 +30,7 @@ const randomDegree = (minValue: number = 0, maxValue: number = 360): Readonly<An
 
 const randomLatitude = (): Readonly<Latitude> => throwOnError(latitude(generateRandomNumber(-90, 90)))
 const randomLongitude = (): Readonly<Longitude> => throwOnError(longitude(generateRandomNumber(-180, 180)))
-const randomGeoCoordinates = (): Readonly<GeoCoordinate> => geoCoordinate(randomLatitude(), randomLongitude())
+const randomGeoCoordinates = (): Readonly<GeoCoordinates> => geoCoordinates(randomLatitude(), randomLongitude())
 
 export {
   generateRandomNumber,

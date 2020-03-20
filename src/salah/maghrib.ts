@@ -1,9 +1,9 @@
 import suntimes from 'suntimes'
 import { ErrorOr, success, failure } from '../either'
 import { getNullMembers } from '../validation'
-import { GeoCoordinate, Coordinate } from '../location'
+import { GeoCoordinates, Longitude, Latitude } from '../geoCoordinates'
 
-export default (date: Date, geoCoordinates: Readonly<GeoCoordinate>): ErrorOr<string> => {
+export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
   const nullProperties = getNullMembers([date, geoCoordinates])
 
   if (nullProperties.length > 0) {
@@ -18,7 +18,7 @@ export default (date: Date, geoCoordinates: Readonly<GeoCoordinate>): ErrorOr<st
   return success(maghribDateTimeUtc)
 }
 
-const getCoordinateValue = (coordinate: Coordinate): number => coordinate.value
+const getCoordinateValue = (coordinate: Latitude | Longitude): number => coordinate.value
 
 const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: string): string => {
   const threeMinutesInMilliseconds = 180000

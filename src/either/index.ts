@@ -1,12 +1,4 @@
 import {
-  Either,
-  Left,
-  Right,
-  match,
-  left,
-  right
-} from './either'
-import {
   ErrorOr,
   Failure,
   Success,
@@ -17,12 +9,6 @@ import {
 } from './errorOr'
 
 export {
-  Either,
-  Left,
-  Right,
-  match,
-  left,
-  right,
   ErrorOr,
   Failure,
   Success,

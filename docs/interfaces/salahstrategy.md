@@ -21,7 +21,7 @@
 
 • **convention**: *[Convention](convention.md)*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:12](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L12)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:12](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L12)*
 
 ___
 
@@ -29,15 +29,15 @@ ___
 
 • **date**: *[Date](__global.date.md)*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:10](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L10)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:10](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L10)*
 
 ___
 
 ###  geoCoordinates
 
-• **geoCoordinates**: *[GeoCoordinate](geocoordinate.md)*
+• **geoCoordinates**: *[GeoCoordinates](geocoordinates.md)*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:11](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L11)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:11](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L11)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **salah**: *"fajr" | "ishaa"*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:9](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L9)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts:9](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngleFactory.ts#L9)*
