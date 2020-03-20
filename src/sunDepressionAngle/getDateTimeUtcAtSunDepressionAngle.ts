@@ -1,13 +1,13 @@
-import { GeoCoordinate, Coordinate } from '../location'
 import { AngularDegrees } from '../maths'
-import { failure, ErrorOr, success, Failure } from '../either'
+import { GeoCoordinates, Latitude, Longitude } from '../geoCoordinates'
+import { ErrorOr, failure, success, Failure } from '../either'
 import { getNullMembers } from '../validation'
 
 interface BelowHorizonParams {
   getSalahTimeUtc: (angle: number, date: Date, Latitude: number, longitude: number) => string
   salahAngle: Readonly<AngularDegrees>
   date: Date
-  geoCoordinates: GeoCoordinate
+  geoCoordinates: GeoCoordinates
 }
 
 export default ({ getSalahTimeUtc, salahAngle, date, geoCoordinates }: BelowHorizonParams): ErrorOr<string> => {
@@ -27,9 +27,9 @@ export default ({ getSalahTimeUtc, salahAngle, date, geoCoordinates }: BelowHori
 }
 
 const adaptAngleForSuntimes = (angle: Readonly<AngularDegrees>): number => angle.value * -1
-const getCoordinateValue = (coordinate: Coordinate): number => coordinate.value
+const getCoordinateValue = (coordinate: Latitude | Longitude): number => coordinate.value
 const isValidDate = (value: Date): boolean => getNullMembers(value).length === 0 && !isNaN(value.getTime())
-const createFailure = (geoCoordinates: GeoCoordinate, salahAngle: Readonly<AngularDegrees>): Failure<Error> =>
+const createFailure = (geoCoordinates: GeoCoordinates, salahAngle: Readonly<AngularDegrees>): Failure<Error> =>
   failure(
     new Error(
         `Could not get salah date time utc for latitude: ${getCoordinateValue(geoCoordinates.latitude)} and longitude: ${getCoordinateValue(geoCoordinates.longitude)}` +

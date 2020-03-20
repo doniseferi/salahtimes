@@ -1,11 +1,13 @@
 import {
-  geoCoordinate
-} from './location/index'
-import {
-  degrees
-} from './maths/index'
+  fajr,
+  asr,
+  maghrib,
+  ishaa
+} from './salah'
 
-export default Object.freeze({
-  degree: degrees,
-  geoCoordinate
-})
+export {
+  fajr,
+  asr,
+  maghrib,
+  ishaa
+}

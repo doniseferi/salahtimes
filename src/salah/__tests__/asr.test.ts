@@ -1,9 +1,9 @@
-import { geoCoordinate, latitude, longitude, Longitude, Latitude } from '../../location'
 import { throwOnError } from '../../either'
 import { asr } from '../index'
 import { madhab } from '../../madhab'
 import { closeEnough } from '../../testUtils'
 import { AsrJursiticMethod } from '../../madhab/madhab'
+import { latitude, longitude, Latitude, Longitude, geoCoordinates } from '../../geoCoordinates'
 
 const standard = throwOnError(madhab('standard'))
 const hanafi = throwOnError(madhab('hanafi'))
@@ -168,6 +168,6 @@ const getAsrDateTimeUtc =
     new Date(throwOnError(
       asr(
         date,
-        geoCoordinate(lat, lng),
+        geoCoordinates(lat, lng),
         madhab)))
       .getTime()

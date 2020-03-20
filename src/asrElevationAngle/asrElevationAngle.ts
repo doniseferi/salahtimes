@@ -1,7 +1,7 @@
 import { arccot, tan, degrees, AngularDegrees, abs } from '../maths'
-import { failure, success, throwOnError, ErrorOr } from '../either'
+import { ErrorOr, failure, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
-import { Latitude } from '../location'
+import { Latitude } from '../geoCoordinates'
 
 export default (
   shadowLengthToHeightProportion: 1 | 2,
@@ -9,10 +9,14 @@ export default (
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
   const nullProperties = getNullMembers([shadowLengthToHeightProportion, latitude, declinationOfTheSun])
 
-  return (nullProperties.length > 0)
-    ? failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
-    : success(throwOnError(
-      arccot(shadowLengthToHeightProportion + tan(
-        throwOnError(
-          degrees(abs(latitude.value - declinationOfTheSun.value)))))))
+  if (nullProperties.length > 0) {
+    return failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
+  }
+
+  return matchErrorOr(
+    degrees(abs(latitude.value - declinationOfTheSun.value)),
+    err => failure(err),
+    latsubdeg => arccot(
+      shadowLengthToHeightProportion + tan(latsubdeg))
+  )
 }

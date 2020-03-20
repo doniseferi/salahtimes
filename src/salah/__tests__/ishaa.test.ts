@@ -1,9 +1,8 @@
-/* eslint-disable jest/no-commented-out-tests */
 import { ishaa } from '../index'
 import { convention, Convention } from '../../convention'
-import { geoCoordinate, latitude, longitude } from '../../location'
 import { throwOnError } from '../../either'
 import { closeEnough } from '../../testUtils'
+import { geoCoordinates, latitude, longitude } from '../../geoCoordinates'
 describe('Fajr', () => {
   test('returns the correct fajr date time UTC', () => {
     expect(
@@ -125,7 +124,7 @@ const isIshaaDateTimeUtcCloseEnough =
       new Date(throwOnError(
         ishaa(
           date,
-          geoCoordinate(
+          geoCoordinates(
             throwOnError(latitude(lat)),
             throwOnError(longitude(lng))),
           ishaaConvention)))

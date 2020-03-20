@@ -1,14 +1,14 @@
 import suntimes from 'suntimes'
 import getDateTimeUtcAtSunDepressionAngle from './getDateTimeUtcAtSunDepressionAngle'
 import { Convention, convention as defauttConvention } from '../convention/convention'
-import { GeoCoordinate } from '../location'
+import { GeoCoordinates } from '../geoCoordinates'
 import { failure, ErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 
 export interface SalahStrategy {
   salah: 'fajr' | 'ishaa'
   date: Date
-  geoCoordinates: GeoCoordinate
+  geoCoordinates: GeoCoordinates
   convention: Convention
 }
 
@@ -28,8 +28,8 @@ export default ({ salah, date, geoCoordinates, convention = defauttConvention() 
       return failure(new Error('Please provide a value of \'fajr\' or \'ishaa\'.There are no other methods are supported.'))
   }
 }
-const getIshaaDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinate): ErrorOr<string> => (
+const getIshaaDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> => (
   getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: suntimes.getDateTimeUtcOfAngleAfterNoon, salahAngle: convention.ishaa, date, geoCoordinates }))
 
-const getFajrDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinate): ErrorOr<string> => (
+const getFajrDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> => (
   getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: suntimes.getDateTimeUtcOfAngleBeforeNoon, salahAngle: convention.fajr, date, geoCoordinates }))

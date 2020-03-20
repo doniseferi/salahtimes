@@ -1,8 +1,8 @@
 import { fajr } from '../index'
 import { convention, Convention } from '../../convention'
-import { geoCoordinate, latitude, longitude } from '../../location'
 import { throwOnError } from '../../either'
 import { closeEnough } from '../../testUtils'
+import { geoCoordinates, latitude, longitude } from '../../geoCoordinates'
 
 describe('Fajr', () => {
   test('returns the correct fajr date time UTC', () => {
@@ -135,7 +135,7 @@ const isFajrDateTimeUtcCloseEnough =
       new Date(throwOnError(
         fajr(
           date,
-          geoCoordinate(
+          geoCoordinates(
             throwOnError(latitude(lat)),
             throwOnError(longitude(lng))),
           fajrConvention)))
