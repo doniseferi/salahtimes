@@ -1,14 +1,14 @@
 import suntimes from 'suntimes'
 import { maghrib } from '../index'
-import { GeoCoordinate } from '../../location'
 import { randomGeoCoordinates, generateRandomDate, iterativeTest } from '../../testUtils'
 import { success } from '../../either'
+import { GeoCoordinates } from '../../geoCoordinates'
 
 describe('Maghrib', () => {
   test('is 3 minutes after sunset', () => {
     iterativeTest<{
       date: Date
-      geoCoordinates: Readonly<GeoCoordinate>
+      geoCoordinates: Readonly<GeoCoordinates>
       sunsetDateTimeUtc: Readonly<Date>
     }, void>({
       numberOfExecutions: 500,

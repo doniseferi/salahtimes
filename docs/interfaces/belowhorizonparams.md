@@ -21,15 +21,15 @@
 
 • **date**: *[Date](__global.date.md)*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:9](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L9)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:9](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L9)*
 
 ___
 
 ###  geoCoordinates
 
-• **geoCoordinates**: *[GeoCoordinate](geocoordinate.md)*
+• **geoCoordinates**: *[GeoCoordinates](geocoordinates.md)*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:10](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L10)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:10](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L10)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **getSalahTimeUtc**: *function*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:7](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L7)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:7](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L7)*
 
 #### Type declaration:
 
@@ -58,4 +58,4 @@ ___
 
 • **salahAngle**: *Readonly‹[AngularDegrees](angulardegrees.md)›*
 
-*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:8](https://github.com/doniseferi/salahtimes/blob/c687593/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L8)*
+*Defined in [sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts:8](https://github.com/doniseferi/salahtimes/blob/83ca079/src/sunDepressionAngle/getDateTimeUtcAtSunDepressionAngle.ts#L8)*
