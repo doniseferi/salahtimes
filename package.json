@@ -55,6 +55,6 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "suntimes": "^4.1.6"
+    "suntimes": "^5.0.1"
   }
 }
