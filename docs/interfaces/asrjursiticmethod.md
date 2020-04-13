@@ -18,4 +18,4 @@
 
 • **value**: *1 | 2*
 
-*Defined in [madhab/madhab.ts:12](https://github.com/doniseferi/salahtimes/blob/1ae9cae/src/madhab/madhab.ts#L12)*
+*Defined in [madhab/madhab.ts:12](https://github.com/doniseferi/salahtimes/blob/7d4870b/src/madhab/madhab.ts#L12)*
