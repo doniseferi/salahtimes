@@ -1,4 +1,4 @@
-import suntimes from 'suntimes'
+import { getSunriseDateTimeUtc } from 'suntimes'
 import { maghrib } from '../index'
 import { randomGeoCoordinates, generateRandomDate, iterativeTest } from '../../testUtils'
 import { success } from '../../either'
@@ -9,15 +9,11 @@ describe('Maghrib', () => {
     iterativeTest<{
       date: Date
       geoCoordinates: Readonly<GeoCoordinates>
-      sunsetDateTimeUtc: Readonly<Date>
+      sunsetDateTimeUtc: string
     }, void>({
       numberOfExecutions: 500,
       generateInput: () => {
-        const geoCoordinates = randomGeoCoordinates()
-        const latitude = geoCoordinates.latitude
-        const longitude = geoCoordinates.longitude
-        const randomDate = generateRandomDate(2000, 2050)
-        const sunsetDateTimeUtc = new Date(suntimes.getSunsetDateTimeUtc(new Date(randomDate.getTime()), latitude.value, longitude.value))
+        const { randomDate, sunsetDateTimeUtc, geoCoordinates } = getExpectedDateTIme()
         return {
           date: new Date(randomDate.getTime()),
           sunsetDateTimeUtc,
@@ -26,9 +22,28 @@ describe('Maghrib', () => {
       },
       assert: ({ date, geoCoordinates, sunsetDateTimeUtc }) => {
         const maghribDateTimeUtc = maghrib(date, geoCoordinates)
-        const expected = new Date(sunsetDateTimeUtc.getTime() + 3 * 60000).toISOString()
-        expect(maghribDateTimeUtc).toEqual(success(expected))
+        const expected = (new Date(sunsetDateTimeUtc).getTime()) + 3 * 60000
+        expect(maghribDateTimeUtc).toEqual(success(new Date(expected).toISOString()))
       }
     })
   })
 })
+const getExpectedDateTIme = (): {
+  randomDate: Readonly<Date>
+  geoCoordinates: Readonly<GeoCoordinates>
+  sunsetDateTimeUtc: string
+} => {
+  let sunsetDateTimeUtc: string
+  let geoCoordinates: GeoCoordinates
+  let randomDate: Readonly<Date>
+  do {
+    geoCoordinates = randomGeoCoordinates()
+    randomDate = generateRandomDate(2000, 2050)
+    const latitude = geoCoordinates.latitude
+    const longitude = geoCoordinates.longitude
+    sunsetDateTimeUtc = getSunriseDateTimeUtc(randomDate as Date, latitude.value, longitude.value)
+  }
+  while (isNaN(Date.parse(sunsetDateTimeUtc)))
+
+  return { randomDate, sunsetDateTimeUtc, geoCoordinates }
+}

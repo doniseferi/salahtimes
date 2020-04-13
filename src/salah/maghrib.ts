@@ -1,4 +1,4 @@
-import suntimes from 'suntimes'
+import { getSunriseDateTimeUtc } from 'suntimes'
 import { ErrorOr, success, failure } from '../either'
 import { getNullMembers } from '../validation'
 import { GeoCoordinates, Longitude, Latitude } from '../geoCoordinates'
@@ -12,7 +12,7 @@ export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<s
 
   const latitude = getCoordinateValue(geoCoordinates.latitude)
   const longitude = getCoordinateValue(geoCoordinates.longitude)
-  const sunsetDateTimeUtc = getSunsetDateTimeUtc(date, latitude, longitude)
+  const sunsetDateTimeUtc = new Date(getSunriseDateTimeUtc(date, latitude, longitude))
   const maghribDateTimeUtc = add3MinutesToSunsetDateTimeUtc(sunsetDateTimeUtc)
 
   return success(maghribDateTimeUtc)
@@ -20,10 +20,8 @@ export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<s
 
 const getCoordinateValue = (coordinate: Latitude | Longitude): number => coordinate.value
 
-const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: string): string => {
+const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: Date): string => {
   const threeMinutesInMilliseconds = 180000
-  return new Date(new Date(sunsetDateTimeUtc).getTime() + threeMinutesInMilliseconds).toISOString()
+  const withAdditionalMinutes = new Date(sunsetDateTimeUtc.getTime() + threeMinutesInMilliseconds);
+  return withAdditionalMinutes.toISOString();
 }
-
-const getSunsetDateTimeUtc = (date: Date, latitude: number, longitude: number): string => (
-  new Date(suntimes.getSunsetDateTimeUtc(date, latitude, longitude))).toISOString()

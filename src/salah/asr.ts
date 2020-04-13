@@ -1,8 +1,8 @@
+import { getDeclinationOfTheSun, getDateTimeUtcOfAngleAfterNoon } from 'suntimes'
 import { GeoCoordinates, Latitude, Longitude } from '../geoCoordinates'
 import { AsrJursiticMethod } from '../madhab'
 import { ErrorOr, failure, success, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
-import suntimes from 'suntimes'
 import asrElevationAngle from '../asrElevationAngle'
 import { degrees } from '../maths'
 
@@ -17,7 +17,7 @@ export default (
   }
 
   const declinationOfTheSun = matchErrorOr(
-    degrees(suntimes.getDeclinationOfTheSun(date)),
+    degrees(getDeclinationOfTheSun(date)),
     err => failure(err),
     res => success(res))
 
@@ -32,7 +32,7 @@ export default (
   return matchErrorOr(elevationAngle,
     err => failure(err),
     angle => success(
-      suntimes.getDateTimeUtcOfAngleAfterNoon(
+      getDateTimeUtcOfAngleAfterNoon(
         angle.value,
         date,
         getCoordinateValue(geoCoordinate.latitude),
