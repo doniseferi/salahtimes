@@ -20,7 +20,7 @@
 
 • **fajr**: *Readonly‹[AngularDegrees](angulardegrees.md)›*
 
-*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/83ca079/src/convention/convention.ts#L15)*
+*Defined in [convention/convention.ts:15](https://github.com/doniseferi/salahtimes/blob/1ae9cae/src/convention/convention.ts#L15)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **ishaa**: *Readonly‹[AngularDegrees](angulardegrees.md)›*
 
-*Defined in [convention/convention.ts:16](https://github.com/doniseferi/salahtimes/blob/83ca079/src/convention/convention.ts#L16)*
+*Defined in [convention/convention.ts:16](https://github.com/doniseferi/salahtimes/blob/1ae9cae/src/convention/convention.ts#L16)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **name**: *[SupportedConventions](../README.md#supportedconventions)*
 
-*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/83ca079/src/convention/convention.ts#L14)*
+*Defined in [convention/convention.ts:14](https://github.com/doniseferi/salahtimes/blob/1ae9cae/src/convention/convention.ts#L14)*
