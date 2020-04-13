@@ -1,6 +1,7 @@
 import {
   fajr,
   asr,
+  dhuhr,
   maghrib,
   ishaa
 } from './salah'
@@ -8,6 +9,7 @@ import {
 export {
   fajr,
   asr,
+  dhuhr,
   maghrib,
   ishaa
 }

@@ -5,7 +5,7 @@ import { GeoCoordinates } from '../geoCoordinates'
 import { failure, ErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 
-export interface SalahStrategy {
+interface SalahStrategy {
   salah: 'fajr' | 'ishaa'
   date: Date
   geoCoordinates: GeoCoordinates

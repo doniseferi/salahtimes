@@ -28,6 +28,7 @@ describe('Maghrib', () => {
     })
   })
 })
+
 const getExpectedDateTIme = (): {
   randomDate: Readonly<Date>
   geoCoordinates: Readonly<GeoCoordinates>

@@ -29,7 +29,9 @@ const randomTimeSpan = (): Readonly<TimeSpan> => timeSpan(0, 0, 0, 0, generateRa
 const randomDegree = (minValue: number = 0, maxValue: number = 360): Readonly<AngularDegrees> => throwOnError(degrees(generateRandomNumber(minValue, maxValue)))
 
 const randomLatitude = (): Readonly<Latitude> => throwOnError(latitude(generateRandomNumber(-90, 90)))
+
 const randomLongitude = (): Readonly<Longitude> => throwOnError(longitude(generateRandomNumber(-180, 180)))
+
 const randomGeoCoordinates = (): Readonly<GeoCoordinates> => geoCoordinates(randomLatitude(), randomLongitude())
 
 export {
