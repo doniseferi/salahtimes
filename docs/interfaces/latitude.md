@@ -18,4 +18,4 @@
 
 • **value**: *number*
 
-*Defined in [geoCoordinates/latitude.ts:4](https://github.com/doniseferi/salahtimes/blob/7d4870b/src/geoCoordinates/latitude.ts#L4)*
+*Defined in [geoCoordinates/latitude.ts:4](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/geoCoordinates/latitude.ts#L4)*

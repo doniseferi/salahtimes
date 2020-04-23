@@ -1,4 +1,4 @@
-import suntimes from 'suntimes'
+import { getDateTimeUtcOfAngleBeforeNoon, getDateTimeUtcOfAngleAfterNoon } from 'suntimes'
 import getDateTimeUtcAtSunDepressionAngle from './getDateTimeUtcAtSunDepressionAngle'
 import { Convention, convention as defauttConvention } from '../convention/convention'
 import { GeoCoordinates } from '../geoCoordinates'
@@ -29,7 +29,7 @@ export default ({ salah, date, geoCoordinates, convention = defauttConvention() 
   }
 }
 const getIshaaDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> => (
-  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: suntimes.getDateTimeUtcOfAngleAfterNoon, salahAngle: convention.ishaa, date, geoCoordinates }))
+  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: getDateTimeUtcOfAngleAfterNoon, salahAngle: convention.ishaa, date, geoCoordinates }))
 
 const getFajrDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> => (
-  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: suntimes.getDateTimeUtcOfAngleBeforeNoon, salahAngle: convention.fajr, date, geoCoordinates }))
+  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: getDateTimeUtcOfAngleBeforeNoon, salahAngle: convention.fajr, date, geoCoordinates }))

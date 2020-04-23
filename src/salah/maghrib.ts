@@ -22,6 +22,6 @@ const getCoordinateValue = (coordinate: Latitude | Longitude): number => coordin
 
 const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: Date): string => {
   const threeMinutesInMilliseconds = 180000
-  const withAdditionalMinutes = new Date(sunsetDateTimeUtc.getTime() + threeMinutesInMilliseconds);
-  return withAdditionalMinutes.toISOString();
+  const withAdditionalMinutes = new Date(sunsetDateTimeUtc.getTime() + threeMinutesInMilliseconds)
+  return withAdditionalMinutes.toISOString()
 }
