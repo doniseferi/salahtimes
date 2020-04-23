@@ -1,5 +1,5 @@
 import { AngularDegrees } from '../maths'
-import { GeoCoordinates, Latitude, Longitude } from '../geoCoordinates'
+import { GeoCoordinates } from '../geoCoordinates'
 import { ErrorOr, failure, success, Failure } from '../either'
 import { getNullMembers } from '../validation'
 
@@ -17,20 +17,17 @@ export default ({ getSalahTimeUtc, salahAngle, date, geoCoordinates }: BelowHori
     return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
   }
 
-  const angle = adaptAngleForSuntimes(salahAngle)
-  const latitude = getCoordinateValue(geoCoordinates.latitude)
-  const longitude = getCoordinateValue(geoCoordinates.longitude)
-  const result = getSalahTimeUtc(angle, date, latitude, longitude)
+  const latitude = geoCoordinates.getValue('latitude')
+  const longitude = geoCoordinates.getValue('longitude')
+  const result = getSalahTimeUtc(salahAngle.value, date, latitude, longitude)
   return isValidDate(new Date(result))
     ? success(result)
     : createFailure(geoCoordinates, salahAngle)
 }
 
-const adaptAngleForSuntimes = (angle: Readonly<AngularDegrees>): number => angle.value * -1
-const getCoordinateValue = (coordinate: Latitude | Longitude): number => coordinate.value
 const isValidDate = (value: Date): boolean => getNullMembers(value).length === 0 && !isNaN(value.getTime())
 const createFailure = (geoCoordinates: GeoCoordinates, salahAngle: Readonly<AngularDegrees>): Failure<Error> =>
   failure(
     new Error(
-        `Could not get salah date time utc for latitude: ${getCoordinateValue(geoCoordinates.latitude)} and longitude: ${getCoordinateValue(geoCoordinates.longitude)}` +
+        `Could not get salah date time utc for latitude: ${geoCoordinates.getValue('latitude')} and longitude: ${geoCoordinates.getValue('longitude')}` +
         `at angle of: ${salahAngle.value}°`))

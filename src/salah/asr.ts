@@ -1,5 +1,5 @@
 import { getDeclinationOfTheSun, getDateTimeUtcOfAngleAfterNoon } from 'suntimes'
-import { GeoCoordinates, Latitude, Longitude } from '../geoCoordinates'
+import { GeoCoordinates } from '../geoCoordinates'
 import { AsrJursiticMethod } from '../madhab'
 import { ErrorOr, failure, success, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
@@ -35,9 +35,7 @@ export default (
       getDateTimeUtcOfAngleAfterNoon(
         angle.value,
         date,
-        getCoordinateValue(geoCoordinate.latitude),
-        getCoordinateValue(geoCoordinate.longitude)))
+        geoCoordinate.getValue('latitude'),
+        geoCoordinate.getValue('longitude')))
   )
 }
-
-const getCoordinateValue = (coordinate: Latitude | Longitude): number => coordinate.value
