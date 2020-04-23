@@ -12,7 +12,7 @@ describe('Asr Standard Method', () => {
     expect(
 
       new Date(
-        Date.UTC(2032, 7, 1, 12, 45, 21, 236)).getTime())
+        Date.UTC(2032, 7, 1, 12, 45, 21, 236)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2032, 7, 1),
         throwOnError(latitude(21.3890824)),
@@ -20,7 +20,7 @@ describe('Asr Standard Method', () => {
         standard))
     expect(
       new Date(
-        Date.UTC(2009, 11, 26, 13, 40, 3, 478)).getTime())
+        Date.UTC(2009, 11, 26, 13, 40, 3, 478)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2009, 11, 26),
         throwOnError(latitude(51.5073509)),
@@ -28,7 +28,7 @@ describe('Asr Standard Method', () => {
         standard))
     expect(
       new Date(
-        Date.UTC(2024, 5, 1, 23, 53, 11, 190)).getTime())
+        Date.UTC(2024, 5, 1, 23, 53, 11, 190)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2024, 5, 1),
         throwOnError(latitude(56.7266598)),
@@ -36,7 +36,7 @@ describe('Asr Standard Method', () => {
         standard))
     expect(
       new Date(
-        Date.UTC(2039, 2, 31, 9, 22, 56, 998)).getTime())
+        Date.UTC(2039, 2, 31, 9, 22, 56, 998)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2039, 2, 31),
         throwOnError(latitude(42.81842)),
@@ -44,7 +44,7 @@ describe('Asr Standard Method', () => {
         standard))
     expect(
       new Date(
-        Date.UTC(2046, 2, 22, 2, 19, 29, 700)).getTime())
+        Date.UTC(2046, 2, 22, 2, 19, 29, 700)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2046, 2, 21),
         throwOnError(latitude(66.027222)),
@@ -52,7 +52,7 @@ describe('Asr Standard Method', () => {
         standard))
     expect(
       new Date(
-        Date.UTC(2040, 1, 29, 2, 32, 33, 196)).getTime())
+        Date.UTC(2040, 1, 29, 2, 32, 33, 196)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2040, 1, 29),
         throwOnError(latitude(64.7336613)),
@@ -60,14 +60,14 @@ describe('Asr Standard Method', () => {
         standard))
     expect(
       new Date(
-        Date.UTC(2027, 11, 25, 20, 59, 32, 738)).getTime())
+        Date.UTC(2027, 11, 25, 20, 59, 32, 738)))
       .toEqual(getAsrDateTimeUtc(new Date(2027, 11, 25),
         throwOnError(latitude(-51.6230485)),
         throwOnError(longitude(-69.2168291)),
         standard))
     expect(
       new Date(
-        Date.UTC(2020, 5, 6, 7, 31, 44, 417)).getTime())
+        Date.UTC(2020, 5, 6, 7, 31, 44, 417)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2020, 5, 6),
         throwOnError(latitude(39.0392193)),
@@ -79,7 +79,7 @@ describe('Asr Hanafi Method', () => {
   test('returns the correct time for Asr in UTC', () => {
     expect(
       new Date(
-        Date.UTC(2026, 4, 5, 20, 22, 1, 116)).getTime())
+        Date.UTC(2026, 4, 5, 20, 22, 1, 116)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2026, 4, 5),
         throwOnError(latitude(-33.4488897)),
@@ -87,7 +87,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2020, 4, 9, 18, 54, 31, 45)).getTime())
+        Date.UTC(2020, 4, 9, 18, 54, 31, 45)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2020, 4, 9),
         throwOnError(latitude(-54.44999999999999)),
@@ -95,7 +95,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2025, 5, 30, 7, 48, 36, 87)).getTime())
+        Date.UTC(2025, 5, 30, 7, 48, 36, 87)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2025, 5, 30),
         throwOnError(latitude(35.6803997)),
@@ -103,7 +103,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2037, 1, 21, 9, 46, 17, 737)).getTime())
+        Date.UTC(2037, 1, 21, 9, 46, 17, 737)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2037, 1, 21),
         throwOnError(latitude(3.139003)),
@@ -111,7 +111,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2010, 7, 1, 14, 1, 6, 400)).getTime())
+        Date.UTC(2010, 7, 1, 14, 1, 6, 400)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2010, 7, 1),
         throwOnError(latitude(-29.310591)),
@@ -119,7 +119,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2020, 2, 14, 16, 44, 49, 515)).getTime())
+        Date.UTC(2020, 2, 14, 16, 44, 49, 515)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2020, 2, 14),
         throwOnError(latitude(34.056301)),
@@ -127,7 +127,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2023, 6, 31, 11, 58, 45, 493)).getTime())
+        Date.UTC(2023, 6, 31, 11, 58, 45, 493)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2023, 6, 31),
         throwOnError(latitude(31.3416217)),
@@ -135,7 +135,7 @@ describe('Asr Hanafi Method', () => {
         hanafi))
     expect(
       new Date(
-        Date.UTC(2027, 0, 27, 14, 7, 38, 731)).getTime())
+        Date.UTC(2027, 0, 27, 14, 7, 38, 731)))
       .toEqual(getAsrDateTimeUtc(
         new Date(2027, 0, 27),
         throwOnError(latitude(41.3275)),
@@ -148,10 +148,9 @@ const getAsrDateTimeUtc =
   (date: Date,
     lat: Latitude,
     lng: Longitude,
-    madhab: AsrJursiticMethod): number =>
+    madhab: AsrJursiticMethod): Date =>
     new Date(throwOnError(
       asr(
         date,
         geoCoordinates(lat, lng),
         madhab)))
-      .getTime()
