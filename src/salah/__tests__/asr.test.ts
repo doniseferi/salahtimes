@@ -144,8 +144,8 @@ describe('Asr Hanafi Method', () => {
   })
 })
 
-const closeEnough = (dateA: Date, dateB: Date): boolean =>
-  Math.abs(dateA.getTime() - new Date(dateB).getTime()) <= 999
+const closeEnough = (dateA: Date, dateB: Date, acceptableDeltaInMilliseconds: number = 999): boolean =>
+  Math.abs(dateA.getTime() - new Date(dateB).getTime()) <= acceptableDeltaInMilliseconds
 
 const getAsrDateTimeUtc =
   (date: Date,

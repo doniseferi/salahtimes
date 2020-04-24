@@ -28,8 +28,8 @@ export default ({ salah, date, geoCoordinates, convention = defauttConvention() 
       return failure(new Error('Please provide a value of \'fajr\' or \'ishaa\'.There are no other methods are supported.'))
   }
 }
-const getIshaaDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> => (
-  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: getDateTimeUtcOfAngleAfterNoon, salahAngle: convention.ishaa, date, geoCoordinates }))
+const getIshaaDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> =>
+  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: getDateTimeUtcOfAngleAfterNoon, salahAngle: convention.ishaa, date, geoCoordinates })
 
-const getFajrDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> => (
-  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: getDateTimeUtcOfAngleBeforeNoon, salahAngle: convention.fajr, date, geoCoordinates }))
+const getFajrDateTimeUtc = (convention: Convention, date: Date, geoCoordinates: GeoCoordinates): ErrorOr<string> =>
+  getDateTimeUtcAtSunDepressionAngle({ getSalahTimeUtc: getDateTimeUtcOfAngleBeforeNoon, salahAngle: convention.fajr, date, geoCoordinates })
