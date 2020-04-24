@@ -143,9 +143,9 @@ describe('Asr Hanafi Method', () => {
   })
 })
 
-const isCloseTo = (value: number, delta: number = 1): boolean => {
-  const diff = value <= delta
-  console.log({ value, delta })
+const isCloseTo = (value: number, acceptableDeltaInMilliseoncs: number = 999): boolean => {
+  const diff = value <= acceptableDeltaInMilliseoncs
+  console.log({ value, delta: acceptableDeltaInMilliseoncs })
   return diff
 }
 
