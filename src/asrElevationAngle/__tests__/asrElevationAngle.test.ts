@@ -5,8 +5,8 @@ import {
   randomDegree,
   generateRandomWholeNumber,
   iterativeTest,
-  closeEnough,
-  generateRandomNumber
+  generateRandomNumber,
+  isNumbersCloseEnough
 } from '../../testUtils'
 
 describe('Asr Elevation Angles preconditions', () => {
@@ -61,7 +61,7 @@ describe('Asr Elevation Angles preconditions', () => {
         const asrElevationAlgorithm = Math.atan(1 / (shadowLength + Math.tan(Math.abs(latitudeInRadians - declinationOfTheSunInRadians))))
         const actual = angularDegreesToRadiansNumericConversion(throwOnError(asrElevationAngle(shadowLength, latitude, declinationOfTheSun)).value)
         expect(
-          closeEnough(actual, asrElevationAlgorithm))
+          isNumbersCloseEnough(actual, asrElevationAlgorithm))
           .toEqual(true)
       }
     })

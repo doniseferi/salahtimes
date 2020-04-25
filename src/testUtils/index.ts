@@ -8,7 +8,7 @@ import {
   randomLatitude,
   randomLongitude
 } from './randomHelper'
-import closeEnough from './closeEnough'
+import { isDatesCloseEnough, isNumbersCloseEnough } from './closeEnough'
 
 import {
   iterativeTest
@@ -21,7 +21,8 @@ export {
   generateRandomDate,
   randomDegree,
   randomTimeSpan,
-  closeEnough,
+  isDatesCloseEnough,
+  isNumbersCloseEnough,
   randomGeoCoordinates,
   randomLatitude,
   randomLongitude
