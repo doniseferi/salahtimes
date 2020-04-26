@@ -1,7 +1,7 @@
-import { getSunriseDateTimeUtc } from 'suntimes'
-import { ErrorOr, success, failure } from '../either'
+import { ErrorOr, success, failure, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 import { GeoCoordinates } from '../geoCoordinates'
+import { sunset } from '../astronomy'
 
 export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
   const nullProperties = getNullMembers([date, geoCoordinates])
@@ -10,12 +10,11 @@ export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<s
     return failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
   }
 
-  const latitude = geoCoordinates.getValue('latitude')
-  const longitude = geoCoordinates.getValue('longitude')
-  const sunsetDateTimeUtc = new Date(getSunriseDateTimeUtc(date, latitude, longitude))
-  const maghribDateTimeUtc = add3MinutesToSunsetDateTimeUtc(sunsetDateTimeUtc)
-
-  return success(maghribDateTimeUtc)
+  return matchErrorOr(
+    sunset(date, geoCoordinates),
+    err => handle(err),
+    sunset => success(
+      add3MinutesToSunsetDateTimeUtc(sunset)))
 }
 
 const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: Date): string => {
@@ -23,3 +22,10 @@ const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: Date): string => {
   const withAdditionalMinutes = new Date(sunsetDateTimeUtc.getTime() + threeMinutesInMilliseconds)
   return withAdditionalMinutes.toISOString()
 }
+
+const handle = (err: Error): ErrorOr<string> =>
+  err.name === 'SunUpAllDayError'
+    ? success(err.message)
+    : err.name === 'SunDownAllDayError'
+      ? success(err.message)
+      : failure(err)
