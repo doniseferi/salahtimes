@@ -30,7 +30,7 @@ describe('Maghrib', () => {
   test('alerts when the sun is up all day', () =>
     expect(
       maghrib(
-        new Date(2037, 7, 2),
+        new Date(Date.UTC(2037, 7, 2)),
         geoCoordinates(
           throwOnError(latitude(71.980070)),
           throwOnError(longitude(102.474270)))))
@@ -40,7 +40,7 @@ describe('Maghrib', () => {
   test('alerts when the sun is down all day', () =>
     expect(
       maghrib(
-        new Date(2032, 0, 1),
+        new Date(Date.UTC(2032, 0, 1)),
         geoCoordinates(
           throwOnError(latitude(89.5250)),
           throwOnError(longitude(-30.4500)))))
