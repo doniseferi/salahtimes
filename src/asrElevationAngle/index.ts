@@ -1,3 +1,3 @@
-import asrElevationAngle from './asrElevationAngle'
+import { asrElevationAngle } from './asrElevationAngle'
 
-export default asrElevationAngle
+export { asrElevationAngle }

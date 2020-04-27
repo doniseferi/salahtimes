@@ -3,7 +3,7 @@ import { GeoCoordinates } from '../geoCoordinates'
 import { AsrJursiticMethod } from '../madhab'
 import { ErrorOr, failure, success, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
-import asrElevationAngle from '../asrElevationAngle'
+import { asrElevationAngle } from '../asrElevationAngle'
 import { degrees } from '../maths'
 
 export default (

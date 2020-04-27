@@ -3,7 +3,7 @@ import { ErrorOr, failure, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 import { Latitude } from '../geoCoordinates'
 
-export default (
+const asrElevationAngle = (
   shadowLengthToHeightProportion: 1 | 2,
   latitude: Readonly<Latitude>,
   declinationOfTheSun: Readonly<AngularDegrees>): ErrorOr<Readonly<AngularDegrees>> => {
@@ -20,3 +20,5 @@ export default (
       shadowLengthToHeightProportion + tan(latsubdeg))
   )
 }
+
+export { asrElevationAngle }
