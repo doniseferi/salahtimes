@@ -17,10 +17,10 @@ export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<s
       add3MinutesToSunsetDateTimeUtc(sunset)))
 }
 
-const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: Date): string => {
+const add3MinutesToSunsetDateTimeUtc = (sunsetDateTimeUtc: string): string => {
   const threeMinutesInMilliseconds = 180000
-  const withAdditionalMinutes = new Date(sunsetDateTimeUtc.getTime() + threeMinutesInMilliseconds)
-  return withAdditionalMinutes.toISOString()
+  const withAdditionalMinutes = new Date(sunsetDateTimeUtc).getTime() + threeMinutesInMilliseconds
+  return new Date(withAdditionalMinutes).toISOString()
 }
 
 const handle = (err: Error): ErrorOr<string> =>
