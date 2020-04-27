@@ -35,7 +35,7 @@ describe('Maghrib', () => {
           throwOnError(latitude(71.980070)),
           throwOnError(longitude(102.474270)))))
       .toEqual(
-        success('The sun is up all day on 2037-08-01T23:00:00.000Z at latitude: 71.98007 and longitude: 102.47427'))
+        success('The sun is up all day on 2037-08-02T00:00:00.000Z at latitude: 71.98007 and longitude: 102.47427'))
   )
   test('alerts when the sun is down all day', () =>
     expect(
