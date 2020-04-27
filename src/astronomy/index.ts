@@ -1,10 +1,12 @@
-import { sunset } from './sunset'
+import { getSunsetDateTimeUtc } from './sunset'
 import { SunUpAllDayError, sunUpAllDayError } from './sunUpAllDayError'
 import { SunDownAllDayError, sunDownAllDayError } from './sunDownAllDay'
+import { getDeclinationOfTheSun } from './declinationOfTheSun'
 export {
-  sunset,
+  getSunsetDateTimeUtc,
   SunUpAllDayError,
   sunUpAllDayError,
   SunDownAllDayError,
-  sunDownAllDayError
+  sunDownAllDayError,
+  getDeclinationOfTheSun
 }

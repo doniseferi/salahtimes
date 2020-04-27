@@ -1,7 +1,7 @@
 import { ErrorOr, success, failure, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 import { GeoCoordinates } from '../geoCoordinates'
-import { sunset } from '../astronomy'
+import { getSunsetDateTimeUtc } from '../astronomy'
 
 export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
   const nullProperties = getNullMembers([date, geoCoordinates])
@@ -11,7 +11,7 @@ export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<s
   }
 
   return matchErrorOr(
-    sunset(date, geoCoordinates),
+    getSunsetDateTimeUtc(date, geoCoordinates),
     err => handle(err),
     sunset => success(
       add3MinutesToSunsetDateTimeUtc(sunset)))

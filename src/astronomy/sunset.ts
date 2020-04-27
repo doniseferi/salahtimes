@@ -4,7 +4,7 @@ import { getSunriseDateTimeUtc } from 'suntimes'
 import { getNullMembers } from '../validation'
 import { sunUpAllDayError, sunDownAllDayError } from '.'
 
-const sunset = (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
+const getSunsetDateTimeUtc = (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
   const nullProperties = getNullMembers([date, geoCoordinates])
 
   if (nullProperties.length > 0) {
@@ -23,5 +23,5 @@ const sunset = (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<s
 }
 
 export {
-  sunset
+  getSunsetDateTimeUtc
 }
