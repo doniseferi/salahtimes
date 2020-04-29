@@ -10,8 +10,16 @@ import {
   OneSeventhMethod,
   oneSeventhMethod
 } from './oneSeventhMethod'
+import {
+  HighLatitudeMethod,
+  HighLatitudeMethodName,
+  getHighLatitudeMethod
+} from './getHighLatitudeMethod'
 
 export {
+  HighLatitudeMethod,
+  HighLatitudeMethodName,
+  getHighLatitudeMethod,
   OneSeventhMethod,
   MiddleOfTheNightMethod,
   AngleBasedMethod,

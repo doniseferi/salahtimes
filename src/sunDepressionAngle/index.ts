@@ -1,3 +1,3 @@
-import getDateTimeUtcAtSunDepressionAngleFactory from './getDateTimeUtcAtSunDepressionAngleFactory'
+import { getDateTimeUtcAtSunDepressionAngleFactory } from './getDateTimeUtcAtSunDepressionAngleFactory'
 
-export default getDateTimeUtcAtSunDepressionAngleFactory
+export { getDateTimeUtcAtSunDepressionAngleFactory }

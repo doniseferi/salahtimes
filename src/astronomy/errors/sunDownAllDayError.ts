@@ -1,4 +1,4 @@
-import { GeoCoordinates } from '../geoCoordinates'
+import { GeoCoordinates } from '../../geoCoordinates'
 
 type SunDownAllDayError = Error
 

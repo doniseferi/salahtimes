@@ -2,9 +2,14 @@ import { Convention, convention as defauttConvention } from '../convention'
 import { GeoCoordinates } from '../geoCoordinates'
 import { ErrorOr, failure } from '../either'
 import { getNullMembers } from '../validation'
-import getDateTimeUtcAtSunDepressionAngleFactory from '../sunDepressionAngle'
+import { getDateTimeUtcAtSunDepressionAngleFactory } from '../sunDepressionAngle'
+import { HighLatitudeMethod, getHighLatitudeMethod as defaultHighLatitudeMethod } from '../highLatitudeMethods'
 
-export default (date: Date, geoCoordinates: GeoCoordinates, convention: Convention = defauttConvention()): ErrorOr<string> => {
+const ishaa = (
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  convention: Convention = defauttConvention(),
+  highLatitudeMethod: HighLatitudeMethod = defaultHighLatitudeMethod()): ErrorOr<string> => {
   const nullProperties = getNullMembers([date, geoCoordinates, convention])
 
   if (nullProperties.length > 0) {
@@ -15,6 +20,9 @@ export default (date: Date, geoCoordinates: GeoCoordinates, convention: Conventi
     salah: 'ishaa',
     date,
     geoCoordinates,
-    convention
+    convention,
+    highLatitudeMethod
   })
 }
+
+export { ishaa }
