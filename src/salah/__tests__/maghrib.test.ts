@@ -1,4 +1,4 @@
-import { getSunriseDateTimeUtc } from 'suntimes'
+import { getSunsetDateTimeUtc } from 'suntimes'
 import { maghrib } from '../index'
 import { randomGeoCoordinates, generateRandomDate, iterativeTest } from '../../testUtils'
 import { success, throwOnError } from '../../either'
@@ -62,7 +62,7 @@ const getExpectedDateTIme = (): {
     randomDate = generateRandomDate(2000, 2050)
     const latitude = geoCoordinates.latitude
     const longitude = geoCoordinates.longitude
-    sunsetDateTimeUtc = getSunriseDateTimeUtc(randomDate as Date, latitude.value, longitude.value)
+    sunsetDateTimeUtc = getSunsetDateTimeUtc(randomDate as Date, latitude.value, longitude.value)
   }
   while (isNaN(Date.parse(sunsetDateTimeUtc)))
 

@@ -5,6 +5,18 @@ import { failure, success, ErrorOr } from '../either'
 import { AngularDegrees } from '../maths'
 import { sunDoesntReachAltitudeError } from '.'
 
+const getDateTimeUtcOfAngleBeforeNoon = (
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  degrees: Readonly<AngularDegrees>): ErrorOr<string> =>
+  getDateAtAngle(beforeNoon, date, geoCoordinates, degrees)
+
+const getDateTimeUtcOfAngleAfterNoon = (
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  degrees: Readonly<AngularDegrees>): ErrorOr<string> =>
+  getDateAtAngle(afterNoon, date, geoCoordinates, degrees)
+
 type GetDateTimeUtcAtAngle = (angle: number, date: Date, latitude: number, longitude: number) => string
 
 const getDateAtAngle = (getDateTimeUtcAtAngle: GetDateTimeUtcAtAngle, date: Date, geoCoordinates: GeoCoordinates, degrees: Readonly<AngularDegrees>): ErrorOr<string> => {
@@ -24,12 +36,6 @@ const getDateAtAngle = (getDateTimeUtcAtAngle: GetDateTimeUtcAtAngle, date: Date
     ? failure(sunDoesntReachAltitudeError(date, geoCoordinates))
     : success(dateTimeUtcAtAngle)
 }
-
-const getDateTimeUtcOfAngleBeforeNoon = (date: Date, geoCoordinates: GeoCoordinates, degrees: Readonly<AngularDegrees>): ErrorOr<string> =>
-  getDateAtAngle(beforeNoon, date, geoCoordinates, degrees)
-
-const getDateTimeUtcOfAngleAfterNoon = (date: Date, geoCoordinates: GeoCoordinates, degrees: Readonly<AngularDegrees>): ErrorOr<string> =>
-  getDateAtAngle(afterNoon, date, geoCoordinates, degrees)
 
 export {
   getDateTimeUtcOfAngleBeforeNoon,
