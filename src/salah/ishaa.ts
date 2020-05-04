@@ -1,23 +1,16 @@
 import { Convention, convention as defaultConvention } from '../convention'
 import { GeoCoordinates } from '../geoCoordinates'
-import { ErrorOr, failure } from '../either'
-import { getNullMembers } from '../validation'
-import { HighLatitudeMethod, getHighLatitudeMethod as defaultHighLatitudeMethod } from '../highLatitudeMethods'
-import { getDateTimeUtcOfAngleAfterNoon } from '../astronomy'
+import { HighLatitudeMethod } from '../highLatitudeMethods'
+import { ErrorOr } from '../either'
+import { getDateTimeUtcOfAngleAfterNoon, getDateTimeUtcAtAngleStrategy } from '../astronomy'
 
 const ishaa = (
   date: Date,
   geoCoordinates: GeoCoordinates,
   convention: Convention = defaultConvention(),
-  highLatitudeMethod: HighLatitudeMethod = defaultHighLatitudeMethod()): ErrorOr<string> => {
-  console.log(highLatitudeMethod)
-  const nullProperties = getNullMembers([convention, date, geoCoordinates])
-
-  if (nullProperties.length > 0) {
-    return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
-  }
-
-  return getDateTimeUtcOfAngleAfterNoon(date, geoCoordinates, convention.ishaa)
-}
+  highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'
+): ErrorOr<string> =>
+  getDateTimeUtcAtAngleStrategy(
+    getDateTimeUtcOfAngleAfterNoon, date, geoCoordinates, convention.ishaa, highLatitudeMethod)
 
 export { ishaa }

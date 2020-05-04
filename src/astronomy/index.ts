@@ -3,7 +3,13 @@ import { SunUpAllDayError, sunUpAllDayError } from './errors/sunUpAllDayError'
 import { SunDownAllDayError, sunDownAllDayError } from './errors/sunDownAllDayError'
 import { SunDoesntReachAltitudeError, sunDoesntReachAltitudeError } from './errors/sunDoesntReachAltitudeError'
 import { getDeclinationOfTheSun } from './declinationOfTheSun'
-import { getDateTimeUtcOfAngleBeforeNoon, getDateTimeUtcOfAngleAfterNoon } from './timeAtAngle'
+import {
+  getDateTimeUtcOfAngleBeforeNoon,
+  getDateTimeUtcOfAngleAfterNoon,
+  getDateTimeUtcAtAngleStrategy,
+  GetDateTimeUtcAtAngleStrategy
+} from './getDateTimeUtcAtAngle'
+
 export {
   getSunsetDateTimeUtc,
   getSunriseDateTimeUtc,
@@ -15,5 +21,7 @@ export {
   SunDoesntReachAltitudeError,
   sunDoesntReachAltitudeError,
   getDateTimeUtcOfAngleBeforeNoon,
-  getDateTimeUtcOfAngleAfterNoon
+  getDateTimeUtcOfAngleAfterNoon,
+  getDateTimeUtcAtAngleStrategy,
+  GetDateTimeUtcAtAngleStrategy
 }

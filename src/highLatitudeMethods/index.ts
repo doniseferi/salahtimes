@@ -11,19 +11,17 @@ import {
   oneSeventhMethod
 } from './oneSeventhMethod'
 import {
-  HighLatitudeMethod,
-  HighLatitudeMethodName,
-  getHighLatitudeMethod
-} from './getHighLatitudeMethod'
+  highLatitudeMethodHandler,
+  HighLatitudeMethod
+} from './highLatitudeMethodHandler'
 
 export {
-  HighLatitudeMethod,
-  HighLatitudeMethodName,
-  getHighLatitudeMethod,
   OneSeventhMethod,
   MiddleOfTheNightMethod,
   AngleBasedMethod,
+  HighLatitudeMethod,
   oneSeventhMethod,
   middleOfTheNightMethod,
-  angleBasedMethod
+  angleBasedMethod,
+  highLatitudeMethodHandler
 }
