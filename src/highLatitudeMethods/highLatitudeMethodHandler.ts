@@ -9,7 +9,13 @@ import { getNullMembers } from '../validation'
 
 type HighLatitudeMethod = 'AngleBasedMethod' | 'MiddleOfTheNightMethod' | 'OneSeventhMethod'
 
-const highLatitudeMethodHandler = (
+type HighLatitudeMethodHandler = (
+  highLatitudeMethod: HighLatitudeMethod,
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  salahAngle: Readonly<AngularDegrees>) => ErrorOr<string>
+
+const highLatitudeMethodHandler: HighLatitudeMethodHandler = (
   highLatitudeMethod: HighLatitudeMethod,
   date: Date,
   geoCoordinates: GeoCoordinates,
@@ -46,5 +52,6 @@ const highLatitudeMethodHandler = (
 
 export {
   highLatitudeMethodHandler,
+  HighLatitudeMethodHandler,
   HighLatitudeMethod
 }
