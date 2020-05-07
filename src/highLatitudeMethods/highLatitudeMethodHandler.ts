@@ -1,7 +1,7 @@
 import { GeoCoordinates } from '../geoCoordinates'
 import { AngularDegrees, degrees } from '../maths'
 import { ErrorOr, throwOnError, success, failure } from '../either'
-import { getSunriseDateTimeUtc } from '../astronomy'
+import { getSunriseDateTimeUtcAdapter } from '../astronomy'
 import { timeSpan } from '../time'
 import { maghrib } from '..'
 import { angleBasedMethod, middleOfTheNightMethod, oneSeventhMethod } from '.'
@@ -15,6 +15,7 @@ type HighLatitudeMethodHandler = (
   geoCoordinates: GeoCoordinates,
   salahAngle: Readonly<AngularDegrees>) => ErrorOr<string>
 
+// TODO: REFACTOR
 const highLatitudeMethodHandler: HighLatitudeMethodHandler = (
   highLatitudeMethod: HighLatitudeMethod,
   date: Date,
@@ -26,7 +27,7 @@ const highLatitudeMethodHandler: HighLatitudeMethodHandler = (
     return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
   }
 
-  const sunrise = new Date(throwOnError(getSunriseDateTimeUtc(date, geoCoordinates)))
+  const sunrise = new Date(throwOnError(getSunriseDateTimeUtcAdapter(date, geoCoordinates)))
   const sunset = new Date(throwOnError(maghrib(date, geoCoordinates)))
   const span = timeSpan(0, 0, 0, 0, sunrise.getTime() - sunset.getTime())
 
