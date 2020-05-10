@@ -1,7 +1,7 @@
 import { Convention, convention as defaultConvention } from '../convention'
 import { GeoCoordinates } from '../geoCoordinates'
 import { ErrorOr } from '../either'
-import { getDateTimeUtcAtAngleStrategy, getDateTimeUtcOfAngleBeforeNoon } from '../astronomy'
+import { getDateTimeUtcAtAngleStrategy, getDateTimeUtcOfAngleBeforeNoonAdapter } from '../astronomy'
 import { HighLatitudeMethod } from '../highLatitudeMethods'
 
 const fajr = (
@@ -10,6 +10,6 @@ const fajr = (
   convention: Convention = defaultConvention(),
   highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'
 ): ErrorOr<string> => getDateTimeUtcAtAngleStrategy(
-  getDateTimeUtcOfAngleBeforeNoon, date, geoCoordinates, convention.fajr, highLatitudeMethod)
+  getDateTimeUtcOfAngleBeforeNoonAdapter, date, geoCoordinates, convention.fajr, highLatitudeMethod)
 
 export { fajr }

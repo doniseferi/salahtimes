@@ -2,7 +2,7 @@ import { Convention, convention as defaultConvention } from '../convention'
 import { GeoCoordinates } from '../geoCoordinates'
 import { HighLatitudeMethod } from '../highLatitudeMethods'
 import { ErrorOr } from '../either'
-import { getDateTimeUtcOfAngleAfterNoon, getDateTimeUtcAtAngleStrategy } from '../astronomy'
+import { getDateTimeUtcOfAngleAfterNoonAdapter, getDateTimeUtcAtAngleStrategy } from '../astronomy'
 
 const ishaa = (
   date: Date,
@@ -11,6 +11,6 @@ const ishaa = (
   highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'
 ): ErrorOr<string> =>
   getDateTimeUtcAtAngleStrategy(
-    getDateTimeUtcOfAngleAfterNoon, date, geoCoordinates, convention.ishaa, highLatitudeMethod)
+    getDateTimeUtcOfAngleAfterNoonAdapter, date, geoCoordinates, convention.ishaa, highLatitudeMethod)
 
 export { ishaa }

@@ -3,7 +3,7 @@ import { AsrJursiticMethod } from '../madhab'
 import { ErrorOr, failure, matchErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 import { asrElevationAngle } from '../asrElevationAngle'
-import { getDeclinationOfTheSun, getDateTimeUtcOfAngleAfterNoon } from '../astronomy'
+import { getDeclinationOfTheSun, getDateTimeUtcOfAngleAfterNoonAdapter } from '../astronomy'
 
 export default (
   date: Date,
@@ -22,7 +22,7 @@ export default (
   return matchErrorOr(
     elevationAngle,
     err => failure(err),
-    angle => getDateTimeUtcOfAngleAfterNoon(
+    angle => getDateTimeUtcOfAngleAfterNoonAdapter(
       date,
       geoCoordinates,
       angle)

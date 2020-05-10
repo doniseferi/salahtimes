@@ -5,13 +5,13 @@ import { failure, success, ErrorOr } from '../either'
 import { AngularDegrees } from '../maths'
 import { sunDoesntReachAltitudeError } from '.'
 
-const getDateTimeUtcOfAngleBeforeNoon = (
+const getDateTimeUtcOfAngleBeforeNoonAdapter = (
   date: Date,
   geoCoordinates: GeoCoordinates,
   degrees: Readonly<AngularDegrees>): ErrorOr<string> =>
   getDateTimeAtAngleDecorator(beforeNoon, date, geoCoordinates, degrees)
 
-const getDateTimeUtcOfAngleAfterNoon = (
+const getDateTimeUtcOfAngleAfterNoonAdapter = (
   date: Date,
   geoCoordinates: GeoCoordinates,
   degrees: Readonly<AngularDegrees>): ErrorOr<string> =>
@@ -42,6 +42,6 @@ const getDateTimeAtAngleDecorator = (
 }
 
 export {
-  getDateTimeUtcOfAngleBeforeNoon,
-  getDateTimeUtcOfAngleAfterNoon
+  getDateTimeUtcOfAngleBeforeNoonAdapter,
+  getDateTimeUtcOfAngleAfterNoonAdapter
 }

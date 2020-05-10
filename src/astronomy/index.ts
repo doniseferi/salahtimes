@@ -7,9 +7,9 @@ import { ErrorOr } from '../either'
 import { getSunsetDateTimeUtcAdapter } from './getSunsetDateTimeUtcAdapter'
 import { getSunriseDateTimeUtcAdapter } from './getSunriseDateTimeUtcAdapter'
 import {
-  getDateTimeUtcOfAngleBeforeNoon,
-  getDateTimeUtcOfAngleAfterNoon
-} from './getDateTimeAtAngleDecorator'
+  getDateTimeUtcOfAngleBeforeNoonAdapter,
+  getDateTimeUtcOfAngleAfterNoonAdapter
+} from './getDateTimeAtAngleAdapter'
 import {
   GetDateTimeUtcAtAngle,
   GetDateTimeUtcAtAngleStrategy,
@@ -31,8 +31,8 @@ export {
   getDeclinationOfTheSun,
   SunDoesntReachAltitudeError,
   sunDoesntReachAltitudeError,
-  getDateTimeUtcOfAngleBeforeNoon,
-  getDateTimeUtcOfAngleAfterNoon,
+  getDateTimeUtcOfAngleBeforeNoonAdapter,
+  getDateTimeUtcOfAngleAfterNoonAdapter,
   GetDateTimeUtcAtAngle,
   GetDateTimeUtcAtAngleStrategy,
   getDateTimeUtcAtAngleStrategy
