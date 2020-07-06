@@ -11,7 +11,8 @@ import {
   oneSeventhMethod
 } from './oneSeventhMethod'
 import {
-  highLatitudeMethodHandler,
+  fajrHighLatitudeMethodHandler,
+  ishaaHighLatitudeMethodHandler,
   HighLatitudeMethod,
   HighLatitudeMethodHandler
 } from './highLatitudeMethodHandler'
@@ -25,5 +26,6 @@ export {
   oneSeventhMethod,
   middleOfTheNightMethod,
   angleBasedMethod,
-  highLatitudeMethodHandler
+  fajrHighLatitudeMethodHandler,
+  ishaaHighLatitudeMethodHandler
 }

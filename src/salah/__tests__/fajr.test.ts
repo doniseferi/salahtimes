@@ -3,6 +3,10 @@ import { convention, Convention } from '../../convention'
 import { throwOnError } from '../../either'
 import { geoCoordinates, latitude, longitude } from '../../geoCoordinates'
 import { isDatesCloseEnough } from '../../testUtils'
+import {
+  getSunsetDateTimeUtcAdapter,
+  getSunriseDateTimeUtcAdapter
+} from '../../astronomy'
 
 describe('Fajr', () => {
   test('returns the correct fajr date time UTC', () => {
@@ -121,6 +125,36 @@ describe('Conventions', () => {
         convention('UniversityOfIslamicSciencesKarachi')),
       new Date(Date.UTC(2021, 5, 1, 1, 14, 18, 672))))
       .toEqual(true)
+  })
+})
+describe('High Latitude Location', () => {
+  const remOneDay = (date: Date): Date => {
+    var _date = new Date(date.valueOf())
+    _date.setDate(date.getDate() - 1)
+    return _date
+  }
+  const longyearbyen = geoCoordinates(throwOnError(latitude(78.2232)), throwOnError(longitude(15.6267)))
+  const date = new Date(2031, 7, 31)
+  const sunrise = new Date(
+    throwOnError(
+      getSunriseDateTimeUtcAdapter(date, longyearbyen)))
+  const sunset = new Date(
+    throwOnError(
+      getSunsetDateTimeUtcAdapter(remOneDay(date), longyearbyen)))
+  const fajrConvention = convention()
+  const fajrAngle = fajrConvention.fajr
+
+  test('Angle based method', () => {
+    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
+    const percentagesSpanToBeSplit = ((fajrAngle.value * -1) / 60) * 100
+    const spanToBeSubtracted = (millisecondsBetweenSunsetAndSunrise / 100) * percentagesSpanToBeSplit
+    const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
+    const actual = fajrDateTimeUtc(
+      date,
+      longyearbyen.getValue('latitude'),
+      longyearbyen.getValue('longitude'),
+      fajrConvention)
+    expect(actual).toEqual(expected)
   })
 })
 

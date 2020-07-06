@@ -3,7 +3,7 @@ import { getNullMembers } from '../validation'
 import { GeoCoordinates } from '../geoCoordinates'
 import { getSunsetDateTimeUtcAdapter } from '../astronomy'
 
-export default (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
+const maghrib = (date: Date, geoCoordinates: Readonly<GeoCoordinates>): ErrorOr<string> => {
   const nullProperties = getNullMembers([date, geoCoordinates])
 
   if (nullProperties.length > 0) {
@@ -29,3 +29,5 @@ const handle = (err: Error): ErrorOr<string> =>
     : err.name === 'SunDownAllDayError'
       ? success(err.message)
       : failure(err)
+
+export { maghrib }

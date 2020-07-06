@@ -2,7 +2,7 @@ import { GeoCoordinates } from '../geoCoordinates'
 import { getNullMembers } from '../validation'
 import { failure, success, ErrorOr, matchErrorOr } from '../either'
 import { AngularDegrees } from '../maths'
-import { HighLatitudeMethod, highLatitudeMethodHandler } from '../highLatitudeMethods'
+import { HighLatitudeMethod, fajrHighLatitudeMethodHandler } from '../highLatitudeMethods'
 
 type GetDateTimeUtcAtAngle = (
   date: Date,
@@ -32,7 +32,7 @@ const getDateTimeUtcAtAngleStrategy: GetDateTimeUtcAtAngleStrategy = (
   return matchErrorOr(
     getDateTimeAtAngle(date, geoCoordinates, degrees),
     err => err.name === 'SunDoesntReachAltitudeError'
-      ? highLatitudeMethodHandler(highLatitudeMethod, date, geoCoordinates, degrees)
+      ? fajrHighLatitudeMethodHandler(highLatitudeMethod, date, geoCoordinates, degrees)
       : failure(err),
     val => success(val))
 }
