@@ -68,7 +68,7 @@ describe('High latitude calculation post conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => highLatitudeTestSpec(throwOnError(degrees(generateRandomWholeNumber(1, 90))), timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)),
       assert: (val) => {
-        const expected = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle) >> 0
+        const expected = ((val.timeSpanBetweenSunsetAndSunrise.value / 100) * ((val.angle / 60) * 100))
         const actual = val.actual
         expect(actual.value).toEqual(expected)
       }

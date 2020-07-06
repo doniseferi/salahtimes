@@ -7,6 +7,7 @@ import {
   getSunsetDateTimeUtcAdapter,
   getSunriseDateTimeUtcAdapter
 } from '../../astronomy'
+import { HighLatitudeMethod } from '../../highLatitudeMethods'
 
 describe('Fajr', () => {
   test('returns the correct fajr date time UTC', () => {
@@ -156,13 +157,40 @@ describe('High Latitude Location', () => {
       fajrConvention)
     expect(actual).toEqual(expected)
   })
+
+  test('Middle of the night method', () => {
+    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
+    const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 4
+    const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
+    const actual = fajrDateTimeUtc(
+      date,
+      longyearbyen.getValue('latitude'),
+      longyearbyen.getValue('longitude'),
+      fajrConvention,
+      'MiddleOfTheNightMethod')
+    expect(actual).toEqual(expected)
+  })
+
+  test('One seventh method', () => {
+    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
+    const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 7
+    const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
+    expect(
+      isDatesCloseEnough(fajrDateTimeUtc(
+        date,
+        longyearbyen.getValue('latitude'),
+        longyearbyen.getValue('longitude'),
+        fajrConvention,
+        'OneSeventhMethod'), expected)).toBe(true)
+  })
 })
 
 const fajrDateTimeUtc =
   (date: Date,
     lat: number,
     lng: number,
-    fajrConvention: Convention):
+    fajrConvention: Convention,
+    highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'):
   Date =>
     new Date(throwOnError(
       fajr(
@@ -170,4 +198,5 @@ const fajrDateTimeUtc =
         geoCoordinates(
           throwOnError(latitude(lat)),
           throwOnError(longitude(lng))),
-        fajrConvention)))
+        fajrConvention,
+        highLatitudeMethod)))
