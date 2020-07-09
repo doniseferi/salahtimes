@@ -15,66 +15,6 @@ type HighLatitudeMethodHandler = (
   geoCoordinates: GeoCoordinates,
   salahAngle: Readonly<AngularDegrees>) => ErrorOr<string>
 
-const fajrHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
-  highLatitudeMethod: HighLatitudeMethod,
-  date: Date,
-  geoCoordinates: GeoCoordinates,
-  salahAngle: Readonly<AngularDegrees>): ErrorOr<string> => {
-  const nullProperties = getNullMembers([date, geoCoordinates, salahAngle, highLatitudeMethod])
-
-  if (nullProperties.length > 0) {
-    return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
-  }
-
-  const sunset = new Date(throwOnError(getSunsetDateTimeUtcAdapter(remOneDay(date), geoCoordinates)))
-  const sunrise = new Date(throwOnError(getSunriseDateTimeUtcAdapter(date, geoCoordinates)))
-  const spanBetweenSunriseAndSunset = (sunrise.getTime() - sunset.getTime())
-  const span = timeSpan(0, 0, 0, 0, spanBetweenSunriseAndSunset)
-  const fajrSpan = highLatitudeMethodHandler(highLatitudeMethod, span, salahAngle)
-
-  return matchErrorOr(
-    fajrSpan,
-    err => failure(err),
-    val => success(sunrise.subtract(val).toISOString())
-  )
-}
-
-const ishaaHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
-  highLatitudeMethod: HighLatitudeMethod,
-  date: Date,
-  geoCoordinates: GeoCoordinates,
-  salahAngle: Readonly<AngularDegrees>): ErrorOr<string> => {
-  const nullProperties = getNullMembers([date, geoCoordinates, salahAngle, highLatitudeMethod])
-
-  if (nullProperties.length > 0) {
-    return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
-  }
-
-  const sunset = new Date(throwOnError(getSunsetDateTimeUtcAdapter(date, geoCoordinates)))
-  const sunrise = new Date(throwOnError(getSunriseDateTimeUtcAdapter(addOneDay(date), geoCoordinates)))
-  const spanny = sunrise.getTime() - sunset.getTime()
-  const spanBetweenSunriseAndSunset = timeSpan(0, 0, 0, 0, spanny)
-  const ishaaSpan = highLatitudeMethodHandler(highLatitudeMethod, spanBetweenSunriseAndSunset, salahAngle)
-
-  return matchErrorOr(
-    ishaaSpan,
-    err => failure(err),
-    val => success(sunset.add(val).toISOString())
-  )
-}
-
-const addOneDay = (date: Date): Date => {
-  var _date = new Date(date.valueOf())
-  _date.setDate(date.getDate() + 1)
-  return _date
-}
-
-const remOneDay = (date: Date): Date => {
-  var _date = new Date(date.valueOf())
-  _date.setDate(date.getDate() - 1)
-  return _date
-}
-
 const highLatitudeMethodHandler = (
   highLatitudeMethod: HighLatitudeMethod,
   spanBetweenSunsetAndSunrise: TimeSpan,
@@ -92,6 +32,53 @@ const highLatitudeMethodHandler = (
           'Please provide one of the following values AngleBasedMethod, MiddleOfTheNightMethod or OneSeventhMethod'))
   }
 }
+
+const fajrHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
+  highLatitudeMethod: HighLatitudeMethod,
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  salahAngle: Readonly<AngularDegrees>): ErrorOr<string> => {
+  const nullProperties = getNullMembers([date, geoCoordinates, salahAngle, highLatitudeMethod])
+
+  if (nullProperties.length > 0) {
+    return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
+  }
+
+  const sunset = new Date(throwOnError(getSunsetDateTimeUtcAdapter(date.subtractDays(1), geoCoordinates)))
+  const sunrise = new Date(throwOnError(getSunriseDateTimeUtcAdapter(date, geoCoordinates)))
+  const span = timeSpan(0, 0, 0, 0, sunrise.getTime() - sunset.getTime())
+  const fajrSpan = highLatitudeMethodHandler(highLatitudeMethod, span, salahAngle)
+
+  return matchErrorOr(
+    fajrSpan,
+    err => failure(err),
+    val => success(sunrise.subtractTimeSpan(val).toISOString())
+  )
+}
+
+const ishaaHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
+  highLatitudeMethod: HighLatitudeMethod,
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  salahAngle: Readonly<AngularDegrees>): ErrorOr<string> => {
+  const nullProperties = getNullMembers([date, geoCoordinates, salahAngle, highLatitudeMethod])
+
+  if (nullProperties.length > 0) {
+    return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
+  }
+
+  const sunset = new Date(throwOnError(getSunsetDateTimeUtcAdapter(date, geoCoordinates)))
+  const sunrise = new Date(throwOnError(getSunriseDateTimeUtcAdapter(date.addDays(1), geoCoordinates)))
+  const spanBetweenSunriseAndSunset = timeSpan(0, 0, 0, 0, sunrise.getTime() - sunset.getTime())
+  const ishaaSpan = highLatitudeMethodHandler(highLatitudeMethod, spanBetweenSunriseAndSunset, salahAngle)
+
+  return matchErrorOr(
+    ishaaSpan,
+    err => failure(err),
+    val => success(sunset.addTimeSpan(val).toISOString())
+  )
+}
+
 export {
   fajrHighLatitudeMethodHandler,
   ishaaHighLatitudeMethodHandler,

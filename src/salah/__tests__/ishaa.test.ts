@@ -8,6 +8,7 @@ import {
   getSunriseDateTimeUtcAdapter
 } from '../../astronomy'
 import { HighLatitudeMethod } from '../../highLatitudeMethods'
+import '../date/date-Augmentation'
 
 describe('ishaa', () => {
   test('returns the correct ishaa date time UTC', () => {
@@ -129,16 +130,11 @@ describe('Conventions', () => {
 })
 
 describe('High Latitude Location', () => {
-  const addOneDay = (date: Date): Date => {
-    var _date = new Date(date.valueOf())
-    _date.setDate(date.getDate() + 1)
-    return _date
-  }
   const longyearbyen = geoCoordinates(throwOnError(latitude(78.2232)), throwOnError(longitude(15.6267)))
   const date = new Date(2031, 7, 31)
   const sunrise = new Date(
     throwOnError(
-      getSunriseDateTimeUtcAdapter(addOneDay(date), longyearbyen)))
+      getSunriseDateTimeUtcAdapter(date.addDays(1), longyearbyen)))
   const sunset = new Date(
     throwOnError(
       getSunsetDateTimeUtcAdapter(date, longyearbyen)))
@@ -171,8 +167,7 @@ describe('High Latitude Location', () => {
   })
 
   test('One seventh method', () => {
-    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
-    const spanToBeAdded = millisecondsBetweenSunsetAndSunrise / 7
+    const spanToBeAdded = millisecondsBetweenSunriseAndSunset / 7
     const expected = new Date(sunset.getTime() + spanToBeAdded)
     expect(
       isDatesCloseEnough(ishaaDateTimeUtc(

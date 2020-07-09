@@ -3,6 +3,7 @@ import { GeoCoordinates } from '../geoCoordinates'
 import { ErrorOr, failure, matchErrorOr, success } from '../either'
 import { getDateTimeUtcOfAngleBeforeNoonAdapter } from '../astronomy'
 import { HighLatitudeMethod, fajrHighLatitudeMethodHandler } from '../highLatitudeMethods'
+import '../date/date-Augmentation'
 
 const fajr = (
   date: Date,

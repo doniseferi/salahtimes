@@ -129,11 +129,6 @@ describe('Conventions', () => {
   })
 })
 describe('High Latitude Location', () => {
-  const remOneDay = (date: Date): Date => {
-    var _date = new Date(date.valueOf())
-    _date.setDate(date.getDate() - 1)
-    return _date
-  }
   const longyearbyen = geoCoordinates(throwOnError(latitude(78.2232)), throwOnError(longitude(15.6267)))
   const date = new Date(2031, 7, 31)
   const sunrise = new Date(
@@ -141,12 +136,12 @@ describe('High Latitude Location', () => {
       getSunriseDateTimeUtcAdapter(date, longyearbyen)))
   const sunset = new Date(
     throwOnError(
-      getSunsetDateTimeUtcAdapter(remOneDay(date), longyearbyen)))
+      getSunsetDateTimeUtcAdapter(date.subtractDays(1), longyearbyen)))
   const fajrConvention = convention()
   const fajrAngle = fajrConvention.fajr
+  const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
 
   test('Angle based method', () => {
-    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
     const percentagesSpanToBeSplit = ((fajrAngle.value * -1) / 60) * 100
     const spanToBeSubtracted = (millisecondsBetweenSunsetAndSunrise / 100) * percentagesSpanToBeSplit
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
@@ -159,7 +154,6 @@ describe('High Latitude Location', () => {
   })
 
   test('Middle of the night method', () => {
-    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
     const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 4
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
     const actual = fajrDateTimeUtc(
@@ -172,7 +166,6 @@ describe('High Latitude Location', () => {
   })
 
   test('One seventh method', () => {
-    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
     const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 7
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
     expect(
