@@ -3,8 +3,14 @@ import { convention, Convention } from '../../convention'
 import { throwOnError } from '../../either'
 import { geoCoordinates, latitude, longitude } from '../../geoCoordinates'
 import { isDatesCloseEnough } from '../../testUtils'
-describe('Fajr', () => {
-  test('returns the correct fajr date time UTC', () => {
+import {
+  getSunsetDateTimeUtcAdapter,
+  getSunriseDateTimeUtcAdapter
+} from '../../astronomy'
+import { HighLatitudeMethod } from '../../highLatitudeMethods'
+
+describe('ishaa', () => {
+  test('returns the correct ishaa date time UTC', () => {
     expect(isDatesCloseEnough(
       ishaaDateTimeUtc(
         new Date(2027, 0, 27),
@@ -122,15 +128,74 @@ describe('Conventions', () => {
   })
 })
 
+describe('High Latitude Location', () => {
+  const addOneDay = (date: Date): Date => {
+    var _date = new Date(date.valueOf())
+    _date.setDate(date.getDate() + 1)
+    return _date
+  }
+  const longyearbyen = geoCoordinates(throwOnError(latitude(78.2232)), throwOnError(longitude(15.6267)))
+  const date = new Date(2031, 7, 31)
+  const sunrise = new Date(
+    throwOnError(
+      getSunriseDateTimeUtcAdapter(addOneDay(date), longyearbyen)))
+  const sunset = new Date(
+    throwOnError(
+      getSunsetDateTimeUtcAdapter(date, longyearbyen)))
+  const ishaaConvention = convention()
+  const ishaaAngle = ishaaConvention.ishaa
+  const millisecondsBetweenSunriseAndSunset = sunrise.getTime() - sunset.getTime()
+
+  test('Angle based method', () => {
+    const percentagesSpanToBeSplit = ((ishaaAngle.value * -1) / 60) * 100
+    const spanToBeAdded = (millisecondsBetweenSunriseAndSunset / 100) * percentagesSpanToBeSplit
+    const expected = new Date(sunset.getTime() + spanToBeAdded)
+    const actual = ishaaDateTimeUtc(
+      date,
+      longyearbyen.getValue('latitude'),
+      longyearbyen.getValue('longitude'),
+      ishaaConvention)
+    expect(actual).toEqual(expected)
+  })
+
+  test('Middle of the night method', () => {
+    const spanToBeAdded = millisecondsBetweenSunriseAndSunset / 4
+    const expected = new Date(sunset.getTime() + spanToBeAdded)
+    const actual = ishaaDateTimeUtc(
+      date,
+      longyearbyen.getValue('latitude'),
+      longyearbyen.getValue('longitude'),
+      ishaaConvention,
+      'MiddleOfTheNightMethod')
+    expect(actual).toEqual(expected)
+  })
+
+  test('One seventh method', () => {
+    const millisecondsBetweenSunsetAndSunrise = sunrise.getTime() - sunset.getTime()
+    const spanToBeAdded = millisecondsBetweenSunsetAndSunrise / 7
+    const expected = new Date(sunset.getTime() + spanToBeAdded)
+    expect(
+      isDatesCloseEnough(ishaaDateTimeUtc(
+        date,
+        longyearbyen.getValue('latitude'),
+        longyearbyen.getValue('longitude'),
+        ishaaConvention,
+        'OneSeventhMethod'), expected)).toBe(true)
+  })
+})
+
 const ishaaDateTimeUtc =
   (date: Date,
     lat: number,
     lng: number,
-    ishaaConvention: Convention): Date =>
+    ishaaConvention: Convention,
+    highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'):
+  Date =>
     new Date(throwOnError(
       ishaa(
         date,
         geoCoordinates(
           throwOnError(latitude(lat)),
           throwOnError(longitude(lng))),
-        ishaaConvention)))
+        ishaaConvention,
+        highLatitudeMethod)))
