@@ -8,7 +8,6 @@ import {
   getSunriseDateTimeUtcAdapter
 } from '../../astronomy'
 import { HighLatitudeMethod } from '../../highLatitudeMethods'
-import '../date/date-Augmentation'
 
 describe('ishaa', () => {
   test('returns the correct ishaa date time UTC', () => {
