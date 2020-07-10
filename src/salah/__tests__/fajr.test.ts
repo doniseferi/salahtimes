@@ -156,13 +156,13 @@ describe('High Latitude Location', () => {
   test('Middle of the night method', () => {
     const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 4
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
-    const actual = fajrDateTimeUtc(
-      date,
-      longyearbyen.getValue('latitude'),
-      longyearbyen.getValue('longitude'),
-      fajrConvention,
-      'MiddleOfTheNightMethod')
-    expect(actual).toEqual(expected)
+    expect(
+      isDatesCloseEnough(fajrDateTimeUtc(
+        date,
+        longyearbyen.getValue('latitude'),
+        longyearbyen.getValue('longitude'),
+        fajrConvention,
+        'MiddleOfTheNightMethod'), expected)).toBe(true)
   })
 
   test('One seventh method', () => {
