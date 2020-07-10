@@ -12,7 +12,7 @@ interface AsrJursiticMethod {
   value: 1 | 2
 }
 
-const madhab = (madhab: Madhab): ErrorOr<AsrJursiticMethod> => {
+const madhab = (madhab: Madhab = 'standard'): ErrorOr<AsrJursiticMethod> => {
   const nullProperties = getNullMembers(madhab)
 
   if (nullProperties.length > 0) {

@@ -1,8 +1,8 @@
-import { getSunriseDateTimeUtc } from 'suntimes'
+import { getSunsetDateTimeUtc } from 'suntimes'
 import { maghrib } from '../index'
 import { randomGeoCoordinates, generateRandomDate, iterativeTest } from '../../testUtils'
-import { success } from '../../either'
-import { GeoCoordinates } from '../../geoCoordinates'
+import { success, throwOnError } from '../../either'
+import { GeoCoordinates, geoCoordinates, latitude, longitude } from '../../geoCoordinates'
 
 describe('Maghrib', () => {
   test('is 3 minutes after sunset', () => {
@@ -27,6 +27,26 @@ describe('Maghrib', () => {
       }
     })
   })
+  test('alerts when the sun is up all day', () =>
+    expect(
+      maghrib(
+        new Date(Date.UTC(2037, 7, 2)),
+        geoCoordinates(
+          throwOnError(latitude(71.980070)),
+          throwOnError(longitude(102.474270)))))
+      .toEqual(
+        success('The sun is up all day on 2037-08-02T00:00:00.000Z at latitude: 71.98007 and longitude: 102.47427'))
+  )
+  test('alerts when the sun is down all day', () =>
+    expect(
+      maghrib(
+        new Date(Date.UTC(2032, 0, 1)),
+        geoCoordinates(
+          throwOnError(latitude(89.5250)),
+          throwOnError(longitude(-30.4500)))))
+      .toEqual(
+        success('The sun is down all day on 2032-01-01T00:00:00.000Z at latitude: 89.525 and longitude: -30.45'))
+  )
 })
 
 const getExpectedDateTIme = (): {
@@ -42,7 +62,7 @@ const getExpectedDateTIme = (): {
     randomDate = generateRandomDate(2000, 2050)
     const latitude = geoCoordinates.latitude
     const longitude = geoCoordinates.longitude
-    sunsetDateTimeUtc = getSunriseDateTimeUtc(randomDate as Date, latitude.value, longitude.value)
+    sunsetDateTimeUtc = getSunsetDateTimeUtc(randomDate as Date, latitude.value, longitude.value)
   }
   while (isNaN(Date.parse(sunsetDateTimeUtc)))
 

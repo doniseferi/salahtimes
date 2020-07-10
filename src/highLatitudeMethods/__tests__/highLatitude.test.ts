@@ -2,7 +2,12 @@ import { angleBasedMethod, oneSeventhMethod, middleOfTheNightMethod } from '../i
 import { timeSpan, TimeSpan } from '../../time'
 import { degrees, AngularDegrees } from '../../maths'
 import { throwOnError } from '../../either'
-import { iterativeTest, randomTimeSpan, randomDegree, generateRandomWholeNumber } from '../../testUtils'
+import {
+  iterativeTest,
+  randomTimeSpan,
+  randomDegree,
+  generateRandomWholeNumber
+} from '../../testUtils'
 
 describe('High latitude: Angle based method  pre conditions', () => {
   test('throws an error when the degree angle is null', () => {
@@ -63,7 +68,7 @@ describe('High latitude calculation post conditions', () => {
       numberOfExecutions: 500,
       generateInput: () => highLatitudeTestSpec(throwOnError(degrees(generateRandomWholeNumber(1, 90))), timeSpan(0, generateRandomWholeNumber(0, 23), 0, 0, 0)),
       assert: (val) => {
-        const expected = (val.timeSpanBetweenSunsetAndSunrise.value / val.angle) >> 0
+        const expected = ((val.timeSpanBetweenSunsetAndSunrise.value / 100) * ((val.angle / 60) * 100))
         const actual = val.actual
         expect(actual.value).toEqual(expected)
       }

@@ -19,7 +19,7 @@
 
 • **latitude**: *Readonly‹[Latitude](latitude.md)›*
 
-*Defined in [geoCoordinates/geoCoordinates.ts:4](https://github.com/doniseferi/salahtimes/blob/7d4870b/src/geoCoordinates/geoCoordinates.ts#L4)*
+*Defined in [geoCoordinates/geoCoordinates.ts:4](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/geoCoordinates/geoCoordinates.ts#L4)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **longitude**: *Readonly‹[Longitude](longitude.md)›*
 
-*Defined in [geoCoordinates/geoCoordinates.ts:5](https://github.com/doniseferi/salahtimes/blob/7d4870b/src/geoCoordinates/geoCoordinates.ts#L5)*
+*Defined in [geoCoordinates/geoCoordinates.ts:5](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/geoCoordinates/geoCoordinates.ts#L5)*

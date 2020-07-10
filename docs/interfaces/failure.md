@@ -23,7 +23,7 @@
 
 • **error**: *Readonly‹T›*
 
-*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/7d4870b/src/either/errorOr.ts#L4)*
+*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/either/errorOr.ts#L4)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **path**: *"error"*
 
-*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/7d4870b/src/either/errorOr.ts#L4)*
+*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/either/errorOr.ts#L4)*

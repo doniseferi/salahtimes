@@ -10,12 +10,22 @@ import {
   OneSeventhMethod,
   oneSeventhMethod
 } from './oneSeventhMethod'
+import {
+  fajrHighLatitudeMethodHandler,
+  ishaaHighLatitudeMethodHandler,
+  HighLatitudeMethod,
+  HighLatitudeMethodHandler
+} from './highLatitudeMethodHandler'
 
 export {
   OneSeventhMethod,
   MiddleOfTheNightMethod,
   AngleBasedMethod,
+  HighLatitudeMethod,
+  HighLatitudeMethodHandler,
   oneSeventhMethod,
   middleOfTheNightMethod,
-  angleBasedMethod
+  angleBasedMethod,
+  fajrHighLatitudeMethodHandler,
+  ishaaHighLatitudeMethodHandler
 }

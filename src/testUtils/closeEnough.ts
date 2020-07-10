@@ -1,4 +1,8 @@
-export default (x: number, y: number, epsilon: number = 1.1e-1): boolean => {
+
+const isDatesCloseEnough = (dateA: Date, dateB: Date, acceptableDeltaInMilliseconds: number = 999): boolean =>
+  Math.abs(dateA.getTime() - new Date(dateB).getTime()) <= acceptableDeltaInMilliseconds
+
+const isNumbersCloseEnough = (x: number, y: number, epsilon: number = 1.1e-1): boolean => {
   if (x === y) {
     return true
   }
@@ -17,4 +21,9 @@ export default (x: number, y: number, epsilon: number = 1.1e-1): boolean => {
   }
 
   return false
+}
+
+export {
+  isDatesCloseEnough,
+  isNumbersCloseEnough
 }

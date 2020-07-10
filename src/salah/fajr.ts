@@ -1,15 +1,20 @@
+import { Convention, convention as defaultConvention } from '../convention'
 import { GeoCoordinates } from '../geoCoordinates'
-import { Convention, convention as defauttConvention } from '../convention'
-import { ErrorOr, failure } from '../either'
-import { getNullMembers } from '../validation'
-import getDateTimeUtcAtSunDepressionAngleFactory from '../sunDepressionAngle'
+import { ErrorOr, failure, matchErrorOr, success } from '../either'
+import { getDateTimeUtcOfAngleBeforeNoonAdapter } from '../astronomy'
+import { HighLatitudeMethod, fajrHighLatitudeMethodHandler } from '../highLatitudeMethods'
+import '../date/date-Augmentation'
 
-export default (date: Date, geoCoordinates: GeoCoordinates, convention: Convention = defauttConvention()): ErrorOr<string> => {
-  const nullProperties = getNullMembers([date, geoCoordinates, convention])
+const fajr = (
+  date: Date,
+  geoCoordinates: GeoCoordinates,
+  convention: Convention = defaultConvention(),
+  highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'
+): ErrorOr<string> => matchErrorOr(
+  getDateTimeUtcOfAngleBeforeNoonAdapter(date, geoCoordinates, convention.fajr),
+  err => err.name === 'SunDoesntReachAltitudeError'
+    ? fajrHighLatitudeMethodHandler(highLatitudeMethod, date, geoCoordinates, convention.fajr)
+    : failure(err),
+  val => success(val))
 
-  if (nullProperties.length > 0) {
-    return failure(new ReferenceError(`${nullProperties.join(',')} is null or undefined`))
-  }
-
-  return getDateTimeUtcAtSunDepressionAngleFactory({ salah: 'fajr', date, geoCoordinates, convention })
-}
+export { fajr }
