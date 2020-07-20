@@ -1,21 +1,22 @@
 import {
-  fajr
-  // dhuhr,
+  fajr,
+  dhuhr
   // asr,
   // maghrib,
   // ishaa
 } from '../../salah'
-import { fajrDateTimeUtc } from '../index'
+import { fajrDateTimeUtc, dhuhrDateTimeUtc } from '../index'
 import {
   generateRandomDate,
   randomGeoCoordinates,
-  iterativeTest
+  iterativeTest,
+  randomLongitude
 } from '../../testUtils/index'
-import { GeoCoordinates } from '../../geoCoordinates'
+import { GeoCoordinates, Longitude } from '../../geoCoordinates'
 import { matchErrorOr } from '../../either'
 
 describe('Adapter', () => {
-  test('wraps fajr', () => {
+  test('adapts fajr domains complex objects', () => {
     iterativeTest<{
       date: Date
       location: GeoCoordinates
@@ -33,6 +34,26 @@ describe('Adapter', () => {
         const latitude = location.getValue('latitude')
         const longitude = location.getValue('longitude')
         matchErrorOr(fajr(date, location), err => expect(fajrDateTimeUtc(date, latitude, longitude)).toEqual(err.message), succ => expect(fajrDateTimeUtc(date, latitude, longitude)).toEqual(succ))
+      }
+    })
+  })
+  test('adapts dhuhr domains complex objects', () => {
+    iterativeTest<{
+      date: Date
+      longitude: Longitude
+    }, void>({
+      numberOfExecutions: 500,
+      generateInput: () => {
+        const longitude = randomLongitude()
+        const date = generateRandomDate(2000, 2050) as Date
+        return {
+          date,
+          longitude
+        }
+      },
+      assert: ({ date, longitude }) => {
+        matchErrorOr(dhuhr(date, longitude), err => expect(dhuhrDateTimeUtc(date, longitude.value)).toEqual(err.message),
+          succ => expect(dhuhrDateTimeUtc(date, longitude.value)).toEqual(succ))
       }
     })
   })

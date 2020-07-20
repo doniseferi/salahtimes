@@ -10,7 +10,7 @@ import {
 } from '../convention'
 import { HighLatitudeMethod } from '../highLatitudeMethods'
 import { geoCoordinates, latitude as lat, longitude as lon } from '../geoCoordinates'
-import { throwOnError, matchErrorOr } from '../either'
+import { matchErrorOr, throwOnError } from '../either'
 import { Madhab, madhab as madhhab } from '../madhab'
 
 const fajrDateTimeUtc = (
@@ -28,10 +28,9 @@ const fajrDateTimeUtc = (
 const dhuhrDateTimeUtc = (
   date: Date,
   longitude: number): string =>
-  throwOnError(
-    dhuhr(
-      date,
-      throwOnError(lon(longitude))))
+  matchErrorOr(lon(longitude), err => err.message, parsedLongitude => {
+    return matchErrorOr(dhuhr(date, parsedLongitude), err => err.message, val => val)
+  })
 
 const asrDateTimeUtc = (
   date: Date,
