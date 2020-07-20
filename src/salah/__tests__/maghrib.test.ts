@@ -3,7 +3,6 @@ import { maghrib } from '../index'
 import { randomGeoCoordinates, generateRandomDate, iterativeTest } from '../../testUtils'
 import { success, throwOnError } from '../../either'
 import { GeoCoordinates, geoCoordinates, latitude, longitude } from '../../geoCoordinates'
-
 describe('Maghrib', () => {
   test('is 3 minutes after sunset', () => {
     iterativeTest<{
