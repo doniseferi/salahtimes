@@ -12,6 +12,7 @@ import {
   iterativeTest
 } from '../../testUtils/index'
 import { GeoCoordinates } from '../../geoCoordinates'
+import { matchErrorOr } from '../../either'
 
 describe('Adapter', () => {
   test('wraps fajr', () => {
@@ -31,11 +32,7 @@ describe('Adapter', () => {
       assert: ({ date, location }) => {
         const latitude = location.getValue('latitude')
         const longitude = location.getValue('longitude')
-        try {
-          const actual = fajrDateTimeUtc(date, latitude, longitude)
-          const expected = fajr(date, location)
-          expect(actual).toEqual(expected)
-        } catch {}
+        matchErrorOr(fajr(date, location), err => expect(fajrDateTimeUtc(date, latitude, longitude)).toEqual(err.message), succ => expect(fajrDateTimeUtc(date, latitude, longitude)).toEqual(succ))
       }
     })
   })
