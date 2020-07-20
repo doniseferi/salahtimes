@@ -44,7 +44,7 @@ const fajrHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
     return failure(new ReferenceError(`Please provide a value for ${nullProperties.join(',')}`))
   }
 
-  const result = matchErrorOr(getSunsetDateTimeUtcAdapter(date.subtractDays(1), geoCoordinates), err => failure(err), sunset => {
+  return matchErrorOr(getSunsetDateTimeUtcAdapter(date.subtractDays(1), geoCoordinates), err => failure(err), sunset => {
     return matchErrorOr(getSunriseDateTimeUtcAdapter(date, geoCoordinates), err => failure(err), sunrise => {
       const parsedSunset = new Date(sunset)
       const parsedSunrise = new Date(sunrise)
@@ -57,8 +57,6 @@ const fajrHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
       )
     })
   })
-
-  return result
 }
 
 // todo: follow the above exmaple
@@ -75,20 +73,19 @@ const ishaaHighLatitudeMethodHandler: HighLatitudeMethodHandler = (
   const sunset = getSunsetDateTimeUtcAdapter(date, geoCoordinates)
   if (sunset.path === 'error') return sunset
 
-  const sunrise = getSunriseDateTimeUtcAdapter(date.addDays(1), geoCoordinates)
-  if (sunrise.path === 'error') return sunrise
-
-  const parsedSunset = new Date(sunset.result)
-  const parsedSunrise = new Date(sunrise.result)
-
-  const spanBetweenSunriseAndSunset = timeSpan(0, 0, 0, 0, new Date(parsedSunrise).getTime() - new Date(parsedSunset).getTime())
-  const ishaaSpan = highLatitudeMethodHandler(highLatitudeMethod, spanBetweenSunriseAndSunset, salahAngle)
-
-  return matchErrorOr(
-    ishaaSpan,
-    err => failure(err),
-    val => success(new Date(sunset.result).addTimeSpan(val).toISOString())
-  )
+  return matchErrorOr(getSunsetDateTimeUtcAdapter(date, geoCoordinates), err => failure(err), sunset => {
+    return matchErrorOr(getSunriseDateTimeUtcAdapter(date.addDays(1), geoCoordinates), err => failure(err), sunrise => {
+      const parsedSunset = new Date(sunset)
+      const parsedSunrise = new Date(sunrise)
+      const spanBetweenSunriseAndSunset = timeSpan(0, 0, 0, 0, parsedSunrise.getTime() - parsedSunset.getTime())
+      const ishaaSpan = highLatitudeMethodHandler(highLatitudeMethod, spanBetweenSunriseAndSunset, salahAngle)
+      return matchErrorOr(
+        ishaaSpan,
+        err => failure(err),
+        val => success(parsedSunset.addTimeSpan(val).toISOString())
+      )
+    })
+  })
 }
 
 export {
