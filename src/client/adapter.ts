@@ -10,7 +10,7 @@ import {
 } from '../convention'
 import { HighLatitudeMethod } from '../highLatitudeMethods'
 import { geoCoordinates, latitude as lat, longitude as lon } from '../geoCoordinates'
-import { matchErrorOr, throwOnError } from '../either'
+import { matchErrorOr } from '../either'
 import { Madhab, madhab as madhhab } from '../madhab'
 
 const fajrDateTimeUtc = (
@@ -19,49 +19,59 @@ const fajrDateTimeUtc = (
   longitude: number,
   islamicConvention: SupportedConventions = 'MuslimWorldLeague',
   highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'): string =>
-  matchErrorOr(lat(latitude), err => err.message, parsedLatitude => {
-    return matchErrorOr(lon(longitude), err => err.message, parsedLongitude => {
-      return matchErrorOr(fajr(date, geoCoordinates(parsedLatitude, parsedLongitude), conventions(islamicConvention), highLatitudeMethod), err => err.message, val => val)
-    })
-  })
+  matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
+    matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
+      matchErrorOr(
+        fajr(date, geoCoordinates(parsedLatitude, parsedLongitude), conventions(islamicConvention), highLatitudeMethod),
+        err => err.message,
+        fajrDateTimeUtc => fajrDateTimeUtc)))
 
 const dhuhrDateTimeUtc = (
   date: Date,
   longitude: number): string =>
-  matchErrorOr(lon(longitude), err => err.message, parsedLongitude => {
-    return matchErrorOr(dhuhr(date, parsedLongitude), err => err.message, val => val)
-  })
+  matchErrorOr(
+    lon(longitude),
+    err => err.message,
+    parsedLongitude =>
+      matchErrorOr(
+        dhuhr(date, parsedLongitude),
+        err => err.message,
+        dhuhrDateTimeUtc => dhuhrDateTimeUtc))
 
 const asrDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number,
-  madhab: Madhab = 'hanafi'): string =>
-  throwOnError(
-    asr(
-      date,
-      geoCoordinates(throwOnError(lat(latitude)), throwOnError(lon(longitude))),
-      throwOnError(madhhab(madhab))))
+  madhab?: Madhab): string =>
+  matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
+    matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
+      matchErrorOr(madhhab(madhab), err => err.message, asrJuristicMethod =>
+        matchErrorOr(
+          asr(date, geoCoordinates(parsedLatitude, parsedLongitude), asrJuristicMethod),
+          err => err.message,
+          asrDateTimeUtc => asrDateTimeUtc))))
 
 const maghribDateTimeUtc = (
   date: Date,
   latitude: number,
-  longitude: number): string => throwOnError(
-  maghrib(
-    date,
-    geoCoordinates(throwOnError(lat(latitude)), throwOnError(lon(longitude)))))
+  longitude: number): string =>
+  matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
+    matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
+      matchErrorOr(maghrib(date, geoCoordinates(parsedLatitude, parsedLongitude)), err => err.message,
+        maghribDateTimeUtc => maghribDateTimeUtc)))
 
 const ishaaDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number,
   islamicConvention: SupportedConventions = 'MuslimWorldLeague',
-  highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'): string => throwOnError(
-  ishaa(
-    date,
-    geoCoordinates(throwOnError(lat(latitude)), throwOnError(lon(longitude))),
-    conventions(islamicConvention),
-    highLatitudeMethod))
+  highLatitudeMethod: HighLatitudeMethod = 'AngleBasedMethod'): string =>
+  matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
+    matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
+      matchErrorOr(
+        ishaa(date, geoCoordinates(parsedLatitude, parsedLongitude), conventions(islamicConvention), highLatitudeMethod),
+        err => err.message,
+        ishaaDateTimeUtc => ishaaDateTimeUtc)))
 
 export {
   fajrDateTimeUtc,

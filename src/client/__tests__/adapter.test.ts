@@ -1,11 +1,11 @@
 import {
   fajr,
-  dhuhr
-  // asr,
+  dhuhr,
+  asr
   // maghrib,
   // ishaa
 } from '../../salah'
-import { fajrDateTimeUtc, dhuhrDateTimeUtc } from '../index'
+import { fajrDateTimeUtc, dhuhrDateTimeUtc, asrDateTimeUtc } from '../index'
 import {
   generateRandomDate,
   randomGeoCoordinates,
@@ -13,10 +13,11 @@ import {
   randomLongitude
 } from '../../testUtils/index'
 import { GeoCoordinates, Longitude } from '../../geoCoordinates'
-import { matchErrorOr } from '../../either'
+import { matchErrorOr, throwOnError } from '../../either'
+import { madhab } from '../../madhab'
 
 describe('Adapter', () => {
-  test('adapts fajr domains complex objects', () => {
+  test('provides a simple interface for the fajr function of the salah times client', () => {
     iterativeTest<{
       date: Date
       location: GeoCoordinates
@@ -37,7 +38,7 @@ describe('Adapter', () => {
       }
     })
   })
-  test('adapts dhuhr domains complex objects', () => {
+  test('provides a simple interface for the dhuhr function of the salah times client', () => {
     iterativeTest<{
       date: Date
       longitude: Longitude
@@ -54,6 +55,30 @@ describe('Adapter', () => {
       assert: ({ date, longitude }) => {
         matchErrorOr(dhuhr(date, longitude), err => expect(dhuhrDateTimeUtc(date, longitude.value)).toEqual(err.message),
           succ => expect(dhuhrDateTimeUtc(date, longitude.value)).toEqual(succ))
+      }
+    })
+  })
+  test('provides a simple interface for the asr function of the salah times client', () => {
+    iterativeTest<{
+      date: Date
+      location: GeoCoordinates
+    }, void>({
+      numberOfExecutions: 500,
+      generateInput: () => {
+        const location = randomGeoCoordinates()
+        const date = generateRandomDate(2000, 2050) as Date
+        return {
+          date,
+          location
+        }
+      },
+      assert: ({ date, location }) => {
+        const latitude = location.getValue('latitude')
+        const longitude = location.getValue('longitude')
+        matchErrorOr(
+          asr(date, location, throwOnError(madhab())),
+          err => expect(asrDateTimeUtc(date, latitude, longitude)).toEqual(err.message),
+          succ => expect(asrDateTimeUtc(date, latitude, longitude)).toEqual(succ))
       }
     })
   })
