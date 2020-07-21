@@ -1,15 +1,15 @@
 import {
-  fajrDateTimeUtc,
-  dhuhrDateTimeUtc,
-  asrDateTimeUtc,
-  maghribDateTimeUtc,
-  ishaaDateTimeUtc
+  getFajrDateTimeUtc,
+  getDhuhrDateTimeUtc,
+  getAsrDateTimeUtc,
+  getMaghribDateTimeUtc,
+  getIshaaDateTimeUtc
 } from './client'
 
 export {
-  fajrDateTimeUtc,
-  dhuhrDateTimeUtc,
-  asrDateTimeUtc,
-  maghribDateTimeUtc,
-  ishaaDateTimeUtc
+  getFajrDateTimeUtc,
+  getDhuhrDateTimeUtc,
+  getAsrDateTimeUtc,
+  getMaghribDateTimeUtc,
+  getIshaaDateTimeUtc
 }

@@ -12,7 +12,7 @@ import { HighLatitudeMethod } from '../../highLatitudeMethods'
 describe('Fajr', () => {
   test('returns the correct fajr date time UTC', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2027, 0, 27),
         34.0181246,
         -5.0078451,
@@ -20,7 +20,7 @@ describe('Fajr', () => {
       new Date(Date.UTC(2027, 0, 27, 5, 54, 36, 569))))
       .toEqual(true)
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2020, 5, 30),
         19.4326077,
         -99.133208,
@@ -28,7 +28,7 @@ describe('Fajr', () => {
       new Date(Date.UTC(2020, 5, 30, 10, 38, 14, 403))))
       .toEqual(true)
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2023, 7, 1),
         12.904759,
         80.0890842,
@@ -36,7 +36,7 @@ describe('Fajr', () => {
       new Date(Date.UTC(2023, 6, 31, 23, 9, 19, 950))))
       .toEqual(true)
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2026, 0, 1),
         -36.8484597,
         174.7633315,
@@ -49,7 +49,7 @@ describe('Fajr', () => {
 describe('Conventions', () => {
   test('Default (Muslim World League) convention returns the correct fajr date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -59,7 +59,7 @@ describe('Conventions', () => {
   })
   test('Muslim World League convention returns the correct fajr date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -69,7 +69,7 @@ describe('Conventions', () => {
   })
   test('Egyptian General Authority Of Survey convention returns the correct fajr date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -79,7 +79,7 @@ describe('Conventions', () => {
   })
   test('Institute Of Geophysics University Of Tehran Of Survey convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -89,7 +89,7 @@ describe('Conventions', () => {
   })
   test('Islamic Society Of North America convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -99,7 +99,7 @@ describe('Conventions', () => {
   })
   test('Shia Ithna Ashari Leva Research Institute Qum Of Survey convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -109,7 +109,7 @@ describe('Conventions', () => {
   })
   test('Umm Al Qura University, Mekkah convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -119,7 +119,7 @@ describe('Conventions', () => {
   })
   test('University Of Islamic Sciences, Karachi convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      fajrDateTimeUtc(
+      getFajrDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -145,7 +145,7 @@ describe('High Latitude Location', () => {
     const percentagesSpanToBeSplit = ((fajrAngle.value * -1) / 60) * 100
     const spanToBeSubtracted = (millisecondsBetweenSunsetAndSunrise / 100) * percentagesSpanToBeSplit
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
-    const actual = fajrDateTimeUtc(
+    const actual = getFajrDateTimeUtc(
       date,
       longyearbyen.getValue('latitude'),
       longyearbyen.getValue('longitude'),
@@ -157,7 +157,7 @@ describe('High Latitude Location', () => {
     const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 4
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
     expect(
-      isDatesCloseEnough(fajrDateTimeUtc(
+      isDatesCloseEnough(getFajrDateTimeUtc(
         date,
         longyearbyen.getValue('latitude'),
         longyearbyen.getValue('longitude'),
@@ -169,7 +169,7 @@ describe('High Latitude Location', () => {
     const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 7
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
   expect(
-      isDatesCloseEnough(fajrDateTimeUtc(
+      isDatesCloseEnough(getFajrDateTimeUtc(
         date,
         longyearbyen.getValue('latitude'),
         longyearbyen.getValue('longitude'),
@@ -178,7 +178,7 @@ describe('High Latitude Location', () => {
   })
 })
 
-const fajrDateTimeUtc =
+const getFajrDateTimeUtc =
   (date: Date,
     lat: number,
     lng: number,

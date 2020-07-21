@@ -10,16 +10,34 @@
 
 ### Methods
 
-* [add](__global.date.md#add)
-* [subtract](__global.date.md#subtract)
+* [addDays](__global.date.md#adddays)
+* [addTimeSpan](__global.date.md#addtimespan)
+* [subtractDays](__global.date.md#subtractdays)
+* [subtractTimeSpan](__global.date.md#subtracttimespan)
 
 ## Methods
 
-###  add
+###  addDays
 
-▸ **add**(`timeSpan`: [TimeSpan](timespan.md)): *[Date](__global.date.md)*
+▸ **addDays**(`numberOfDaysToAdd`: number): *[Date](__global.date.md)*
 
-*Defined in [date/date-Augmentation.ts:7](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/date/date-Augmentation.ts#L7)*
+*Defined in [date/date-Augmentation.ts:9](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L9)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`numberOfDaysToAdd` | number |
+
+**Returns:** *[Date](__global.date.md)*
+
+___
+
+###  addTimeSpan
+
+▸ **addTimeSpan**(`timeSpan`: [TimeSpan](timespan.md)): *[Date](__global.date.md)*
+
+*Defined in [date/date-Augmentation.ts:7](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L7)*
 
 **Parameters:**
 
@@ -31,11 +49,27 @@ Name | Type |
 
 ___
 
-###  subtract
+###  subtractDays
 
-▸ **subtract**(`timeSpan`: [TimeSpan](timespan.md)): *[Date](__global.date.md)*
+▸ **subtractDays**(`numberOfDaysToSubract`: number): *[Date](__global.date.md)*
 
-*Defined in [date/date-Augmentation.ts:8](https://github.com/doniseferi/salahtimes/blob/c5863fe/src/date/date-Augmentation.ts#L8)*
+*Defined in [date/date-Augmentation.ts:10](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L10)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`numberOfDaysToSubract` | number |
+
+**Returns:** *[Date](__global.date.md)*
+
+___
+
+###  subtractTimeSpan
+
+▸ **subtractTimeSpan**(`timeSpan`: [TimeSpan](timespan.md)): *[Date](__global.date.md)*
+
+*Defined in [date/date-Augmentation.ts:8](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L8)*
 
 **Parameters:**
 

@@ -12,7 +12,7 @@ import { HighLatitudeMethod } from '../../highLatitudeMethods'
 describe('ishaa', () => {
   test('returns the correct ishaa date time UTC', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2027, 0, 27),
         34.034012,
         -5.010328,
@@ -20,7 +20,7 @@ describe('ishaa', () => {
       new Date(Date.UTC(2027, 0, 27, 19, 5, 40, 344))))
       .toEqual(true)
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2020, 5, 30),
         19.4326077,
         -99.133208,
@@ -28,7 +28,7 @@ describe('ishaa', () => {
       new Date(Date.UTC(2020, 6, 1, 2, 37, 7, 940))))
       .toEqual(true)
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2023, 7, 1),
         12.904759,
         80.0890842,
@@ -36,7 +36,7 @@ describe('ishaa', () => {
       new Date(Date.UTC(2023, 7, 1, 14, 18, 15, 418))))
       .toEqual(true)
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2026, 0, 1),
         -36.8484597,
         174.7633315,
@@ -48,7 +48,7 @@ describe('ishaa', () => {
 describe('Conventions', () => {
   test('Default (Muslim World League) convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -58,7 +58,7 @@ describe('Conventions', () => {
   })
   test('Muslim World League convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -68,7 +68,7 @@ describe('Conventions', () => {
   })
   test('Egyptian General Authority Of Survey convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -78,7 +78,7 @@ describe('Conventions', () => {
   })
   test('Institute Of Geophysics University Of Tehran Of Survey convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -88,7 +88,7 @@ describe('Conventions', () => {
   })
   test('Islamic Society Of North America convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -98,7 +98,7 @@ describe('Conventions', () => {
   })
   test('Shia Ithna Ashari Leva Research Institute Qum Of Survey convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -108,7 +108,7 @@ describe('Conventions', () => {
   })
   test('Umm Al Qura University, Mekkah convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -118,7 +118,7 @@ describe('Conventions', () => {
   })
   test('University Of Islamic Sciences, Karachi convention returns the correct ishaa date time utc', () => {
     expect(isDatesCloseEnough(
-      ishaaDateTimeUtc(
+      getIshaaDateTimeUtc(
         new Date(2021, 5, 1),
         21.3890824,
         39.8579118,
@@ -145,7 +145,7 @@ describe('High Latitude Location', () => {
     const percentagesSpanToBeSplit = ((ishaaAngle.value * -1) / 60) * 100
     const spanToBeAdded = (millisecondsBetweenSunriseAndSunset / 100) * percentagesSpanToBeSplit
     const expected = new Date(sunset.getTime() + spanToBeAdded)
-    const actual = ishaaDateTimeUtc(
+    const actual = getIshaaDateTimeUtc(
       date,
       longyearbyen.getValue('latitude'),
       longyearbyen.getValue('longitude'),
@@ -156,7 +156,7 @@ describe('High Latitude Location', () => {
   test('Middle of the night method', () => {
     const spanToBeAdded = millisecondsBetweenSunriseAndSunset / 4
     const expected = new Date(sunset.getTime() + spanToBeAdded)
-    const actual = ishaaDateTimeUtc(
+    const actual = getIshaaDateTimeUtc(
       date,
       longyearbyen.getValue('latitude'),
       longyearbyen.getValue('longitude'),
@@ -169,7 +169,7 @@ describe('High Latitude Location', () => {
     const spanToBeAdded = millisecondsBetweenSunriseAndSunset / 7
     const expected = new Date(sunset.getTime() + spanToBeAdded)
     expect(
-      isDatesCloseEnough(ishaaDateTimeUtc(
+      isDatesCloseEnough(getIshaaDateTimeUtc(
         date,
         longyearbyen.getValue('latitude'),
         longyearbyen.getValue('longitude'),
@@ -178,7 +178,7 @@ describe('High Latitude Location', () => {
   })
 })
 
-const ishaaDateTimeUtc =
+const getIshaaDateTimeUtc =
   (date: Date,
     lat: number,
     lng: number,
