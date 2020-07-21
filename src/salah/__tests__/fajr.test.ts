@@ -168,7 +168,7 @@ describe('High Latitude Location', () => {
   test('One seventh method', () => {
     const spanToBeSubtracted = millisecondsBetweenSunsetAndSunrise / 7
     const expected = new Date(sunrise.getTime() - spanToBeSubtracted)
-    expect(
+  expect(
       isDatesCloseEnough(fajrDateTimeUtc(
         date,
         longyearbyen.getValue('latitude'),

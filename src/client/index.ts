@@ -4,7 +4,7 @@ import {
   asrDateTimeUtc,
   maghribDateTimeUtc,
   ishaaDateTimeUtc
-} from './client'
+} from './adapter'
 
 export {
   fajrDateTimeUtc,
