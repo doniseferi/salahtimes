@@ -13,7 +13,7 @@ import { geoCoordinates, latitude as lat, longitude as lon } from '../geoCoordin
 import { matchErrorOr } from '../either'
 import { Madhab, madhab as madhhab } from '../madhab'
 
-const fajrDateTimeUtc = (
+const getFajrDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number,
@@ -24,9 +24,9 @@ const fajrDateTimeUtc = (
       matchErrorOr(
         fajr(date, geoCoordinates(parsedLatitude, parsedLongitude), conventions(islamicConvention), highLatitudeMethod),
         err => err.message,
-        fajrDateTimeUtc => fajrDateTimeUtc)))
+        getFajrDateTimeUtc => getFajrDateTimeUtc)))
 
-const dhuhrDateTimeUtc = (
+const getDhuhrDateTimeUtc = (
   date: Date,
   longitude: number): string =>
   matchErrorOr(
@@ -36,31 +36,31 @@ const dhuhrDateTimeUtc = (
       matchErrorOr(
         dhuhr(date, parsedLongitude),
         err => err.message,
-        dhuhrDateTimeUtc => dhuhrDateTimeUtc))
+        getDhuhrDateTimeUtc => getDhuhrDateTimeUtc))
 
-const asrDateTimeUtc = (
+const getAsrDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number,
-  madhab?: Madhab): string =>
+  madhab: Madhab = 'Standard'): string =>
   matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
     matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
       matchErrorOr(madhhab(madhab), err => err.message, asrJuristicMethod =>
         matchErrorOr(
           asr(date, geoCoordinates(parsedLatitude, parsedLongitude), asrJuristicMethod),
           err => err.message,
-          asrDateTimeUtc => asrDateTimeUtc))))
+          getAsrDateTimeUtc => getAsrDateTimeUtc))))
 
-const maghribDateTimeUtc = (
+const getMaghribDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number): string =>
   matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
     matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
       matchErrorOr(maghrib(date, geoCoordinates(parsedLatitude, parsedLongitude)), err => err.message,
-        maghribDateTimeUtc => maghribDateTimeUtc)))
+        getMaghribDateTimeUtc => getMaghribDateTimeUtc)))
 
-const ishaaDateTimeUtc = (
+const getIshaaDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number,
@@ -71,12 +71,12 @@ const ishaaDateTimeUtc = (
       matchErrorOr(
         ishaa(date, geoCoordinates(parsedLatitude, parsedLongitude), conventions(islamicConvention), highLatitudeMethod),
         err => err.message,
-        ishaaDateTimeUtc => ishaaDateTimeUtc)))
+        getIshaaDateTimeUtc => getIshaaDateTimeUtc)))
 
 export {
-  fajrDateTimeUtc,
-  dhuhrDateTimeUtc,
-  asrDateTimeUtc,
-  maghribDateTimeUtc,
-  ishaaDateTimeUtc
+  getFajrDateTimeUtc,
+  getDhuhrDateTimeUtc,
+  getAsrDateTimeUtc,
+  getMaghribDateTimeUtc,
+  getIshaaDateTimeUtc
 }

@@ -21,8 +21,8 @@ describe('Dhuhr', () => {
         }
       },
       assert: ({ date, longitude, middayDateTimeUtc }) => {
-        const dhuhrDateTimeUtc = dhuhr(date, longitude)
-        expect(dhuhrDateTimeUtc).toEqual(success(middayDateTimeUtc))
+        const getDhuhrDateTimeUtc = dhuhr(date, longitude)
+        expect(getDhuhrDateTimeUtc).toEqual(success(middayDateTimeUtc))
       }
     })
   })

@@ -3,6 +3,7 @@
   "version": "1.0.6",
   "description": "A tiny library to get the islamic prayer times in utc for any given day and location.",
   "main": "salahtimes.js",
+  "typings": "salahtimes.d.ts",
   "scripts": {
     "lint": "eslint ./src/** --ext .html,.md,./lib",
     "fix": "eslint ./src/** --ext .html,.md,./lib --fix",

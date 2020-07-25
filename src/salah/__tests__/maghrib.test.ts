@@ -20,9 +20,9 @@ describe('Maghrib', () => {
         }
       },
       assert: ({ date, geoCoordinates, sunsetDateTimeUtc }) => {
-        const maghribDateTimeUtc = maghrib(date, geoCoordinates)
+        const getMaghribDateTimeUtc = maghrib(date, geoCoordinates)
         const expected = (new Date(sunsetDateTimeUtc).getTime()) + 3 * 60000
-        expect(maghribDateTimeUtc).toEqual(success(new Date(expected).toISOString()))
+        expect(getMaghribDateTimeUtc).toEqual(success(new Date(expected).toISOString()))
       }
     })
   })

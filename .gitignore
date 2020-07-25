@@ -1,6 +1,7 @@
-salahtimes.*
+salahtimes.js
 lib
 temp-docs
+docs
 
 # Logs
 logs
