@@ -97,10 +97,9 @@ export function getMaghribDateTimeUtc(date: Date, longitude: number): string;
 * Gets the date and time for fajr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.
 * @example Example usage of getIshaaDateTimeUtc
 * // returns '2021-03-01T19:22:33.506Z'
-* @example Example usage of getIshaaDateTimeUtc
 * getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380)
-* // returns '2021-03-01T19:29:04.467Z'
 * @example Example usage of getIshaaDateTimeUtc
+* // returns '2021-03-01T19:29:04.467Z'
 * getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIslamicSciencesKarachi')
 * @example Example usage of getIshaaDateTimeUtc
 * // returns '2021-03-01T19:29:04.467Z'
