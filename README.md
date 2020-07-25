@@ -11,28 +11,37 @@ A tiny library to get the exact date and time in an [ISO 8601](https://www.wikiw
 ## Functions
   
 <dl>
-<dt><a href="#README.md#const-getfajrdatetimeutc">getFajrDateTimeUtc(date, latitude, longitude, islamicConvention, highLatitudeMethod)</a> ⇒ <code>string</code></dt>
+<dt><a href="#getFajrDateTimeUtc">getFajrDateTimeUtc(date, latitude, longitude, islamicConvention, highLatitudeMethod)</a> ⇒ <code>string</code></dt>
 <dd><p>Gets the date and time for fajr in UTC expressed in an ISO 8601 format for date instance, latitude, longitude value and optional islamic convention and high laltitude method.</p>
 </dd>
-<dt><a href="#README.md#const-getishaadatetimeutc">getIshaaDateTimeUtc(date, latitude, longitude, islamicConvention, highLatitudeMethod)</a> ⇒ <code>string</code></dt>
-<dd><p>Gets the date and time for ishaa in UTC expressed in an ISO 8601 format for date instance, latitude, longitude value and optional islamic convention and high laltitude method.</p>
-</dd>
-<dt><a href="#README.md#const-getmaghribdatetimeut">getMaghribDateTimeUtc(date, longitude): string;</a> ⇒ <code>string</code></dt>
-<dd><p>Gets the date and time for maghrib in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.</p>
-</dd>
-<dt><a href="#README.md#const-getdhuhrdatetimeutc">getDhuhrDateTimeUtc(date, latitude, longitude)</a> ⇒ <code>string</code></dt>
+
+<dt><a href="#getDhuhrDateTimeUtc">getDhuhrDateTimeUtc(date, latitude, longitude)</a> ⇒ <code>string</code></dt>
 <dd><p>Gets the date and time for dhuhr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.</p>
 </dd>
-<dt><a href="#README.md#const-getasrdatetimeutc">getAsrDateTimeUtc(date, latitude, longitude, madhab)</a> ⇒ <code>string</code></dt>
+
+<dt><a href="#getAsrDateTimeUtc">getAsrDateTimeUtc(date, latitude, longitude, madhab)</a> ⇒ <code>string</code></dt>
 <dd><p>Gets the date and time for asr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value and optional madhab value.</p>
 </dd>
+
+<dt><a href="getMaghribDateTimeUtc">getMaghribDateTimeUtcc(date, longitude): string;</a> ⇒ <code>string</code></dt>
+<dd><p>Gets the date and time for maghrib in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.</p>
+</dd>
+
+<dt><a href="#getIshaaDateTimeUtc">getIshaaDateTimeUtc(date, latitude, longitude, islamicConvention, highLatitudeMethod)</a> ⇒ <code>string</code></dt>
+<dd><p>Gets the date and time for ishaa in UTC expressed in an ISO 8601 format for date instance, latitude, longitude value and optional islamic convention and high laltitude method.</p>
+</dd>
+
+
+
 </dl>
 
 * * * *
   
+<a name="getFajrDateTimeUtc"></a>
+
 ### `Const` getFajrDateTimeUtc
 
-▸ **getFajrDateTimeUtc**(`date`: Date, `latitude`: number, `longitude`: number, `islamicConvention`: [SupportedConventions](README.md#supportedconventions), `highLatitudeMethod`: [HighLatitudeMethod](README.md#highlatitudemethod)): *string*
+▸ **getFajrDateTimeUtc**(`date`: Date, `latitude`: number, `longitude`: number, `islamicConvention`: [SupportedConventions](#SupportedConventions), `highLatitudeMethod`: [HighLatitudeMethod](#HighLatitudeMethod)): *string*
 
 *Defined in [src/client/adapter.ts:16](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/client/adapter.ts#L16)*
 
@@ -43,8 +52,8 @@ Name | Type | Default |
 `date` | Date | - |
 `latitude` | number | - |
 `longitude` | number | - |
-`islamicConvention` | [SupportedConventions](README.md#supportedconventions) | "MuslimWorldLeague" |
-`highLatitudeMethod` | [HighLatitudeMethod](README.md#highlatitudemethod) | "AngleBasedMethod" |
+`islamicConvention` | [SupportedConventions](#SupportedConventions) | "MuslimWorldLeague" |
+`highLatitudeMethod` | [HighLatitudeMethod](#HighLatitudeMethod) | "AngleBasedMethod" |
 
 **Returns:** *string*
 
@@ -71,6 +80,8 @@ getFajrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'EgyptianGeneralA
 
 * * * *
 
+<a name="getDhuhrDateTimeUtc"></a>
+
 ### `Const` getDhuhrDateTimeUtc
 
 ▸ **getDhuhrDateTimeUtc**(`date`: Date, `longitude`: number): *string*
@@ -95,9 +106,11 @@ getDhuhrDateTimeUtc(new Date(2025, 0, 18), -0.010150);
 
 * * * *
 
+<a name="getAsrDateTimeUtc"></a>
+
 ### `Const` getAsrDateTimeUtc
 
-▸ **getAsrDateTimeUtc**(`date`: Date, `latitude`: number, `longitude`: number, `madhab`: [Madhab](README.md#madhab)): *string*
+▸ **getAsrDateTimeUtc**(`date`: Date, `latitude`: number, `longitude`: number, `madhab`: [Madhab](#Madhab)): *string*
 
 *Defined in [src/client/adapter.ts:41](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/client/adapter.ts#L41)*
 
@@ -108,7 +121,7 @@ Name | Type | Default |
 `date` | Date | - |
 `latitude` | number | - |
 `longitude` | number | - |
-`madhab` | [Madhab](README.md#madhab) | "Standard" |
+`madhab` | [Madhab](#Madhab) | "Standard" |
 
 **Returns:** *string*
 
@@ -134,9 +147,11 @@ getAsrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'Hanafi');
 
 * * * *
 
-### `Const` getMaghribDateTimeUtc
+<a name="getMaghribDateTimeUtcc"></a>
 
-▸ **getMaghribDateTimeUtc**(`date`: Date, `latitude`: number,`longitude`: number): *string*
+### `Const` getMaghribDateTimeUtcc
+
+▸ **getMaghribDateTimeUtcc**(`date`: Date, `latitude`: number,`longitude`: number): *string*
 
 *Defined in [src/client/adapter.ts:54](https://github.com/doniseferi/salahtimes/blob/8de06c5/src/client/adapter.ts#L54)*
 
@@ -150,46 +165,48 @@ Name | Type |
 
 **Returns:** *string*
 
-**Example** *(Example usage of getMaghribDateTimeUtc)*
+**Example** *(Example usage of getMaghribDateTimeUtcc)*
 
 ```js
 // returns "2025-01-18T12:10:20.853Z"
-getMaghribDateTimeUtc(new Date(2025, 0, 18), -0.010150);
+getMaghribDateTimeUtcc(new Date(2025, 0, 18), -0.010150);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtc)*
+**Example** *(Example usage of getMaghribDateTimeUtcc)*
 
 ```js
 // returns '2037-08-02T17:59:44.502Z'
-getMaghribDateTimeUtc(new Date(2037, 7, 2), 42.637610, 21.092160);
+getMaghribDateTimeUtcc(new Date(2037, 7, 2), 42.637610, 21.092160);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtc)*
+**Example** *(Example usage of getMaghribDateTimeUtcc)*
 
 ```js
 // returns 'The sun is up all day on 2037-08-01T23:00:00.000Z at latitude: 71.98007 and longitude: 102.47427'
-getMaghribDateTimeUtc(new Date(2037, 7, 2), 71.980070, 102.474270);
+getMaghribDateTimeUtcc(new Date(2037, 7, 2), 71.980070, 102.474270);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtc)*
+**Example** *(Example usage of getMaghribDateTimeUtcc)*
 
 ```js
 // returns 'The sun is down all day on 2032-01-01T00:00:00.000Z at latitude: 89.525 and longitude: -30.45'
-getMaghribDateTimeUtc(new Date(2032, 0, 1), 89.5250, -30.4500);
+getMaghribDateTimeUtcc(new Date(2032, 0, 1), 89.5250, -30.4500);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtc)*
+**Example** *(Example usage of getMaghribDateTimeUtcc)*
 
 ```js
 // returns 'The sun is down all day on 2032-01-01T00:00:00.000Z at latitude: 89.525 and longitude: -30.45'
-getMaghribDateTimeUtc(new Date(2032, 0, 1), 89.5250, -30.4500);
+getMaghribDateTimeUtcc(new Date(2032, 0, 1), 89.5250, -30.4500);
 ```
 
 * * * *
 
+<a name="getIshaaDateTimeUtc"></a>
+
 ### `Const` getIshaaDateTimeUtc
 
-▸ **getIshaaDateTimeUtc**(`date`: Date, `latitude`: number, `longitude`: number, `islamicConvention`: [SupportedConventions](README.md#supportedconventions), `highLatitudeMethod`: [HighLatitudeMethod](README.md#highlatitudemethod)): *string*
+▸ **getIshaaDateTimeUtc**(`date`: Date, `latitude`: number, `longitude`: number, `islamicConvention`: [SupportedConventions](#SupportedConventions), `highLatitudeMethod`: [HighLatitudeMethod](#HighLatitudeMethod)): *string*
 
 *Defined in [src/client/adapter.ts:16](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/client/adapter.ts#L63)*
 
@@ -200,8 +217,8 @@ Name | Type | Default |
 `date` | Date | - |
 `latitude` | number | - |
 `longitude` | number | - |
-`islamicConvention` | [SupportedConventions](README.md#supportedconventions) | "MuslimWorldLeague" |
-`highLatitudeMethod` | [HighLatitudeMethod](README.md#highlatitudemethod) | "AngleBasedMethod" |
+`islamicConvention` | [SupportedConventions](#SupportedConventions) | "MuslimWorldLeague" |
+`highLatitudeMethod` | [HighLatitudeMethod](#HighLatitudeMethod) | "AngleBasedMethod" |
 
 **Returns:** *string*
 
@@ -222,12 +239,16 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 ```
 
 * * * *
-  
+
+<a name="SupportedConventions"><a/>
+
 ###  SupportedConventions
 
 Ƭ **SupportedConventions**: *"MuslimWorldLeague" | "IslamicSocietyOfNorthAmerica" | "EgyptianGeneralAuthorityOfSurvey" | "UmmAlQuraUniversityMekkah" | "UniversityOfIslamicSciencesKarachi" | "InstituteOfGeophysicsUniversityOfTehranOfSurvey" | "ShiaIthnaAshariLevaResearchInstituteQumOfSurvey"*
 
 * * * *
+
+<a name="HighLatitudeMethod"><a/>
 
 ###  HighLatitudeMethod
 
@@ -236,6 +257,8 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 * * * *
 
 ###  Madhab
+
+<a name="Madhab"><a/>
 
 Ƭ **Madhab**: *"Standard" | "Shafii" | "Maliki" | "Hanbali" | "Hanafi"*
 
