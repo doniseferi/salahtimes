@@ -5,8 +5,8 @@ import { AsrJursiticMethod } from '../../madhab/madhab'
 import { latitude, longitude, Latitude, Longitude, geoCoordinates } from '../../geoCoordinates'
 import { isDatesCloseEnough } from '../../testUtils'
 
-const standard = throwOnError(madhab('standard'))
-const hanafi = throwOnError(madhab('hanafi'))
+const standard = throwOnError(madhab('Standard'))
+const hanafi = throwOnError(madhab('Hanafi'))
 
 describe('Asr Standard Method', () => {
   test('returns the correct time for Asr in UTC', () => {

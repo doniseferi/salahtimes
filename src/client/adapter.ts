@@ -42,7 +42,7 @@ const getAsrDateTimeUtc = (
   date: Date,
   latitude: number,
   longitude: number,
-  madhab?: Madhab): string =>
+  madhab: Madhab = 'Standard'): string =>
   matchErrorOr(lat(latitude), err => err.message, parsedLatitude =>
     matchErrorOr(lon(longitude), err => err.message, parsedLongitude =>
       matchErrorOr(madhhab(madhab), err => err.message, asrJuristicMethod =>

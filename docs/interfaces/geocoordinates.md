@@ -20,7 +20,7 @@
 
 • **getValue**: *function*
 
-*Defined in [geoCoordinates/geoCoordinates.ts:6](https://github.com/doniseferi/salahtimes/blob/209c27c/src/geoCoordinates/geoCoordinates.ts#L6)*
+*Defined in [src/geoCoordinates/geoCoordinates.ts:6](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/geoCoordinates/geoCoordinates.ts#L6)*
 
 #### Type declaration:
 
@@ -38,7 +38,7 @@ ___
 
 • **latitude**: *Readonly‹[Latitude](latitude.md)›*
 
-*Defined in [geoCoordinates/geoCoordinates.ts:4](https://github.com/doniseferi/salahtimes/blob/209c27c/src/geoCoordinates/geoCoordinates.ts#L4)*
+*Defined in [src/geoCoordinates/geoCoordinates.ts:4](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/geoCoordinates/geoCoordinates.ts#L4)*
 
 ___
 
@@ -46,4 +46,4 @@ ___
 
 • **longitude**: *Readonly‹[Longitude](longitude.md)›*
 
-*Defined in [geoCoordinates/geoCoordinates.ts:5](https://github.com/doniseferi/salahtimes/blob/209c27c/src/geoCoordinates/geoCoordinates.ts#L5)*
+*Defined in [src/geoCoordinates/geoCoordinates.ts:5](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/geoCoordinates/geoCoordinates.ts#L5)*

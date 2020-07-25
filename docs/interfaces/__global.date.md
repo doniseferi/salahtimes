@@ -21,7 +21,7 @@
 
 ▸ **addDays**(`numberOfDaysToAdd`: number): *[Date](__global.date.md)*
 
-*Defined in [date/date-Augmentation.ts:9](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L9)*
+*Defined in [src/date/date-Augmentation.ts:9](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/date/date-Augmentation.ts#L9)*
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **addTimeSpan**(`timeSpan`: [TimeSpan](timespan.md)): *[Date](__global.date.md)*
 
-*Defined in [date/date-Augmentation.ts:7](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L7)*
+*Defined in [src/date/date-Augmentation.ts:7](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/date/date-Augmentation.ts#L7)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **subtractDays**(`numberOfDaysToSubract`: number): *[Date](__global.date.md)*
 
-*Defined in [date/date-Augmentation.ts:10](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L10)*
+*Defined in [src/date/date-Augmentation.ts:10](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/date/date-Augmentation.ts#L10)*
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **subtractTimeSpan**(`timeSpan`: [TimeSpan](timespan.md)): *[Date](__global.date.md)*
 
-*Defined in [date/date-Augmentation.ts:8](https://github.com/doniseferi/salahtimes/blob/209c27c/src/date/date-Augmentation.ts#L8)*
+*Defined in [src/date/date-Augmentation.ts:8](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/date/date-Augmentation.ts#L8)*
 
 **Parameters:**
 

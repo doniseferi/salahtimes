@@ -1,18 +1,13 @@
 import { failure, success, ErrorOr } from '../either'
 import { getNullMembers } from '../validation'
 
-type Madhab =
-'standard' |
-'shafii' |
-'maliki' |
-'hanbali' |
-'hanafi'
+type Madhab = 'Standard' | 'Shafii' | 'Maliki' | 'Hanbali' | 'Hanafi'
 
 interface AsrJursiticMethod {
   value: 1 | 2
 }
 
-const madhab = (madhab: Madhab = 'standard'): ErrorOr<AsrJursiticMethod> => {
+const madhab = (madhab: Madhab = 'Standard'): ErrorOr<AsrJursiticMethod> => {
   const nullProperties = getNullMembers(madhab)
 
   if (nullProperties.length > 0) {
@@ -20,12 +15,12 @@ const madhab = (madhab: Madhab = 'standard'): ErrorOr<AsrJursiticMethod> => {
   }
 
   switch (madhab) {
-    case 'standard':
-    case 'shafii':
-    case 'maliki':
-    case 'hanbali':
+    case 'Standard':
+    case 'Shafii':
+    case 'Maliki':
+    case 'Hanbali':
       return success({ value: 1 })
-    case 'hanafi':
+    case 'Hanafi':
       return success({ value: 2 })
     default:
       return failure(new Error(errorMessage))

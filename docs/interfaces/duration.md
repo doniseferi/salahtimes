@@ -21,7 +21,7 @@
 
 • **hours**: *number*
 
-*Defined in [time/duration.ts:5](https://github.com/doniseferi/salahtimes/blob/209c27c/src/time/duration.ts#L5)*
+*Defined in [src/time/duration.ts:5](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/time/duration.ts#L5)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **milliseconds**: *number*
 
-*Defined in [time/duration.ts:2](https://github.com/doniseferi/salahtimes/blob/209c27c/src/time/duration.ts#L2)*
+*Defined in [src/time/duration.ts:2](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/time/duration.ts#L2)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **minutes**: *number*
 
-*Defined in [time/duration.ts:3](https://github.com/doniseferi/salahtimes/blob/209c27c/src/time/duration.ts#L3)*
+*Defined in [src/time/duration.ts:3](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/time/duration.ts#L3)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **seconds**: *number*
 
-*Defined in [time/duration.ts:4](https://github.com/doniseferi/salahtimes/blob/209c27c/src/time/duration.ts#L4)*
+*Defined in [src/time/duration.ts:4](https://github.com/doniseferi/salahtimes/blob/ceee6ba/src/time/duration.ts#L4)*
