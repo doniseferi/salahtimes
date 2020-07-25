@@ -4,9 +4,17 @@
 ![GitHub](https://img.shields.io/github/license/doniseferi/salahtimes)
 ![Snyk Vulnerabilities for npm package version](https://img.shields.io/snyk/vulnerabilities/npm/salahtimes)![GitHub last commit](https://img.shields.io/github/last-commit/doniseferi/salahtimes)[![Coverage Status](https://coveralls.io/repos/github/doniseferi/salahtimes/badge.svg?branch=master)](https://coveralls.io/github/doniseferi/salahtimes?branch=master)[![GitHub issues](https://img.shields.io/github/issues/doniseferi/salahtimes)](https://github.com/doniseferi/salahtimes/issues)
 
-* * * *
+* * *
   
 A tiny library to get the exact date and time in an [ISO 8601](https://www.wikiwand.com/en/ISO_8601) format for any of the five daily prayers at any location and date.
+
+## Install
+
+```npm install salahtimes```
+
+## Api Reference
+
+* * *
 
 ## Functions
   
@@ -35,7 +43,7 @@ A tiny library to get the exact date and time in an [ISO 8601](https://www.wikiw
 
 </dl>
 
-* * * *
+* * *
   
 <a name="getFajrDateTimeUtc"></a>
 
@@ -78,7 +86,7 @@ getFajrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'EgyptianGeneralA
 * getFajrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'EgyptianGeneralAuthorityOfSurvey'. 'MiddleOfTheNightMethod');
 ```
 
-* * * *
+* * *
 
 <a name="getDhuhrDateTimeUtc"></a>
 
@@ -104,7 +112,7 @@ Name | Type |
 getDhuhrDateTimeUtc(new Date(2025, 0, 18), -0.010150);
 ```
 
-* * * *
+* * *
 
 <a name="getAsrDateTimeUtc"></a>
 
@@ -145,7 +153,7 @@ getAsrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'Shafii');
 getAsrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'Hanafi');
 ```
 
-* * * *
+* * *
 
 <a name="getMaghribDateTimeUtcc"></a>
 
@@ -200,7 +208,7 @@ getMaghribDateTimeUtcc(new Date(2032, 0, 1), 89.5250, -30.4500);
 getMaghribDateTimeUtcc(new Date(2032, 0, 1), 89.5250, -30.4500);
 ```
 
-* * * *
+* * *
 
 <a name="getIshaaDateTimeUtc"></a>
 
@@ -238,7 +246,7 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIslamicSciencesKarachi', 'MiddleOfTheNightMethod');
 ```
 
-* * * *
+* * *
 
 <a name="SupportedConventions"><a/>
 
@@ -246,7 +254,7 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 
 Ƭ **SupportedConventions**: *"MuslimWorldLeague" | "IslamicSocietyOfNorthAmerica" | "EgyptianGeneralAuthorityOfSurvey" | "UmmAlQuraUniversityMekkah" | "UniversityOfIslamicSciencesKarachi" | "InstituteOfGeophysicsUniversityOfTehranOfSurvey" | "ShiaIthnaAshariLevaResearchInstituteQumOfSurvey"*
 
-* * * *
+* * *
 
 <a name="HighLatitudeMethod"><a/>
 
@@ -254,7 +262,7 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 
 Ƭ **HighLatitudeMethod**: *"AngleBasedMethod" | "MiddleOfTheNightMethod" | "OneSeventhMethod"*
 
-* * * *
+* * *
 
 ###  Madhab
 
@@ -262,4 +270,4 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 
 Ƭ **Madhab**: *"Standard" | "Shafii" | "Maliki" | "Hanbali" | "Hanafi"*
 
-* * * *
+* * *
