@@ -271,3 +271,6 @@ getIshaaDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'UniversityOfIsl
 Ƭ **Madhab**: *"Standard" | "Shafii" | "Maliki" | "Hanbali" | "Hanafi"*
 
 * * *
+
+
+[More indept implementation documentation](./docs/interfaces/../README.md)
