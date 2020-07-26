@@ -24,7 +24,7 @@
   },
   "files": [
     "salahtimes.js",
-    "salahtimes.map.js"
+    "salahtimes.d.ts"
   ],
   "author": "Edonis Seferi",
   "license": "ISC",
