@@ -23,7 +23,7 @@
 
 • **path**: *"success"*
 
-*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/e43bde0/src/either/errorOr.ts#L5)*
+*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/8a35e1a/src/either/errorOr.ts#L5)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **result**: *Readonly‹T›*
 
-*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/e43bde0/src/either/errorOr.ts#L5)*
+*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/8a35e1a/src/either/errorOr.ts#L5)*
