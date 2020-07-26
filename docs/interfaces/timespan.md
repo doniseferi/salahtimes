@@ -23,7 +23,7 @@
 
 • **value**: *number*
 
-*Defined in [src/time/timeSpan.ts:7](https://github.com/doniseferi/salahtimes/blob/9951c22/src/time/timeSpan.ts#L7)*
+*Defined in [time/timeSpan.ts:7](https://github.com/doniseferi/salahtimes/blob/e43bde0/src/time/timeSpan.ts#L7)*
 
 ## Methods
 
@@ -31,7 +31,7 @@
 
 ▸ **divide**(`divisor`: number): *[ErrorOr](../README.md#erroror)‹[TimeSpan](timespan.md)›*
 
-*Defined in [src/time/timeSpan.ts:5](https://github.com/doniseferi/salahtimes/blob/9951c22/src/time/timeSpan.ts#L5)*
+*Defined in [time/timeSpan.ts:5](https://github.com/doniseferi/salahtimes/blob/e43bde0/src/time/timeSpan.ts#L5)*
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **divideByTimeSpan**(`divisor`: [TimeSpan](timespan.md)): *[ErrorOr](../README.md#erroror)‹[TimeSpan](timespan.md)›*
 
-*Defined in [src/time/timeSpan.ts:6](https://github.com/doniseferi/salahtimes/blob/9951c22/src/time/timeSpan.ts#L6)*
+*Defined in [time/timeSpan.ts:6](https://github.com/doniseferi/salahtimes/blob/e43bde0/src/time/timeSpan.ts#L6)*
 
 **Parameters:**
 

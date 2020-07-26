@@ -14,7 +14,7 @@
     "build": "webpack && npm run build-docs",
     "test": "jest",
     "build-docs": "npm run clean-docs && npm run generate-docs",
-    "generate-docs": "typedoc --listInvalidSymbolLinks --includeDeclarations --mode file --out docs --readme none --excludeExternals --excludeNotExported --excludePrivate --excludeProtected --ignoreCompilerErrors --plugin typedoc-plugin-markdown --theme markdown",
+    "generate-docs": "typedoc --listInvalidSymbolLinks --mode file --out docs --readme none --excludeExternals --excludeNotExported --excludePrivate --excludeProtected --ignoreCompilerErrors --plugin typedoc-plugin-markdown --theme markdown",
     "coverage": "jest --coverage --coverageReporters=text",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
