@@ -1,7 +1,7 @@
 # salahtimes
 
 <p align="center" background-color="white">
-<img src="./salahtimes.svg" width="250px" />
+<img src="https://raw.githubusercontent.com/doniseferi/salahtimes/efe4e7c61b0cb2cf264afa5b039e782ae2946a78/salahtimes.svg?sanitize=true" width="250px" />
 </p>
 
 
