@@ -50,7 +50,7 @@ export function getFajrDateTimeUtc(
 * @returns {string} A string representing date and time for dhuhr in UTC, expressed in an ISO 8601 format.
 * @function
  */
-export function getDhuhrDateTimeUtc(date: Date, latitude: number, longitude: number): string;
+export function getDhuhrDateTimeUtc(date: Date, longitude: number): string;
 
 /**
 * Gets the date and time for asr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.
