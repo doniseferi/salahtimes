@@ -1,7 +1,7 @@
 # salahtimes
 
 <p align="center" background-color="white">
-<img src="https://raw.githubusercontent.com/doniseferi/salahtimes/efe4e7c61b0cb2cf264afa5b039e782ae2946a78/salahtimes.svg?sanitize=true" width="250px" />
+<img src="./salahtimes.svg" width="250px" />
 </p>
 
 
@@ -27,8 +27,8 @@ A tiny library to get the exact date and time in an [ISO 8601](https://www.wikiw
 <dd><p>Gets the date and time for fajr in UTC expressed in an ISO 8601 format for date instance, latitude, longitude value and optional islamic convention and high laltitude method.</p>
 </dd>
 
-<dt><a href="#getDhuhrDateTimeUtc">getDhuhrDateTimeUtc(date, latitude, longitude)</a> ⇒ <code>string</code></dt>
-<dd><p>Gets the date and time for dhuhr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.</p>
+<dt><a href="#getDhuhrDateTimeUtc">getDhuhrDateTimeUtc(date, longitude)</a> ⇒ <code>string</code></dt>
+<dd><p>Gets the date and time for dhuhr in UTC expressed in an ISO 8601 format for date instance and longitude value.</p>
 </dd>
 
 <dt><a href="#getAsrDateTimeUtc">getAsrDateTimeUtc(date, latitude, longitude, madhab)</a> ⇒ <code>string</code></dt>
