@@ -1,7 +1,7 @@
 # salahtimes
 
 <p align="center" background-color="white">
-<img src="https://raw.githubusercontent.com/doniseferi/salahtimes/f4de479d70f0866d5d55bb2f55297f77b06ae5d4/salahtimes.svg?sanitize=true" width="300" />
+<img src="./salahtimes.svg" width="300" />
 </p>
 
 
@@ -35,7 +35,7 @@ A tiny library to get the exact date and time in an [ISO 8601](https://www.wikiw
 <dd><p>Gets the date and time for asr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value and optional madhab value.</p>
 </dd>
 
-<dt><a href="getMaghribDateTimeUtc">getMaghribDateTimeUtcc(date, longitude): string;</a> ⇒ <code>string</code></dt>
+<dt><a href="#getMaghribDateTimeUtc">getMaghribDateTimeUtcc(date, longitude): string;</a> ⇒ <code>string</code></dt>
 <dd><p>Gets the date and time for maghrib in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.</p>
 </dd>
 
