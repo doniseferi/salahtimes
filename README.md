@@ -1,7 +1,7 @@
 # salahtimes
 
 <p align="center" background-color="white">
-<img src="https://raw.githubusercontent.com/doniseferi/salahtimes/d2f3cd080170b50215db57914a1b895d99727be4/salahtimes.svg?sanitize=true" width="300" />
+<img src="./salahtimes.svg?sanitize=true" width="300" />
 </p>
 
 
@@ -35,7 +35,7 @@ A tiny library to get the exact date and time in an [ISO 8601](https://www.wikiw
 <dd><p>Gets the date and time for asr in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value and optional madhab value.</p>
 </dd>
 
-<dt><a href="#getMaghribDateTimeUtc">getMaghribDateTimeUtcc(date, longitude): string;</a> ⇒ <code>string</code></dt>
+<dt><a href="#getMaghribDateTimeUtc">getMaghribDateTimeUtc(date, longitude): string;</a> ⇒ <code>string</code></dt>
 <dd><p>Gets the date and time for maghrib in UTC expressed in an ISO 8601 format for date instance, latitude and longitude value.</p>
 </dd>
 
@@ -159,11 +159,12 @@ getAsrDateTimeUtc(new Date(2021, 2, 1), 51.522079, -0.191380, 'Hanafi');
 
 * * *
 
-<a name="getMaghribDateTimeUtcc"></a>
+<a name="getMaghribDateTimeUtc"></a>
+<a name="getFajrDateTimeUtc"></a>
 
-### `Const` getMaghribDateTimeUtcc
+### `Const` getMaghribDateTimeUtc
 
-▸ **getMaghribDateTimeUtcc**(`date`: Date, `latitude`: number,`longitude`: number): *string*
+▸ **getMaghribDateTimeUtc**(`date`: Date, `latitude`: number,`longitude`: number): *string*
 
 *Defined in [src/client/adapter.ts:54](https://github.com/doniseferi/salahtimes/blob/8de06c5/src/client/adapter.ts#L54)*
 
@@ -177,44 +178,45 @@ Name | Type |
 
 **Returns:** *string*
 
-**Example** *(Example usage of getMaghribDateTimeUtcc)*
+**Example** *(Example usage of getMaghribDateTimeUtc)*
 
 ```js
 // returns "2025-01-18T12:10:20.853Z"
-getMaghribDateTimeUtcc(new Date(2025, 0, 18), -0.010150);
+getMaghribDateTimeUtc(new Date(2025, 0, 18), -0.010150);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtcc)*
+**Example** *(Example usage of getMaghribDateTimeUtc)*
 
 ```js
 // returns '2037-08-02T17:59:44.502Z'
-getMaghribDateTimeUtcc(new Date(2037, 7, 2), 42.637610, 21.092160);
+getMaghribDateTimeUtc(new Date(2037, 7, 2), 42.637610, 21.092160);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtcc)*
+**Example** *(Example usage of getMaghribDateTimeUtc)*
 
 ```js
 // returns 'The sun is up all day on 2037-08-01T23:00:00.000Z at latitude: 71.98007 and longitude: 102.47427'
-getMaghribDateTimeUtcc(new Date(2037, 7, 2), 71.980070, 102.474270);
+getMaghribDateTimeUtc(new Date(2037, 7, 2), 71.980070, 102.474270);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtcc)*
+**Example** *(Example usage of getMaghribDateTimeUtc)*
 
 ```js
 // returns 'The sun is down all day on 2032-01-01T00:00:00.000Z at latitude: 89.525 and longitude: -30.45'
-getMaghribDateTimeUtcc(new Date(2032, 0, 1), 89.5250, -30.4500);
+getMaghribDateTimeUtc(new Date(2032, 0, 1), 89.5250, -30.4500);
 ```
 
-**Example** *(Example usage of getMaghribDateTimeUtcc)*
+**Example** *(Example usage of getMaghribDateTimeUtc)*
 
 ```js
 // returns 'The sun is down all day on 2032-01-01T00:00:00.000Z at latitude: 89.525 and longitude: -30.45'
-getMaghribDateTimeUtcc(new Date(2032, 0, 1), 89.5250, -30.4500);
+getMaghribDateTimeUtc(new Date(2032, 0, 1), 89.5250, -30.4500);
 ```
 
 * * *
 
 <a name="getIshaaDateTimeUtc"></a>
+
 
 ### `Const` getIshaaDateTimeUtc
 
