@@ -1,6 +1,6 @@
 [salahtimes](../README.md) › [Success](success.md)
 
-# Interface: Success <**T**>
+# Interface: Success ‹**T**›
 
 ## Type parameters
 
@@ -23,7 +23,7 @@
 
 • **path**: *"success"*
 
-*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/8a35e1a/src/either/errorOr.ts#L5)*
+*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/5b1dd82/src/either/errorOr.ts#L5)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **result**: *Readonly‹T›*
 
-*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/8a35e1a/src/either/errorOr.ts#L5)*
+*Defined in [either/errorOr.ts:5](https://github.com/doniseferi/salahtimes/blob/5b1dd82/src/either/errorOr.ts#L5)*

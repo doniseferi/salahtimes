@@ -1,6 +1,6 @@
 [salahtimes](../README.md) › [Failure](failure.md)
 
-# Interface: Failure <**T**>
+# Interface: Failure ‹**T**›
 
 ## Type parameters
 
@@ -23,7 +23,7 @@
 
 • **error**: *Readonly‹T›*
 
-*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/8a35e1a/src/either/errorOr.ts#L4)*
+*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/5b1dd82/src/either/errorOr.ts#L4)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **path**: *"error"*
 
-*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/8a35e1a/src/either/errorOr.ts#L4)*
+*Defined in [either/errorOr.ts:4](https://github.com/doniseferi/salahtimes/blob/5b1dd82/src/either/errorOr.ts#L4)*
