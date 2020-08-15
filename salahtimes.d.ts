@@ -40,8 +40,8 @@ export function getFajrDateTimeUtc(
   date: Date,
   latitude: number,
   longitude: number,
-  islamicConvention: SupportedConventions,
-  highLatitudeMethod: HighLatitudeMethod
+  islamicConvention?: SupportedConventions,
+  highLatitudeMethod?: HighLatitudeMethod
 ): string;
 
 /**
@@ -69,7 +69,7 @@ export function getDhuhrDateTimeUtc(date: Date, longitude: number): string;
  * @param {Date} date - A date instance.
  * @param {number} latitude - A latitude value in the range of -90 to 90.
  * @param {number} longitude - A longitude value in the range of -180 to 180.
- * @param {Madhab} - The madhab value for determining the asr elevation angle. Hanafi is the only value that produces a different value in comparison to the other values.
+ * @param {Madhab} [madhab="Standard"] - The madhab value for determining the asr elevation angle. Hanafi is the only value that produces a different value in comparison to the other values.
  * @returns {string} A string representing date and time for asr in UTC, expressed in an ISO 8601 format.
  * @function
  */
@@ -77,7 +77,7 @@ export function getAsrDateTimeUtc(
   date: Date,
   latitude: number,
   longitude: number,
-  madhab: Madhab
+  madhab?: Madhab
 ): string;
 
 /**
@@ -128,6 +128,6 @@ export function getIshaaDateTimeUtc(
   date: Date,
   latitude: number,
   longitude: number,
-  islamicConvention: SupportedConventions,
-  highLatitudeMethod: HighLatitudeMethod
+  islamicConvention?: SupportedConventions,
+  highLatitudeMethod?: HighLatitudeMethod
 ): string;

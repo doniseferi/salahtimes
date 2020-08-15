@@ -48,11 +48,14 @@ const conventions: Convention[] = [{
 }]
 
 const convention =
-  (name: SupportedConventions = 'MuslimWorldLeague'): Convention =>
-    conventions
-      .find(convention =>
-        convention.name.toLowerCase() === name?.toLowerCase()) ??
-      conventions[0]
+  (name: SupportedConventions = 'MuslimWorldLeague'): Convention => {
+    const conventionValue = conventions
+    .find(convention => convention.name.toLowerCase() === name.toLowerCase())
+
+    return conventionValue 
+      ? conventionValue 
+      : conventions[0]
+  }
 
 export {
   SupportedConventions,
